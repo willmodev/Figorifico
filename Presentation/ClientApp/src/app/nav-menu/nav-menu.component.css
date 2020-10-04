@@ -1,0 +1,40 @@
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+.style
+{
+  background-color: #DCD0C0;
+}
+.mystyle a:hover{
+  color:#000000;
+}
+.mystyle a{
+  color: #333;
+  text-decoration: none;
+  position: relative;
+  display: block;
+  width: 100px;
+}
+.mystyle li:hover{
+  background-color: #e6e2de;
+  left: .1em;
+}
+
+a:active{
+  font-weight: bold;
+}
+
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem #000000;
+}
