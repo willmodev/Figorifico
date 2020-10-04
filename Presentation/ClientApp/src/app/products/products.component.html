@@ -1,1 +1,137 @@
-<p>products works!</p>
+<div class="card  mt-5 mb-5 backColor">
+    <h5 class="card-header colorTop">Registro de Productos</h5>
+    <form class="m-5">
+        <div class="form-row">
+
+            <div class="form-group col-md-4">
+                <label for="inputID">Codigo</label>
+                <input type="text" class="form-control" id="inputID" placeholder="codigo">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputState">Tipo</label>
+                <select id="inputState" class="form-control">
+                  <option selected>Carne de Res</option>
+                  <option>Carne de Cerdo</option>
+                  <option>Carne de Pollo</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputCategory">Categoria</label>
+                <select id="inputCategory" class="form-control">
+                  <option selected>Lomito</option>
+                  <option>Cadera</option>
+                  <option>Costilla</option>
+                  <option>Pecho</option>
+                  <option>Paletero</option>
+                  <option>Morrillo</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputPurchasePrice">Precio de compra</label>
+                <input type="number" class="form-control" id="inputPurchasePrice" placeholder="ejemplo: 2400">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputSalePice">Precio de venta</label>
+                <input type="number" class="form-control" id="inputSalePice"  placeholder="ejemplo: 3000">
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="inputSuggestedPrice">Precio Sugerido</label>
+                <input type="number" class="form-control" id="inputSuggestedPrice"  placeholder="ejemplo: 2800">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="inputQuantity">Cantidad (Kg)</label>
+                <input type="number" class="form-control" id="inputQuantity" placeholder="ejemplo: 56">
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="inputIva">Iva (%)</label>
+                <input type="number" class="form-control" id="inputIva" placeholder="ejemplo: 19">
+            </div>
+        </div>
+        
+        <div class="row justify-content-center text-center mt-3">
+           <div class="col-sm-X  align-self-center">
+            <label for="imputImage"><strong>Ingresa una imagen..!</strong></label>
+            <input type="file" class="form-control-file" id="imputImage">
+
+           </div>
+        </div>
+          
+        
+        <button type="button" id="btn-style" class="btn colorTop mt-3">Registrar</button>
+    </form>
+</div>
+
+<div class="card mt-5 mb-5 backColor">
+    <h5 class="card-header colorTop">Lista de productos</h5>
+    <nav class="navbar navbar-light mt-2">
+        <a class="navbar-brand">
+            <input class="form-control mx-5"  type="search" placeholder="Buscar producto" aria-label="Search">
+        </a>
+    </nav>
+
+    <div class="m-5 colorTable">
+        <div class="table-responsive">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Codigo</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Precio Compra</th>
+                <th scope="col">Precio Venta</th>
+                <th scope="col">Precio Sugerido</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">IVA</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">CR092</th>
+                <td>Carne de Res</td>
+                <td>Lomito</td>
+                <td>10000</td>
+                <td>14000</td>
+                <td>13000</td>
+                <td>23</td>
+                <td>19</td>
+                <td><button class="btn btn-primary"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                  </svg></button>
+                </td>
+                <td><button class="btn btn-danger"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                  </svg></button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">CC092</th>
+                <td>Carne de Cerdo</td>
+                <td>Costilla</td>
+                <td>7000</td>
+                <td>10000</td>
+                <td>18500</td>
+                <td>15</td>
+                <td>19</td>
+                <td><button class="btn btn-primary"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                  </svg></button>
+                </td>
+                <td><button class="btn btn-danger"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                  </svg></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+
+</div>
