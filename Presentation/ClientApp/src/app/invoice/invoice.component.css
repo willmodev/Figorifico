@@ -1,3 +1,20 @@
 .my-color{
     background-color: #C2B283;
 }
+#size-quantity
+{
+    width: 50px;
+}
+#size-price{
+
+    width: 70px;
+}
+
+/* input[type=number] {
+    width: 50px;
+}    */
+
+body{
+    margin-left: -75px;
+    margin-right: -75px;
+}

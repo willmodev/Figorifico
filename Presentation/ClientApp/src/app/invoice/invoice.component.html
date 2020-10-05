@@ -1,88 +1,142 @@
-<p dir="ltr">Hello</p>
-<div class="row mt-5 mb-5">
-    <div class="col-sm-5">
-        <div class="card">
-            <div class="card-header my-color">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                  </svg> Datos Factura
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        <label for="inputInvoiceNumber">N° Factura</label>
-                        <input type="text" class="form-control" id="InvoiceNumber" placeholder="21">
+<body>
+    <div class="row mt-5 mb-5">
+        <div class="col-sm-5">
+            <div class="card">
+                <div class="card-header my-color">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                      </svg> Datos Factura
+                </div>
+                <div class="card-body">
+                    <div class="row d-flex">
+                        <div class="form-group col-md-4">
+                            <label for="inputInvoiceNumber">N° Factura</label>
+                            <input type="text" class="form-control" id="InvoiceNumber" placeholder="21">
+                        </div>
+                        <div class="form-group col-md-4 mt-4 pt-2 ml-auto">
+                            <button class="btn btn-primary"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-printer-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5z"/>
+                                <path fill-rule="evenodd" d="M11 9H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
+                                <path fill-rule="evenodd" d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                              </svg> Imprimir</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="inputName">Cliente</label>
+                            <input type="text" class="form-control" id="inputName" placeholder="seleccione un cliente">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="inputState">Pago</label>
+                            <select id="inputState" class="form-control">
+                                <option selected>Eectivo</option>
+                                <option>Cheque</option>
+                                <option>Transferencia bancaria</option>
+                                <option>Credito</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group text-center mt-2">
+                        <h5>Adicionar Productos</h5>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="search" placeholder="Buscar Productos" aria-label="Search">
+                
+                    </div>
+                 <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Prod</th>
+                                <th scope="col">Categ</th>
+                                <th scope="col">Cant</th>
+                                <th scope="col">$Suger</th>
+                                <th scope="col">$Venta</th>
+                                <th scope="col">Add</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                
+                                <td>Res</td>
+                                <td>Murillo</td>
+                                <td><input type="number" id="size-quantity"></td>
+                                <td><input type="text" id="size-price" value="7000" readonly disabled></td>
+                                <td><input type="number" id="size-price"></td>
+                                <td><button class="btn btn-success"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z"/>
+                                  </svg></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                
+                </div>
+                </div>
+                </div>
+        <div class="col-sm-7 mb-5">
+            <div class="card">
+                <div class="card-header my-color">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                      </svg> Detalle Factura
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Codigo</th>
+                                    <th scope="col">Cant</th>
+                                    <th scope="col">Descripcion</th>
+                                    <th scope="col">Categoria</th>
+                                    <th scope="col">Precio Unit.</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    
+                                    <td>CR34</td>
+                                    <td>5</td>
+                                    <td>Carne de Res</td>
+                                    <td>Murrilo</td>
+                                    <td>7000</td>
+                                    <td>35000</td>
+                                    <td>
+                                        <button class="btn btn-danger">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td>SUBTOTAL $</td>
+                                    <td>28.350</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td>IVA $</td>
+                                    <td>6.650</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td>TOTAL $</td>
+                                    <td>35,000</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="inputName">Cliente</label>
-                        <input type="text" class="form-control" id="inputName" placeholder="seleccione un cliente">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="inputState">Pago</label>
-                        <select id="inputState" class="form-control">
-                            <option selected>Eectivo</option>
-                            <option>Cheque</option>
-                            <option>Transferencia bancaria</option>
-                            <option>Credito</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group text-center mt-2">
-                    <h5>Adicionar Productos</h5>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="search" placeholder="Buscar Productos" aria-label="Search">
-            
-                </div>
-             <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Producto</th>
-                            <th scope="col">Categoria</th>
-                            <th scope="col">Cant.</th>
-                            <th scope="col">Precio v.</th>
-                            <th scope="col">Precio s.</th>
-                            <th scope="col">Add</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            
-                            <td>Res</td>
-                            <td>Murillo</td>
-                            <td><input type="text" width="1px" height="1px"></td>
-                            <td>7000</td>
-                            <td><input type="text" width="1px" height="1px"></td>
-                            <td><button class="btn btn-success"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5A.5.5 0 0 0 4 8z"/>
-                              </svg></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            
-            </div>
-            </div>
-            </div>
-    <div class="col-sm-7 mb-5">
-        <div class="card">
-            <div class="card-header my-color">
-                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                  </svg> Detalle Factura
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            </div>
-          </div>
+              </div>
+        </div>
     </div>
-</div>
+</body>
