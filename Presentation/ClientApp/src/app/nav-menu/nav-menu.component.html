@@ -4,24 +4,29 @@
 
         <li><a class="navbar-brand" [routerLink]="['/']">Home</a></li>
 
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="loginService.isValid">
           <a class="nav-link" [routerLink]="['invoice']">Facturar</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="loginService.isValid"> 
           <a class="nav-link" [routerLink]="['/products']">Productos</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="loginService.isValid">
           <a class="nav-link" [routerLink]= "['clients']">Clientes</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="loginService.isValid">
           <a class="nav-link" [routerLink]="['sales']">Ventas</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="loginService.isValid">
           <a class="nav-link" [routerLink]="['users']">Usuarios</a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
+      <form class="form-inline my-2 my-lg-0" *ngIf="!loginService.isValid">
         <button class="btn btn-outline-dark my-2 my-sm-0" [routerLink]="['login']" type="submit">Login</button>
+      </form>
+      <form class="form-inline my-2 my-lg-0" *ngIf="loginService.isValid">
+        <button class="btn btn-outline-dark my-2 my-sm-0" [routerLink]="['login']" (click) ="salir()"  type="submit">Salir</button>
       </form>
     </div>
   </nav>
+
+ 

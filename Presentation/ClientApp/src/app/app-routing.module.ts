@@ -9,6 +9,7 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { SalesComponent } from './sales/sales.component';
 import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'invoice', component: InvoiceComponent},
   { path: 'sales', component: SalesComponent},
   { path: 'users', component: UsersComponent},
-  { path: 'login', component: LoginComponent}
+  { path: 'login', component: LoginComponent},
+  { path: 'register', component: RegisterComponent}
 ];
 
 
