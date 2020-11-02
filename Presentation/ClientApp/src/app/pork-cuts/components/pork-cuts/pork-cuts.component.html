@@ -1,0 +1,45 @@
+<!-- <div class="row">
+
+    <div class="col-md-4" *ngFor="let product of products">
+
+        <div class="product-margin">
+
+            <h3 appHighlight>{{ product.title | uppercase }}</h3>
+            <img [src]="product.image" alt="image">
+            <strong>{{ product.price | currency }}</strong>
+            <p>{{ product.description | slice:0:10 }}</p>
+            <p>{{ today | date:'HH:mm' }}</p>
+            <button (click)="addCart()" mat-raised-button color="primary">Agregar al carrito</button>
+            <a [routerLink]="['/pork-cuts', product.id]">Ver detalle</a>
+       
+         </div>
+
+    </div>
+
+</div> -->
+
+<div class="row my-3">
+    <div class="col-xs-4 mt-3"  *ngFor="let product of products">
+       <div class="box">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>{{ product.title | uppercase }}</mat-card-title>
+                <mat-card-subtitle>{{ product.salePrice | currency }}</mat-card-subtitle>
+            </mat-card-header>
+            <div class="crop-image">
+                <img [src]="product.image" alt="image">
+            </div>
+            <mat-card-content>
+                <p>{{ product.description | slice:0:10 }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <a mat-button [routerLink]="['/pork-cuts', product.id]">Ver detalle</a>
+                <button (click)="addCart()" mat-raised-button color="primary">Agregar al carrito</button>
+            </mat-card-actions>
+        
+        </mat-card>
+       </div>
+
+    </div>
+</div>
+

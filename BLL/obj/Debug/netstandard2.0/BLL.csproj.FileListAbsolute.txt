@@ -1,0 +1,14 @@
+d:\Programacion Web\Figorifico\BLL\bin\Debug\netstandard2.0\BLL.deps.json
+d:\Programacion Web\Figorifico\BLL\bin\Debug\netstandard2.0\BLL.dll
+d:\Programacion Web\Figorifico\BLL\bin\Debug\netstandard2.0\BLL.pdb
+d:\Programacion Web\Figorifico\BLL\bin\Debug\netstandard2.0\DAL.dll
+d:\Programacion Web\Figorifico\BLL\bin\Debug\netstandard2.0\Entity.dll
+d:\Programacion Web\Figorifico\BLL\bin\Debug\netstandard2.0\DAL.pdb
+d:\Programacion Web\Figorifico\BLL\bin\Debug\netstandard2.0\Entity.pdb
+d:\Programacion Web\Figorifico\BLL\obj\Debug\netstandard2.0\BLL.csprojAssemblyReference.cache
+d:\Programacion Web\Figorifico\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfoInputs.cache
+d:\Programacion Web\Figorifico\BLL\obj\Debug\netstandard2.0\BLL.AssemblyInfo.cs
+d:\Programacion Web\Figorifico\BLL\obj\Debug\netstandard2.0\BLL.csproj.CoreCompileInputs.cache
+d:\Programacion Web\Figorifico\BLL\obj\Debug\netstandard2.0\BLL.csproj.CopyComplete
+d:\Programacion Web\Figorifico\BLL\obj\Debug\netstandard2.0\BLL.dll
+d:\Programacion Web\Figorifico\BLL\obj\Debug\netstandard2.0\BLL.pdb

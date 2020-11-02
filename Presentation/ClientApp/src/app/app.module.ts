@@ -4,41 +4,59 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProductsComponent } from './products/products.component';
-import { ClientsComponent } from './clients/clients.component';
-import { InvoiceComponent } from './invoice/invoice.component';
 import { SalesComponent } from './sales/sales.component';
 import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { BeefCutsComponent } from './beef-cuts/beef-cuts.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SharedModule } from './shared/shared.module';
+import { HomeModule } from './home/home.module';
+import { HomeRoutingModule } from './home/home-routing.module';
+import { ClientsModule } from './clients/clients.module';
+import { ClientsRoutingModule } from './clients/clients-routing.module';
+import { InvoiceModule } from './invoice/invoice.module';
+import { InvoiceRoutingModule } from './invoice/invoice-routing.module';
+import { CoreModule } from './core/core.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { PorkCutsModule } from './pork-cuts/pork-cuts.module';
+import { PorkCutsRoutingModule } from './pork-cuts/pork-cuts-routing.module';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from './../environments/environment';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
-    HomeComponent,
-    FetchDataComponent,
-    HeaderComponent,
-    FooterComponent,
     ProductsComponent,
-    ClientsComponent,
-    InvoiceComponent,
     SalesComponent,
     UsersComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    BeefCutsComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule,
+    HomeModule,
+    HomeRoutingModule,
+    ClientsModule,
+    ClientsRoutingModule,
+    InvoiceModule,
+    InvoiceRoutingModule,
+    CoreModule,
+    NoopAnimationsModule,
+    PorkCutsModule,
+    PorkCutsRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

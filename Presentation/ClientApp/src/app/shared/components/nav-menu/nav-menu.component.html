@@ -1,0 +1,65 @@
+<!-- <nav class="navbar navbar-expand-sm style navbar-light">
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 mystyle">
+
+        <li routerLinkActive = "active"><a class="navbar-brand" [routerLink]="['/home']">Home</a></li>
+
+        <li routerLinkActive = "active" class="nav-item" *ngIf="loginService.isValid">
+          <a class="nav-link" [routerLink]="['invoice']">Facturar</a>
+        </li>
+        <li  routerLinkActive = "active" class="nav-item" *ngIf="loginService.isValid"> 
+          <a class="nav-link" [routerLink]="['/products']">Productos</a>
+        </li>
+        <li  routerLinkActive = "active" class="nav-item" *ngIf="loginService.isValid">
+          <a class="nav-link" [routerLink]= "['clients']">Clientes</a>
+        </li>
+        <li  routerLinkActive = "active" class="nav-item" *ngIf="loginService.isValid">
+          <a class="nav-link" [routerLink]="['sales']">Ventas</a>
+        </li>
+        <li  routerLinkActive = "active" class="nav-item" *ngIf="loginService.isValid">
+          <a class="nav-link" [routerLink]="['users']">Usuarios</a>
+        </li>
+        <li  routerLinkActive = "active" class="nav-item dropdown" *ngIf="loginService.isValid">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">Cortes
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" [routerLink]="['beef-cuts']">Cortes de res</a>
+            <a class="dropdown-item" [routerLink]="['pork-cuts']">Cortes de cerdo</a>
+          </div>
+        </li>
+        
+      </ul>
+      <form class="form-inline my-2 my-lg-0" *ngIf="!loginService.isValid">
+        <button class="btn btn-outline-dark my-2 my-sm-0" [routerLink]="['login']" type="submit">Login</button>
+      </form>
+      <form class="form-inline my-2 my-lg-0" *ngIf="loginService.isValid">
+        <button class="btn btn-outline-dark my-2 my-sm-0" [routerLink]="['login']" (click) ="salir()"  type="submit">Salir</button>
+      </form>
+    </div>
+  </nav> -->
+
+  <mat-toolbar class="color">
+  
+    <mat-toolbar-row>
+  
+      <div class="row between-xs middle-xs nav-row">
+        <nav>
+          <a mat-button class="navbar-brand" [routerLink]="['/home']" routerLinkActive="active">Home</a>
+          <a mat-button [routerLink]="['invoice']" routerLinkActive="active">Facturar</a>
+          <a mat-button [routerLink]="['/products']" routerLinkActive="active">Productos</a>
+          <a mat-button [routerLink]="['clients']" routerLinkActive="active">Clientes</a>
+          <a mat-button [routerLink]="['sales']" routerLinkActive="active">Ventas</a>
+          <a mat-button [routerLink]="['users']" routerLinkActive="active">Usuarios</a>
+          <a mat-button [routerLink]="['beef-cuts']" routerLinkActive="active">Cortes de res</a>
+          <a mat-button [routerLink]="['pork-cuts']" routerLinkActive="active">Cortes de cerdo</a>
+        </nav>
+        <a mat-raised-button matBadge="4" matBadgeColor="warn">
+          <mat-icon>shopping_cart</mat-icon>
+          Carrito
+        </a>
+  
+      </div>
+  
+    </mat-toolbar-row>
+  </mat-toolbar>
+

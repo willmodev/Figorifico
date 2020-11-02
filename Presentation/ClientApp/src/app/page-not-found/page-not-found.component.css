@@ -1,0 +1,62 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+
+  
+  .error {
+      width: 100%;
+      height: auto;
+      margin: 50px auto;
+      text-align: center;
+      margin-bottom: 0;
+  }
+  
+  .dracula{
+      width: 230px;
+      height: 300px;
+      display: inline-block;
+      margin: auto;
+      overflow-block: hidden;
+  }
+  
+  .error .p {
+      height: 100%;
+      color: #000000; ; 
+      font-size: 280px;
+      margin: 50px;
+      display: inline-block;
+      font-family: 'Anton', sans-serif;
+      font-family: 'Combo', cursive;
+  }
+  
+  
+  /* page-ms */
+  .page-ms {transform: translateY(-50px);}
+  
+  .error p.page-msg {
+      text-align: center;
+      color: #000000; 
+      font-size: 30px;
+      font-family: 'Combo', cursive;
+      margin-bottom: 20px;
+  }
+  button.go-back {
+          font-size: 30px;
+      font-family: 'Combo', cursive;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: 0.3s linear;
+      z-index: 9;
+      border-radius: 10px;
+      background: #C2B283;
+      color: #33265C;
+      box-shadow: 0 0 10px 0 #C2B283;
+      margin-top: 20px;
+  }
+  button:hover {box-shadow: 0 0 20px 0 #C2B283;}
+  
+  

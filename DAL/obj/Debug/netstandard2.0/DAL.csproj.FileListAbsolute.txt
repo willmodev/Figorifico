@@ -1,0 +1,12 @@
+d:\Programacion Web\Figorifico\DAL\bin\Debug\netstandard2.0\DAL.deps.json
+d:\Programacion Web\Figorifico\DAL\bin\Debug\netstandard2.0\DAL.dll
+d:\Programacion Web\Figorifico\DAL\bin\Debug\netstandard2.0\DAL.pdb
+d:\Programacion Web\Figorifico\DAL\bin\Debug\netstandard2.0\Entity.dll
+d:\Programacion Web\Figorifico\DAL\bin\Debug\netstandard2.0\Entity.pdb
+d:\Programacion Web\Figorifico\DAL\obj\Debug\netstandard2.0\DAL.csprojAssemblyReference.cache
+d:\Programacion Web\Figorifico\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfoInputs.cache
+d:\Programacion Web\Figorifico\DAL\obj\Debug\netstandard2.0\DAL.AssemblyInfo.cs
+d:\Programacion Web\Figorifico\DAL\obj\Debug\netstandard2.0\DAL.csproj.CoreCompileInputs.cache
+d:\Programacion Web\Figorifico\DAL\obj\Debug\netstandard2.0\DAL.csproj.CopyComplete
+d:\Programacion Web\Figorifico\DAL\obj\Debug\netstandard2.0\DAL.dll
+d:\Programacion Web\Figorifico\DAL\obj\Debug\netstandard2.0\DAL.pdb

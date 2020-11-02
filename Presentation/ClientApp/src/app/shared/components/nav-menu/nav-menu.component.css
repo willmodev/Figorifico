@@ -1,0 +1,23 @@
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+nav > a.active{
+  text-decoration: none;
+  background-color: #d6e2de;
+  
+}
+
+.color
+{
+  background-color: #DCD0C0;
+}
+a{
+  text-decoration: none;
+}
+
+.nav-row{
+  width: 100%;
+}

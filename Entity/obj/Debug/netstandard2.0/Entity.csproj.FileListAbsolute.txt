@@ -1,0 +1,9 @@
+d:\Programacion Web\Figorifico\Entity\bin\Debug\netstandard2.0\Entity.deps.json
+d:\Programacion Web\Figorifico\Entity\bin\Debug\netstandard2.0\Entity.dll
+d:\Programacion Web\Figorifico\Entity\bin\Debug\netstandard2.0\Entity.pdb
+d:\Programacion Web\Figorifico\Entity\obj\Debug\netstandard2.0\Entity.csprojAssemblyReference.cache
+d:\Programacion Web\Figorifico\Entity\obj\Debug\netstandard2.0\Entity.AssemblyInfoInputs.cache
+d:\Programacion Web\Figorifico\Entity\obj\Debug\netstandard2.0\Entity.AssemblyInfo.cs
+d:\Programacion Web\Figorifico\Entity\obj\Debug\netstandard2.0\Entity.csproj.CoreCompileInputs.cache
+d:\Programacion Web\Figorifico\Entity\obj\Debug\netstandard2.0\Entity.dll
+d:\Programacion Web\Figorifico\Entity\obj\Debug\netstandard2.0\Entity.pdb
