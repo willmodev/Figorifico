@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login/login.service';
 
 @Component({
@@ -7,14 +9,39 @@ import { LoginService } from 'src/app/core/services/login/login.service';
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent implements OnInit {
-  
-  constructor(public loginService: LoginService) {}
-  isLogeed: boolean ;
-  ngOnInit(): void {
+
+  public isLogged =  false;
+  // tslint:disable-next-line: comment-format
+  //public user: any;
+  public user$: Observable<any> = this.loginService.angularFireAuth.user;
+
+  constructor(
+    private loginService: LoginService,
+    private router: Router
+  ) {}
+
+
+
+
+  async ngOnInit() {
+
+    // this.user = await this.loginService.getCurrentUser();
+
+    // if (this.user) {
+    //   this.isLogged = true;
+    // }
   }
-  
-  salir()
-  {
-    this.loginService.isValid = false;
+
+  async onLogout() {
+    try {
+      await this.loginService.logout();
+      this.router.navigate(['/login']);
+    } catch (error) {
+      console.log(error);
+    }
   }
+  // salir()
+  // {
+  //   this.loginService.isValid = false;
+  // }
 }

@@ -13,7 +13,7 @@
         <li  routerLinkActive = "active" class="nav-item" *ngIf="loginService.isValid">
           <a class="nav-link" [routerLink]= "['clients']">Clientes</a>
         </li>
-        <li  routerLinkActive = "active" class="nav-item" *ngIf="loginService.isValid">
+        <li  routerLinkActive = "active"  *ngIf="loginService.isValid">
           <a class="nav-link" [routerLink]="['sales']">Ventas</a>
         </li>
         <li  routerLinkActive = "active" class="nav-item" *ngIf="loginService.isValid">
@@ -44,19 +44,33 @@
   
       <div class="row between-xs middle-xs nav-row">
         <nav>
-          <a mat-button class="navbar-brand" [routerLink]="['/home']" routerLinkActive="active">Home</a>
-          <a mat-button [routerLink]="['invoice']" routerLinkActive="active">Facturar</a>
-          <a mat-button [routerLink]="['/products']" routerLinkActive="active">Productos</a>
-          <a mat-button [routerLink]="['clients']" routerLinkActive="active">Clientes</a>
-          <a mat-button [routerLink]="['sales']" routerLinkActive="active">Ventas</a>
-          <a mat-button [routerLink]="['users']" routerLinkActive="active">Usuarios</a>
-          <a mat-button [routerLink]="['beef-cuts']" routerLinkActive="active">Cortes de res</a>
-          <a mat-button [routerLink]="['pork-cuts']" routerLinkActive="active">Cortes de cerdo</a>
+            <a mat-button class="navbar-brand" [routerLink]="['/home']" routerLinkActive="active">Home</a>
+            <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['invoice']" routerLinkActive="active">Facturar</a>
+            <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['/products']" routerLinkActive="active">Productos</a>
+            <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['clients']" routerLinkActive="active">Clientes</a>
+            <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['sales']" routerLinkActive="active">Ventas</a>
+            <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['users']" routerLinkActive="active">Usuarios</a>
+            <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['beef-cuts']" routerLinkActive="active">Cortes de res</a>
+            <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['pork-cuts']" routerLinkActive="active">Cortes de cerdo</a>
+         
         </nav>
-        <a mat-raised-button matBadge="4" matBadgeColor="warn">
-          <mat-icon>shopping_cart</mat-icon>
-          Carrito
-        </a>
+
+        <ul *ngIf="(user$ | async ) as user; else login">
+          <a mat-button  (click) = "onLogout()">Logout</a>
+          <a mat-button>{{ user?.email }}</a>
+
+          <a mat-button matBadge="4" matBadgeColor="warn">
+            <mat-icon>shopping_cart</mat-icon>
+            Carrito
+          </a>
+        </ul>
+       
+        <ng-template #login>
+          <ul>
+            <a mat-button  [routerLink]="['/login']">Login</a>
+            <a mat-button  [routerLink]="['/register']">Register</a>
+          </ul>
+        </ng-template>
   
       </div>
   

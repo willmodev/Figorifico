@@ -11,7 +11,7 @@ export const environment = {
     projectId: 'frigorifico-web',
     storageBucket: 'frigorifico-web.appspot.com',
     messagingSenderId: '981942406379',
-    appId: '1:981942406379:web:5b4b110e387397aa6202ae'
+    appId: '1:981942406379:web:996056a39e00dc836202ae'
   }
 };
 

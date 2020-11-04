@@ -19,3 +19,10 @@
     display: block;
     margin: auto;
 }
+
+img {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+    object-position: center;
+}

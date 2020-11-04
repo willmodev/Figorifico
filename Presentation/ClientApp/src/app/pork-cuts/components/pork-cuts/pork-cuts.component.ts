@@ -14,8 +14,11 @@ export class PorkCutsComponent implements OnInit {
   products: Product[];
 
   ngOnInit() {
+    this.getAllProducts();
+  }
 
-    this.products = this.productService.getAllProducts();
+  getAllProducts() {
+    this.productService.get().subscribe(result => { this.products = result; });
   }
 
   addCart() {

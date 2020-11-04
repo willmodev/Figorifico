@@ -9,7 +9,6 @@ import { MaterialModule } from '../material/material.module';
   declarations: [
     PorkCutsComponent,
     ProductDetailComponent,
-    PorkCutsComponent
   ],
   imports: [
     CommonModule,

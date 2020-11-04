@@ -5,7 +5,7 @@ import { ClientsComponent } from './components/clients/clients.component';
 
 const routes: Routes = [
   {
-    path: '', component: ClientsComponent 
+    path: '', component: ClientsComponent
   }
 ];
 

@@ -18,7 +18,7 @@ namespace Entity
         public float Quantity { get; set; }
         public int Iva { get; set; }
         public string Image { get; set; }
-        public string description { get; set; }
+        public string Description { get; set; }
         [Column(TypeName= "nvarchar(15)")]
         public string Category { get; set; }
 
