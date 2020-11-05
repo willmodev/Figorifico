@@ -15,7 +15,10 @@ const routes: Routes = [
   { path: 'clients', loadChildren: () => import('./clients/clients.module').then(m => m.ClientsModule)},
   { path: 'invoice', loadChildren: () => import('./invoice/invoice.module').then(m => m.InvoiceModule)},
   {
-    path: 'products', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)
+    path: 'products/register', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)
+  },
+  {
+    path: 'products/consult', loadChildren: () => import('./product-consult/product-consult.module').then(m => m.ProductConsultModule)
   },
   { path: 'sales', component: SalesComponent},
   { path: 'users', component: UsersComponent},

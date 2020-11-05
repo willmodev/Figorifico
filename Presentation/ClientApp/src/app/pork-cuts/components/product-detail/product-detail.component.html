@@ -1,0 +1,22 @@
+<div class="row my-3">
+    <div class="col-xs-6 mt-3">
+        <div class="box" *ngIf="product">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>{{ product.category | uppercase }}</mat-card-title>
+                    <mat-card-subtitle>{{ product.salePrice | currency }}</mat-card-subtitle>
+                </mat-card-header>
+
+                <div *ngIf="product">
+                    <img [src]="product.image" [alt]="product.title">
+                </div><br>
+
+                <mat-card-content>
+                    <p>{{ product.description }}</p>
+                </mat-card-content>
+            </mat-card>
+
+        </div>
+
+    </div>
+</div>

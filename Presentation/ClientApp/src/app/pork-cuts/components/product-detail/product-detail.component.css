@@ -4,3 +4,7 @@ img {
     width: 100%;
     object-position: center;
 }
+
+mat-grid-tile {
+    background: lightblue;
+  }

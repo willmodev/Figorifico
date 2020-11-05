@@ -46,12 +46,20 @@
         <nav>
             <a mat-button class="navbar-brand" [routerLink]="['/home']" routerLinkActive="active">Home</a>
             <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['invoice']" routerLinkActive="active">Facturar</a>
-            <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['/products']" routerLinkActive="active">Productos</a>
+            <a *ngIf="(user$ | async ) as user" mat-button  class="act" [matMenuTriggerFor]="product">Productos </a>
+            <mat-menu #product="matMenu">
+              <a  mat-menu-item [routerLink]="['/products/register']">Registrar</a>
+              <a mat-menu-item [routerLink]="['/products/consult']">Consultar</a>
+            </mat-menu>
             <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['clients']" routerLinkActive="active">Clientes</a>
             <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['sales']" routerLinkActive="active">Ventas</a>
             <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['users']" routerLinkActive="active">Usuarios</a>
-            <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['beef-cuts']" routerLinkActive="active">Cortes de res</a>
-            <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['pork-cuts']" routerLinkActive="active">Cortes de cerdo</a>
+            <a *ngIf="(user$ | async ) as user" mat-button  class="act" [matMenuTriggerFor]="cuts">Cortes</a>
+            <mat-menu #cuts="matMenu">
+              <a  mat-menu-item [routerLink]="['/beef-cuts']">Cortes de res</a>
+              <a mat-menu-item [routerLink]="['/pork-cuts']">Cortes de cerdo</a>
+            </mat-menu>
+            
          
         </nav>
 

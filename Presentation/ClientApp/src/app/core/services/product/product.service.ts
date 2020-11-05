@@ -22,16 +22,28 @@ export class ProductService {
     }
 
     post(product: Product): Observable<Product> {
-      return this.http.post<Product>(this.baseUrle + 'api/PorkCuts', product)
+      return this.http.post<Product>(this.baseUrle + 'api/Product', product)
       .pipe(tap(_ => this.handleErrorService.log('producto guardado')),
       catchError(this.handleErrorService.handleError<Product>('error al guardar el producto', null))
     ); }
 
     get(): Observable<Product[]> {
-      return this.http.get<Product[]>(this.baseUrle + 'api/PorkCuts')
+      return this.http.get<Product[]>(this.baseUrle + 'api/Product')
       .pipe(tap(_ => this.handleErrorService.log('productos consultados')),
       catchError(this.handleErrorService.handleError<Product[]>('Error al consultar productos', null))
       ); }
+      delete(idPeoduct: string): Observable<Product> {
+        return this.http.delete<Product>(this.baseUrle + 'api/Product/' + idPeoduct)
+        .pipe( tap (_ => this.handleErrorService.log('producto eliminado')),
+        catchError(this.handleErrorService.handleError<Product>('Error al eliminar el producto', null))
+        );
+      }
+      put(product: Product): Observable<Product> {
+        return this.http.put<Product>(this.baseUrle + 'api/Product', product)
+        .pipe( tap(_ => this.handleErrorService.log('producto modificado')),
+        catchError(this.handleErrorService.handleError<Product>('Error al modificar el producto', new Product()))
+        );
+      }
 
 
 

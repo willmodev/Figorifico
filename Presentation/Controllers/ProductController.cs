@@ -11,11 +11,11 @@ namespace Presentation.Controllers
     [Route("api/[controller]")]
     [ApiController]
     
-    public class PorkCutsController: ControllerBase
+    public class ProductController: ControllerBase
     {
         private readonly ProductService productService;
 
-        public PorkCutsController(FigorificoContext figorificoContext)
+        public ProductController(FigorificoContext figorificoContext)
         {
             this.productService = new ProductService(figorificoContext);
         }
@@ -65,6 +65,24 @@ namespace Presentation.Controllers
            
             return  Ok(products);
         }
+
+        [HttpDelete("{idProduct}")]
+        public ActionResult<ProductViewModel> Delete(string idProduct)
+        {
+            var response = productService.Delete(idProduct);
+            if(response.Product == null) return BadRequest(response.Message);
+            return Ok(response.Product);
+        }
+
+        [HttpPut]
+        public ActionResult<ProductViewModel> Modify(ProductInputModel productInput)
+        {
+            Product product = Map(productInput);
+            var response = productService.Modidy(product);
+            if(response.Error) return BadRequest(response.Message);
+            return Ok(response.Product);
+        }
+
 
      
     }

@@ -4,10 +4,14 @@ a.navbar-brand {
   word-break: break-all;
 }
 
-nav > ul a.active{
+nav >  a.active{
   text-decoration: none;
   background-color: #d6e2de;
   
+}
+.act:visited {
+  text-decoration: none;
+  background-color: #d6e2de;
 }
 
 .color

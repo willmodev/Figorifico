@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { PorkCutsComponent } from './components/pork-cuts/pork-cuts.component';
-import { ProductDetailComponent } from '../product-detail/product-detail.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+
 
 const routes: Routes = [
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
   declarations: [],
   imports: [
     RouterModule.forChild(routes),
-    CommonModule
+    CommonModule,
   ],
   exports: [
       RouterModule

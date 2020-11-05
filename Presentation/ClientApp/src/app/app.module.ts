@@ -28,6 +28,10 @@ import { environment } from '../environments/environment';
 import { AngularFireStorageModule, BUCKET} from '@angular/fire/storage';
 import { ProductsModule } from './products/products.module';
 import { ProductsRoutingModule } from './products/products-routing.module';
+import { ProductConsultModule } from './product-consult/product-consult.module';
+import { ProductConsultRoutingModule } from './product-consult/product-consult-routing.module';
+import { AlertDialogComponent } from './@base/alert-dialog/alert-dialog.component';
+import { AlertDialogModule } from './@base/alert-dialog.module';
 
 
 
@@ -40,7 +44,7 @@ import { ProductsRoutingModule } from './products/products-routing.module';
     RegisterComponent,
     BeefCutsComponent,
     PageNotFoundComponent,
-  ],
+    ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
@@ -63,7 +67,11 @@ import { ProductsRoutingModule } from './products/products-routing.module';
     ReactiveFormsModule,
     ProductsModule,
     ProductsRoutingModule,
+    ProductConsultModule,
+    ProductConsultRoutingModule,
+    AlertDialogModule
   ],
+  entryComponents: [AlertDialogComponent],
   providers: [
     { provide: BUCKET, useValue: 'gs://frigorifico-web.appspot.com' }
   ],

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,  ViewChild } from '@angular/core';
+import { MatMenuTrigger } from '@angular/material';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/core/services/login/login.service';
@@ -8,29 +9,20 @@ import { LoginService } from 'src/app/core/services/login/login.service';
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.css']
 })
-export class NavMenuComponent implements OnInit {
-
-  public isLogged =  false;
-  // tslint:disable-next-line: comment-format
-  //public user: any;
+export class NavMenuComponent  {
   public user$: Observable<any> = this.loginService.angularFireAuth.user;
+  public openMenu = false;
 
   constructor(
     private loginService: LoginService,
     private router: Router
   ) {}
 
-
-
-
-  async ngOnInit() {
-
-    // this.user = await this.loginService.getCurrentUser();
-
-    // if (this.user) {
-    //   this.isLogged = true;
-    // }
+  someMethod() {
+    this.openMenu = true;
+    console.log('button');
   }
+
 
   async onLogout() {
     try {

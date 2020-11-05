@@ -5,6 +5,9 @@ import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ProductService } from 'src/app/core/services/product/product.service';
 import { Product } from 'src/app/Models/product.model';
+import {MatDialog} from '@angular/material';
+import { AlertDialogComponent } from '../../../@base/alert-dialog/alert-dialog.component';
+
 
 @Component({
   selector: 'app-products',
@@ -15,11 +18,12 @@ export class ProductsComponent implements OnInit {
 
   constructor(private productService: ProductService,
     private formBuilder: FormBuilder,
-    private storage: AngularFireStorage) { }
+    private storage: AngularFireStorage,
+    public dialog: MatDialog
+    ) { }
   product: Product;
   formGroup: FormGroup;
   uploadPercent: Observable<number>;
-  // downloadURL: Observable<string>;
   downloadURL$: Observable<string>;
 
   ngOnInit() {
@@ -58,7 +62,11 @@ export class ProductsComponent implements OnInit {
     this.productService.post(this.product).subscribe(p => {
       console.log(p);
       this.product = p;
-      alert('producto guardadi');
+      this.dialog.open(AlertDialogComponent, {
+        width: '250px',
+        data: { title: 'Resultado Operacion!', message: 'Producto Creado..!',
+                  nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+      });
     });
   }
 
@@ -85,5 +93,6 @@ export class ProductsComponent implements OnInit {
      )
     .subscribe();
   }
+
 
 }
