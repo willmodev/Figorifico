@@ -21,6 +21,7 @@ export class ProductConsultComponent implements OnInit {
   uploadPercent: Observable<number>;
   downloadURL$: Observable<string>;
   showImage = false;
+  searchText: string;
 
 
   constructor(
@@ -32,6 +33,7 @@ export class ProductConsultComponent implements OnInit {
   ngOnInit() {
     this.product =  new Product();
     this.get();
+    console.log(this.searchText);
   }
 
   get() {

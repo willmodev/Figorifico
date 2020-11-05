@@ -5,10 +5,12 @@ import { ProductConsultComponent } from './components/product-consult/product-co
 import { ProductConsultRoutingModule } from './product-consult-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule , FormsModule } from '@angular/forms';
+import { FilterProductsPipe } from '../pipe/filter-products.pipe';
 
 @NgModule({
   declarations: [
-    ProductConsultComponent
+    ProductConsultComponent,
+    FilterProductsPipe
   ],
   imports: [
     CommonModule,

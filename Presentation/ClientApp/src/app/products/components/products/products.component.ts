@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -34,18 +34,13 @@ export class ProductsComponent implements OnInit {
     this.product = new Product();
     this.product.idProduct = '';
     this.product.title = 'seleccionar...';
-    this.product.purchasePrice = 0;
-    this.product.salePrice = 0;
-    this.product.suggestedPrice = 0;
-    this.product.quantity = 0;
-    this.product.iva = 0;
     this.product.description = '';
     this.product.image = '';
     this.product.category = 'seleccionar...';
 
     this.formGroup = this.formBuilder.group({
       idProduct: [this.product.idProduct, Validators.required],
-      title : [this.product.title, Validators.required],
+      title : [this.product.title, [Validators.required, this.validatTitle]],
       purchasePrice: [this.product.purchasePrice, Validators.required],
       salePrice: [this.product.salePrice, Validators.required],
       suggestedPrice: [this.product.suggestedPrice, Validators.required],
@@ -53,11 +48,27 @@ export class ProductsComponent implements OnInit {
       iva: [this.product.iva, Validators.required],
       description: [this.product.description, Validators.required],
       image: [this.product.image, Validators.required],
-      category: [this.product.category, Validators.required]
+      category: [this.product.category, [Validators.required, this.validatCatagory]]
     });
   }
 
+  private validatTitle(control: AbstractControl) {
+    const title = control.value;
+    if (title !== 'seleccionar...' ) { return null; }
+    return  {validateTitle: true, messageTitle: 'debe seleccionar una tipo'};
+  }
+  private validatCatagory(control: AbstractControl) {
+    const category = control.value;
+    if (category !== 'seleccionar...' ) { return null; }
+    return  {validateCategory: true, messageCategory: 'debe seleccionar una catagoria'};
+  }
+
+  get control() {
+    return this.formGroup.controls;
+  }
+
   add() {
+    if (this.formGroup.invalid) { return; }
     this.product = this.formGroup.value;
     this.productService.post(this.product).subscribe(p => {
       console.log(p);
