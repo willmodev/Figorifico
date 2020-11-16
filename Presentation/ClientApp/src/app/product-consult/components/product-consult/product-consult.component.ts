@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import {MatDialog} from '@angular/material';
 import { AlertDialogComponent } from '../../../@base/alert-dialog/alert-dialog.component';
+import { ProductModifyComponent } from 'src/app/product-modify/product-modify.component';
 
 
 
@@ -20,7 +21,7 @@ export class ProductConsultComponent implements OnInit {
   product: Product;
   uploadPercent: Observable<number>;
   downloadURL$: Observable<string>;
-  showImage = false;
+  dialogRef: any;
   searchText: string;
 
 
@@ -33,7 +34,6 @@ export class ProductConsultComponent implements OnInit {
   ngOnInit() {
     this.product =  new Product();
     this.get();
-    console.log(this.searchText);
   }
 
   get() {
@@ -49,7 +49,6 @@ export class ProductConsultComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(res => {
-      console.log(res);
       if (res) {
         this.productService.delete(idProduct).subscribe(p => {
           if (p != null) {
@@ -65,23 +64,9 @@ export class ProductConsultComponent implements OnInit {
     });
   }
 
-  loadData(product: Product) {
-    this.product = product;
-    console.log(product);
-    this.showImage = true;
-  }
-  modify(): void {
-    this.productService.put(this.product).subscribe(p => {
-      if (p != null ) {
-        this.dialog.open(AlertDialogComponent, {
-          width: '250px',
-          data: { title: 'Resultado Operacion!', message: 'Producto Actualizaado..!',
-                  nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
-        });
-        this.product = p;
-      } else {
-        alert('verifique si el producto existee');
-      }
+  modify(p: Product): void {
+    this.dialogRef = this.dialog.open(ProductModifyComponent, {
+      data: {product: p}
     });
   }
 
@@ -89,8 +74,6 @@ export class ProductConsultComponent implements OnInit {
     const file = event.target.files[0];
     const filePath = file.name;
     const fileRef = this.storage.ref(filePath);
-    console.log(file);
-    console.log(filePath);
     const task = this.storage.upload(filePath, file);
 
     // observe percentage changes
@@ -100,9 +83,7 @@ export class ProductConsultComponent implements OnInit {
         finalize(() => {
           this.downloadURL$ = fileRef.getDownloadURL();
           this.downloadURL$.subscribe(url => {
-            console.log(url);
             this.product.image = url;
-            this.showImage = false;
           });
         })
 

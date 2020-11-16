@@ -7,6 +7,9 @@ import { ProductService } from 'src/app/core/services/product/product.service';
 import { Product } from 'src/app/Models/product.model';
 import {MatDialog} from '@angular/material';
 import { AlertDialogComponent } from '../../../@base/alert-dialog/alert-dialog.component';
+import { CategoryService } from 'src/app/core/services/category/category.service';
+import { Category } from 'src/app/Models/category.model';
+import { TypeProduct } from 'src/app/Models/typeProduct.model';
 
 
 @Component({
@@ -16,31 +19,49 @@ import { AlertDialogComponent } from '../../../@base/alert-dialog/alert-dialog.c
 })
 export class ProductsComponent implements OnInit {
 
-  constructor(private productService: ProductService,
+  constructor(
+    private categoryService: CategoryService,
+    private productService: ProductService,
     private formBuilder: FormBuilder,
     private storage: AngularFireStorage,
     public dialog: MatDialog
     ) { }
+
   product: Product;
+  categorys: Category[];
+  categorysFilter: Category[] = [];
+  types: Category[] = [];
   formGroup: FormGroup;
   uploadPercent: Observable<number>;
   downloadURL$: Observable<string>;
 
   ngOnInit() {
     this.buildForm();
+    this.getCategorys();
+  }
+
+  getCategorys(): void {
+    this.categoryService.get().subscribe(res => {
+      this.categorys = res;
+      this.types = this.categorys.filter(
+        (thing, i, arr) => arr.findIndex(t => t.typeProduct.idType === thing.typeProduct.idType) === i);
+    });
+  }
+  change() {
+    this.categorysFilter =  this.categorys.filter(c => c.typeProduct.name === this.control.type.value);
   }
 
   private buildForm() {
     this.product = new Product();
     this.product.idProduct = '';
-    this.product.title = 'seleccionar...';
+    this.product.type = 'seleccionar...';
     this.product.description = '';
     this.product.image = '';
     this.product.category = 'seleccionar...';
 
     this.formGroup = this.formBuilder.group({
       idProduct: [this.product.idProduct, Validators.required],
-      title : [this.product.title, [Validators.required, this.validatTitle]],
+      type : [this.product.type, [Validators.required, this.validatType]],
       purchasePrice: [this.product.purchasePrice, Validators.required],
       salePrice: [this.product.salePrice, Validators.required],
       suggestedPrice: [this.product.suggestedPrice, Validators.required],
@@ -52,10 +73,10 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  private validatTitle(control: AbstractControl) {
-    const title = control.value;
-    if (title !== 'seleccionar...' ) { return null; }
-    return  {validateTitle: true, messageTitle: 'debe seleccionar una tipo'};
+  private validatType(control: AbstractControl) {
+    const type = control.value;
+    if (type !== 'seleccionar...' ) { return null; }
+    return  {validateType: true, messageType: 'debe seleccionar una tipo'};
   }
   private validatCatagory(control: AbstractControl) {
     const category = control.value;
@@ -70,6 +91,7 @@ export class ProductsComponent implements OnInit {
   add() {
     if (this.formGroup.invalid) { return; }
     this.product = this.formGroup.value;
+    console.log(this.product);
     this.productService.post(this.product).subscribe(p => {
       console.log(p);
       this.product = p;

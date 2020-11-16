@@ -1,3 +1,5 @@
+import { Product } from './product.model';
+
 export interface DialogData {
     title: string;
     message: string;

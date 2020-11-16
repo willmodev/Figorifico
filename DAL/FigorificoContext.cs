@@ -7,6 +7,7 @@ namespace DAL
         public FigorificoContext(DbContextOptions options): base(options) {}
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<CategoryProduct> Categorys { get;  set; }
         
     }
 }

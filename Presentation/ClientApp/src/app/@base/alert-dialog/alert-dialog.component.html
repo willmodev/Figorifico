@@ -4,6 +4,6 @@
 
 </div>
 <div mat-dialog-actions>
-    <button mat-button (click) ="onClickNO()">{{ data.nameBtnOne }}</button>
-    <button *ngIf="data.btnEnable" mat-button [mat-dialog-close] = "true">{{ data.nameBtnTwo }}</button>
+    <button  mat-flat-button color="warn" (click) ="onClickNO()">{{ data.nameBtnOne }}</button>
+    <button *ngIf="data.btnEnable" mat-flat-button color="primary" [mat-dialog-close] = "true">{{ data.nameBtnTwo }}</button>
 </div>

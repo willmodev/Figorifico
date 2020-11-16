@@ -10,7 +10,7 @@ import { FilterProductsPipe } from '../pipe/filter-products.pipe';
 @NgModule({
   declarations: [
     ProductConsultComponent,
-    FilterProductsPipe
+    FilterProductsPipe,
   ],
   imports: [
     CommonModule,

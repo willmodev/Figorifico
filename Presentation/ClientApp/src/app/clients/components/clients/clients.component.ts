@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientService } from 'src/app/core/services/client/client.service';
+import { Client } from 'src/app/Models/client.model';
 
 @Component({
   selector: 'app-clients',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientsComponent implements OnInit {
 
-  constructor() { }
+  client: Client;
+  clients: Client[];
+
+  constructor(private clientService: ClientService) { }
 
   ngOnInit() {
+    this.client = new Client();
+    this.getClient();
+  }
+
+  getClient() {
+    this.clients = this.clientService.get();
+  }
+
+  addClient()  {
+    console.log(this.client);
+    this.clientService.post(this.client);
+    alert('Cliente Guardado...!');
+    this.getClient();
   }
 
 }

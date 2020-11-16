@@ -1,0 +1,23 @@
+<form class="my-4">
+    <h1>Carrito de Compras</h1><br>
+    <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Categoria</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let product of (products$ | async)"> 
+              <tr>
+                  <td>{{ product.idProduct }}</td>
+                  <td>{{ product.type }}</td>
+                  <td>{{ product.category }}</td>
+                  <td>{{ product.salePrice }}</td>
+              </tr>
+          </tbody>
+        </table>
+    </div>
+</form>

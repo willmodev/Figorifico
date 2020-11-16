@@ -65,7 +65,7 @@ namespace BLL
                 if(oldProduct != null)
                 {
                     oldProduct.IdProduct = newProduct.IdProduct;
-                    oldProduct.Title = newProduct.Title;
+                    oldProduct.Type = newProduct.Type;
                     oldProduct.SalePrice = newProduct.SalePrice;
                     oldProduct.PurchasePrice = newProduct.PurchasePrice;
                     oldProduct.SuggestedPrice = newProduct.SuggestedPrice;

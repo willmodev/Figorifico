@@ -1,115 +1,106 @@
 <div class="card  mt-5 mb-5 backColor">
-    <h5 class="card-header colorTop">Registro de clientes</h5>
-    <form class="m-5">
-        <div class="form-row">
+  <h5 class="card-header colorTop">Registro de clientes</h5>
+  <form class="m-5">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputIdentification">Identificacion</label>
+        <input type="text" class="form-control" name="identification" [(ngModel)]="client.indentification"
+          placeholder="First name">
+      </div>
 
-            <div class="form-group col-md-6">
-                <label for="inputName">Nombre</label>
-                <input type="text" class="form-control" id="inputName" placeholder="Nombre">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputSurname">Apeldido</label>
-                <input type="text" class="form-control" id="inputSurname" placeholder="First name">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputIdentification">Identificacion</label>
-                <input type="text" class="form-control" id="inputIdentification" placeholder="First name">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputTelephone">Telefono</label>
-                <input type="text" class="form-control" id="inputTelephone" placeholder="First name">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputAddress">Direccion</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="Calle 71 #28 - 84">
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="inputNeighborhood">Barrio</label>
-                <input type="text" class="form-control" id="inputNeighborhood" placeholder="7 de Agosto">
-            </div>
-            <div class="form-group col-md-4">
-                <label for="inputCity">Ciudad</label>
-                <input type="text" class="form-control" id="inputCity" placeholder="Ciudad">
-            </div>
+      <div class="form-group col-md-6">
+        <label for="inputName">Nombre</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="client.name" placeholder="Nombre">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputSurname">Apeldido</label>
+        <input type="text" class="form-control" name="lastName" [(ngModel)]="client.lastName" placeholder="First name">
+      </div>
 
-            <div class="form-group col-md-4">
-                <label for="inputDepartment">Departamento</label>
-                <input type="text" class="form-control" id="inputDepartment" placeholder="Departamento">
-            </div>
-        </div>
-        <button type="button" id="btn-style" class="btn colorTop mt-3">Registrar</button>
-    </form>
+      <div class="form-group col-md-6">
+        <label for="inputTelephone">Telefono</label>
+        <input type="text" class="form-control" name="phone" [(ngModel)]="client.phone" placeholder="First name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputAddress">Direccion</label>
+      <input type="text" class="form-control" name="address" [(ngModel)]="client.address"
+        placeholder="Calle 71 #28 - 84">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputNeighborhood">Barrio</label>
+        <input type="text" class="form-control" name="neighborhood" [(ngModel)]="client.neighborhood"
+          placeholder="7 de Agosto">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputCity">Ciudad</label>
+        <input type="text" class="form-control" name="city" [(ngModel)]="client.city" placeholder="Ciudad">
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="inputDepartment">Departamento</label>
+        <input type="text" class="form-control" name="department" [(ngModel)]="client.department"
+          placeholder="Departamento">
+      </div>
+    </div>
+    <button (click)="addClient()" type="button" id="btn-style" class="btn colorTop mt-3">Registrar</button>
+  </form>
 </div>
 
 <div class="card mt-5 mb-5 backColor">
-    <h5 class="card-header colorTop">Lista de clientes</h5>
-    <nav class="navbar navbar-light mt-2">
-        <a class="navbar-brand">
-            <input class="form-control mx-5"  type="search" placeholder="Buscar usuario" aria-label="Search">
-        </a>
-    </nav>
+  <h5 class="card-header colorTop">Lista de clientes</h5>
+  <nav class="navbar navbar-light mt-2">
+    <a class="navbar-brand">
+      <input class="form-control mx-5" type="search" placeholder="Buscar usuario" aria-label="Search">
+    </a>
+  </nav>
 
-    <div class="m-5 colorTable">
-        <div class="table-responsive">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Identificacion</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Telefono</th>
-                <th scope="col">Direccion</th>
-                <th scope="col">Barrio</th>
-                <th scope="col">Ciudad</th>
-                <th scope="col">Departamento</th>
-                <th scope="col">Editar</th>
-                <th scope="col">Eliminar</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1234</th>
-                <td>Will</td>
-                <td>Mora</td>
-                <td>3107334322</td>
-                <td>Calle 32 #56 - 43</td>
-                <td>7 de Agosto</td>
-                <td>Valledupar</td>
-                <td>Cesar</td>
-                <td><button class="btn btn-primary"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                  </svg></button>
-                </td>
-                <td><button class="btn btn-danger"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
-                  </svg></button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">4532</th>
-                <td>Edi</td>
-                <td>Gonsalez</td>
-                <td>3137336322</td>
-                <td>Calle 32 #17 - 34</td>
-                <td>25 de Diciembre</td>
-                <td>Valledupar</td>
-                <td>Cesar</td>
-                <td><button class="btn btn-primary"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                  </svg></button>
-                </td>
-                <td><button class="btn btn-danger"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
-                  </svg></button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <div class="m-5 colorTable">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Identificacion</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Barrio</th>
+            <th scope="col">Ciudad</th>
+            <th scope="col">Departamento</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let client of clients">
+          <tr>
+            <th scope="row">{{ client.indentification }}</th>
+            <td>{{ client.name }}</td>
+            <td>{{ client.lastName }}</td>
+            <td>{{ client.phone }}</td>
+            <td>{{ client.address }}</td>
+            <td>{{ client.neighborhood }}</td>
+            <td>{{ client.city }}</td>
+            <td>{{ client.department }}</td>
+            <td><button class="btn btn-primary"><svg width="1em" height="1em" viewBox="0 0 16 16"
+                  class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                  <path fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                </svg></button>
+            </td>
+            <td><button class="btn btn-danger"><svg width="1em" height="1em" viewBox="0 0 16 16"
+                  class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
+                </svg></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 
 </div>

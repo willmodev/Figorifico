@@ -1,7 +1,8 @@
-import { Component,  ViewChild } from '@angular/core';
-import { MatMenuTrigger } from '@angular/material';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { CartService } from 'src/app/core/services/cart/cart.service';
 import { LoginService } from 'src/app/core/services/login/login.service';
 
 @Component({
@@ -12,11 +13,18 @@ import { LoginService } from 'src/app/core/services/login/login.service';
 export class NavMenuComponent  {
   public user$: Observable<any> = this.loginService.angularFireAuth.user;
   public openMenu = false;
+  total$: Observable<number>;
 
   constructor(
+    private cartService: CartService,
     private loginService: LoginService,
     private router: Router
-  ) {}
+  ) {
+    this.total$ =  this.cartService.cart$
+    .pipe(
+      map(products => products.length)
+    );
+  }
 
   someMethod() {
     this.openMenu = true;
@@ -32,8 +40,4 @@ export class NavMenuComponent  {
       console.log(error);
     }
   }
-  // salir()
-  // {
-  //   this.loginService.isValid = false;
-  // }
 }

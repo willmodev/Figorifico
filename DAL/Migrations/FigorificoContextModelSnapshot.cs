@@ -18,6 +18,24 @@ namespace DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Entity.CategoryProduct", b =>
+                {
+                    b.Property<string>("IdCategory")
+                        .HasColumnType("nvarchar(3)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("TypeProductIdType")
+                        .HasColumnType("nvarchar(3)");
+
+                    b.HasKey("IdCategory");
+
+                    b.HasIndex("TypeProductIdType");
+
+                    b.ToTable("Categorys");
+                });
+
             modelBuilder.Entity("Entity.Product", b =>
                 {
                     b.Property<string>("IdProduct")
@@ -48,12 +66,32 @@ namespace DAL.Migrations
                     b.Property<float>("SuggestedPrice")
                         .HasColumnType("real");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("Type")
                         .HasColumnType("nvarchar(30)");
 
                     b.HasKey("IdProduct");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Entity.TypeProduct", b =>
+                {
+                    b.Property<string>("IdType")
+                        .HasColumnType("nvarchar(3)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("IdType");
+
+                    b.ToTable("TypeProduct");
+                });
+
+            modelBuilder.Entity("Entity.CategoryProduct", b =>
+                {
+                    b.HasOne("Entity.TypeProduct", "TypeProduct")
+                        .WithMany()
+                        .HasForeignKey("TypeProductIdType");
                 });
 #pragma warning restore 612, 618
         }

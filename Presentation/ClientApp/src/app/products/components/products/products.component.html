@@ -6,7 +6,7 @@
             <div class="form-group col-md-4">
                 <label for="inputID">Codigo</label>
                 <input type="text" class="form-control" formControlName = "idProduct"  placeholder="codigo"
-                        [ngClass]="{'is-invalid': control.idProduct.errors}">
+                        [ngClass]="{'is-invalid': (control.idProduct.errors && control.idProduct.touched)}">
                 
                         <div *ngIf="control.idProduct.errors" class="invalid-feedback">
                             <div *ngIf="control.idProduct.errors.required">se requiere el codigo</div>
@@ -14,44 +14,36 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="inputState">Tipo</label>
-                <select id="inputState" class="form-control" formControlName = "title" [ngClass]="{'is-invalid': control.title.errors}">
+                <select (change) = "change()" id="inputState" class="form-control" formControlName = "type" [ngClass]="{'is-invalid': (control.type.errors && control.type.touched)}">
                   <option>seleccionar...</option>
-                  <option>Carne de Res</option>
-                  <option>Carne de Cerdo</option>
-                  <option>Carne de Pollo</option>
+                  <option *ngFor="let type of types">{{ type.typeProduct.name }}</option>
                 </select>
 
-                <div *ngIf="control.title.errors" class="invalid-feedback">
-                    <div *ngIf="control.title.errors.validateTitle">{{ control.title.errors.messageTitle }}</div>
+                <div *ngIf="control.type.errors" class="invalid-feedback">
+                    <div *ngIf="control.type.errors.validateType">{{ control.type.errors.messageType }}</div>
                 </div>
             </div>
             <div class="form-group col-md-4">
                 <label for="inputCategory">Categoria</label>
-                <select id="inputCategory" class="form-control" formControlName = "category" [ngClass]="{'is-invalid': control.category.errors}">
+                <select id="inputCategory" class="form-control" formControlName = "category" [ngClass]="{'is-invalid': (control.category.errors && control.category.touched)}">
                   <option>seleccionar...</option>
-                  <option>Lomito</option>
-                  <option>Cadera</option>
-                  <option>Costilla</option>
-                  <option>Filete de pierna</option>
-                  <option>Pata</option>
-                  <option>Bondiola</option>
-                  <option>Falda</option>
-                  <option>Tocineta</option>
+                  <option *ngFor="let cat of categorysFilter">{{ cat.name }}</option>
                 </select>
+                
                 <div *ngIf="control.category.errors" class="invalid-feedback">
                     <div *ngIf="control.category.errors.validateCategory">{{ control.category.errors.messageCategory }}</div>
                 </div>
             </div>
             <div class="form-group col-md-4">
                 <label for="inputPurchasePrice">Precio de compra</label>
-                <input type="number" class="form-control" formControlName = "purchasePrice" [ngClass]="{'is-invalid': control.purchasePrice.errors}">
+                <input type="number" class="form-control" formControlName = "purchasePrice" [ngClass]="{'is-invalid': (control.purchasePrice.errors && control.purchasePrice.touched)}">
                 <div *ngIf="control.purchasePrice.errors" class="invalid-feedback">
                     <div *ngIf="control.purchasePrice.errors">debe ingrasar un precio de compra</div>
                 </div>
             </div>
             <div class="form-group col-md-4">
                 <label for="inputSalePice">Precio de venta</label>
-                <input type="number" class="form-control" formControlName = "salePrice"  [ngClass]="{'is-invalid': control.salePrice.errors}">
+                <input type="number" class="form-control" formControlName = "salePrice"  [ngClass]="{'is-invalid': (control.salePrice.errors && control.salePrice.touched)}">
                 <div *ngIf="control.salePrice.errors" class="invalid-feedback">
                     <div *ngIf="control.salePrice.errors">debe ingrasar un precio de venta</div>
                 </div>
@@ -59,7 +51,7 @@
 
             <div class="form-group col-md-4">
                 <label for="inputSuggestedPrice">Precio Sugerido</label>
-                <input type="number" class="form-control" formControlName = "suggestedPrice" [ngClass]="{'is-invalid': control.suggestedPrice.errors}">
+                <input type="number" class="form-control" formControlName = "suggestedPrice" [ngClass]="{'is-invalid': (control.suggestedPrice.errors && control.suggestedPrice.touched)}">
                 <div *ngIf="control.suggestedPrice.errors" class="invalid-feedback">
                     <div *ngIf="control.suggestedPrice.errors">debe ingrasar un precio sugerido</div>
                 </div>
@@ -68,7 +60,7 @@
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="inputQuantity">Cantidad (Kg)</label>
-                <input type="number" class="form-control" formControlName = "quantity" [ngClass]="{'is-invalid': control.quantity.errors}">
+                <input type="number" class="form-control" formControlName = "quantity" [ngClass]="{'is-invalid': (control.quantity.errors && control.quantity.touched)}">
                 <div *ngIf="control.quantity.errors" class="invalid-feedback">
                     <div *ngIf="control.quantity.errors">debe ingrasar una cantidad</div>
                 </div>
@@ -76,14 +68,14 @@
 
             <div class="form-group col-md-4">
                 <label for="inputIva">Iva (%)</label>
-                <input type="number" class="form-control" formControlName = "iva" [ngClass]="{'is-invalid': control.iva.errors}">
+                <input type="number" class="form-control" formControlName = "iva" [ngClass]="{'is-invalid': (control.iva.errors && control.iva.touched)}">
                 <div *ngIf="control.iva.errors" class="invalid-feedback">
                     <div *ngIf="control.iva.errors">debe ingrasar el iva</div>
                 </div>
             </div>
             <div class="form-group col-md-4">
               <label for="exampleFormControlTextarea1">Descripcion</label>
-              <textarea class="form-control" formControlName = "description" rows="3" [ngClass]="{'is-invalid': control.description.errors}"></textarea>
+              <textarea class="form-control" formControlName = "description" rows="3" [ngClass]="{'is-invalid': (control.description.errors && control.description.touched)}"></textarea>
               <div *ngIf="control.description.errors" class="invalid-feedback">
                 <div *ngIf="control.description.errors">debe ingrasar una descripcion</div>
             </div>
@@ -94,11 +86,17 @@
            <div class="col-sm-X  align-self-center">
             <!-- <img *ngIf="(downloadURL$ | async) as image" [src] ="image"> -->
             <label for="imputImage"><strong>Ingresa una imagen..!</strong></label>
-            <input type="file" class="form-control-file" (change)="uploadFile($event)" /> 
+            <input type="file" class="form-control-file" (change)="uploadFile($event)" [ngClass]="{'is-invalid': (control.image.errors && control.image.parent)}"/> 
             <div class="col-sm-X  align-self-center mt-2">
               <mat-progress-bar mode="determinate" value="{{ uploadPercent | async }}"></mat-progress-bar>
             </div>
+
+            <div *ngIf="control.image.errors" class="invalid-feedback">
+                <div *ngIf="control.image.errors">debe ingrasar una imagen</div>
+             </div>
+
            </div>
+           
           
            
            <a [href]="downloadURL$ | async">{{ downloadURL$ | async }}</a>
@@ -107,9 +105,6 @@
         
         <button type="button" id="btn-style" class="btn colorTop mt-3" (click)="add()"
         [disabled]="formGroup.invalid">Registrar</button>
-        <!-- <button mat-mat-button (click) = "openDialog()">
-            Open Dialog
-        </button> -->
     </form>
 </div>
 

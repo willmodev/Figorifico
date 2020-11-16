@@ -1,0 +1,36 @@
+/* .product-margin
+{
+    margin: 2px;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: block;
+    height: auto;
+    margin-top: 5px;
+} */
+/* img{
+    max-width: 100%;
+} */
+
+.crop-image {
+    display: block;
+    height: 300px;
+    width: 100%;
+  }
+
+img {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+    object-position: center;
+}
+
+@media (min-width: 576px) {
+    .product-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .container {
+      max-width: 1110px;
+      padding-right: 16px;
+      padding-left: 16px;
+    }
+  }

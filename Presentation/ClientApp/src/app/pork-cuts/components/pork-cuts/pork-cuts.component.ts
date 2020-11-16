@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/core/services/cart/cart.service';
 import { ProductService } from 'src/app/core/services/product/product.service';
 import { Product } from 'src/app/Models/product.model';
 
@@ -9,7 +10,10 @@ import { Product } from 'src/app/Models/product.model';
 })
 export class PorkCutsComponent implements OnInit {
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private cartService: CartService,
+    private productService: ProductService
+    ) { }
 
   products: Product[];
 
@@ -18,11 +22,13 @@ export class PorkCutsComponent implements OnInit {
   }
 
   getAllProducts() {
-    this.productService.get().subscribe(result => { this.products = result; });
+    this.productService.get().subscribe(result => {
+       this.products = result.filter(p => p.type === 'Carne de Cerdo');
+    });
   }
 
-  addCart() {
-    console.log('añadir al carrito');
+  addCart(product: Product) {
+    this.cartService.addCart(product);
   }
 
 }

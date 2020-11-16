@@ -5,7 +5,7 @@ namespace Presentation.Models
     public class ProductInputModel
     {
         public string  IdProduct { get; set; }
-        public string  Title { get; set; }
+        public string  Type { get; set; }
         public float SalePrice { get; set; }
         public float SuggestedPrice { get; set; }
         public float PurchasePrice { get; set; }
@@ -27,7 +27,7 @@ namespace Presentation.Models
         public ProductViewModel(Product product)
         {
             IdProduct = product.IdProduct;
-            Title = product.Title;
+            Type = product.Type;
             SalePrice = product.SalePrice;
             SuggestedPrice = product.SuggestedPrice;
             PurchasePrice = product.PurchasePrice;

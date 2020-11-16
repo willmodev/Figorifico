@@ -10,7 +10,7 @@ namespace Entity
         [Column(TypeName= "nvarchar(10)")]
         public string  IdProduct { get; set; }
         [Column(TypeName= "nvarchar(30)")]
-        public string  Title { get; set; }
+        public string  Type { get; set; }
         [Column(TypeName= "nvarchar(11)")]
         public float SalePrice { get; set; }
         public float SuggestedPrice { get; set; }

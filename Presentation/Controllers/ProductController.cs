@@ -38,7 +38,7 @@ namespace Presentation.Controllers
             Product product  = new Product();
 
             product.IdProduct = productInput.IdProduct;
-            product.Title = productInput.Title;
+            product.Type = productInput.Type;
             product.SalePrice = productInput.SalePrice;
             product.SuggestedPrice = productInput.SuggestedPrice;
             product.PurchasePrice = productInput.PurchasePrice;

@@ -2,14 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SalesComponent } from './sales/sales.component';
 import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { BeefCutsComponent } from './beef-cuts/beef-cuts.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
@@ -32,6 +30,15 @@ import { ProductConsultModule } from './product-consult/product-consult.module';
 import { ProductConsultRoutingModule } from './product-consult/product-consult-routing.module';
 import { AlertDialogComponent } from './@base/alert-dialog/alert-dialog.component';
 import { AlertDialogModule } from './@base/alert-dialog.module';
+import { ProductModifyComponent } from './product-modify/product-modify.component';
+import { ProductModifyModule } from './product-modify/product-modify.module';
+import { OrderModule } from './order/order.module';
+import { OrderRoutingModule } from './order/order-routing.module';
+import { BeefCutsModule } from './beef-cuts/beef-cuts.module';
+import { BeefCutsRoutingModule } from './beef-cuts/beef-cuts-routing.module';
+import { ChickenCutsModule } from './chicken-cuts/chicken-cuts.module';
+import { ChickenCutsRoutingModule } from './chicken-cuts/chicken-cuts-routing.module';
+
 
 
 
@@ -42,7 +49,6 @@ import { AlertDialogModule } from './@base/alert-dialog.module';
     UsersComponent,
     LoginComponent,
     RegisterComponent,
-    BeefCutsComponent,
     PageNotFoundComponent,
     ],
   imports: [
@@ -69,9 +75,16 @@ import { AlertDialogModule } from './@base/alert-dialog.module';
     ProductsRoutingModule,
     ProductConsultModule,
     ProductConsultRoutingModule,
-    AlertDialogModule
+    AlertDialogModule,
+    ProductModifyModule,
+    OrderModule,
+    OrderRoutingModule,
+    BeefCutsModule,
+    BeefCutsRoutingModule,
+    ChickenCutsModule,
+    ChickenCutsRoutingModule
   ],
-  entryComponents: [AlertDialogComponent],
+  entryComponents: [AlertDialogComponent, ProductModifyComponent],
   providers: [
     { provide: BUCKET, useValue: 'gs://frigorifico-web.appspot.com' }
   ],
