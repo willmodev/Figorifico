@@ -1,6 +1,7 @@
-<header>
-    <div class="jumbotron text-center" style="margin-bottom:0 myStyle">
-        <h1>Distribuciones ESB </h1>
-        <p>Realiza la facturacion, consulta las ventas y lleva un control de tu empresa..!</p> 
-      </div>
-</header>
+<ngb-carousel class="mb-5">
+  <ng-template ngbSlide *ngFor="let image of images">
+    <div class="picsum-img-wrapper">
+      <img [src]="image" alt="Images">
+    </div>
+  </ng-template>
+</ngb-carousel>

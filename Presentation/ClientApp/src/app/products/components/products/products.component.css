@@ -3,14 +3,14 @@
 }
 
 .colorTop{
-    background-color: #D4C9A8;
+    background-color: #731521;
 }
 #btn-style:hover{
     background-color: #C2B283;
 }
 #btn-style{
     border: 1px solid #000000;
-    border-radius: 15px;
+    border-radius: 10px;
 }
 .colorTable{
     background-color: #FFFFFF;
@@ -25,4 +25,11 @@ img {
     height: 100%;
     width: 100%;
     object-position: center;
+}
+h5 {
+    color: #FFFFFF;
+}
+
+button {
+    color: #FFFFFF;
 }

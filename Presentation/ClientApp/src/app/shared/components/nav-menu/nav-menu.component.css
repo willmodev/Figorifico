@@ -6,7 +6,7 @@ a.navbar-brand {
 
 nav >  a.active{
   text-decoration: none;
-  background-color: #d6e2de;
+  background-color: #500E17;
   
 }
 .act:visited {
@@ -16,12 +16,22 @@ nav >  a.active{
 
 .color
 {
-  background-color: #DCD0C0;
+  background-color: #781623;
 }
 a{
   text-decoration: none;
+  color: #ffffff;
 }
 
 .nav-row{
   width: 100%;
+}
+.text-menu {
+  color: black;
+}
+
+.material-icons {
+  font-size: 30px;  /* Preferred icon size */
+  margin-top: -9px;  
+  margin-left: -5px;
 }

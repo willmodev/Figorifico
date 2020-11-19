@@ -1,17 +1,29 @@
 .backColor{
-    background-color: #DCD0C0;
+    background-color: #FFFFFF;
 }
 
 .colorTop{
-    background-color: #D4C9A8;
+    background-color: #731521;
 }
 #btn-style:hover{
-    background-color: #C2B283;
+    background-color: #9e565f;
+    color: #FFFFFF;
 }
-#btn-style{
-    border: 1px solid #000000;
-    border-radius: 15px;
-}
+
 .colorTable{
     background-color: #FFFFFF;
+}
+
+h5 {
+    color: #FFFFFF;
+}
+
+#btn-style{
+    border: 1px solid #000000;
+    border-radius: 10px;
+    margin-top: -5px;
+}
+
+button {
+    color: #FFFFFF;
 }

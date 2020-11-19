@@ -52,11 +52,11 @@
       transition: 0.3s linear;
       z-index: 9;
       border-radius: 10px;
-      background: #C2B283;
-      color: #33265C;
-      box-shadow: 0 0 10px 0 #C2B283;
+      background: #731521;
+      color: #ffffff;
+      box-shadow: 0 0 10px 0 #731521;
       margin-top: 20px;
   }
-  button:hover {box-shadow: 0 0 20px 0 #C2B283;}
+  button:hover {box-shadow: 0 0 20px 0 #731521;}
   
   

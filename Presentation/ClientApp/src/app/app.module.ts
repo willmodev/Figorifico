@@ -82,7 +82,7 @@ import { ChickenCutsRoutingModule } from './chicken-cuts/chicken-cuts-routing.mo
     BeefCutsModule,
     BeefCutsRoutingModule,
     ChickenCutsModule,
-    ChickenCutsRoutingModule
+    ChickenCutsRoutingModule,
   ],
   entryComponents: [AlertDialogComponent, ProductModifyComponent],
   providers: [
