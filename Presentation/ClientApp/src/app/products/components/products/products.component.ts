@@ -9,7 +9,6 @@ import {MatDialog} from '@angular/material';
 import { AlertDialogComponent } from '../../../@base/alert-dialog/alert-dialog.component';
 import { CategoryService } from 'src/app/core/services/category/category.service';
 import { Category } from 'src/app/Models/category.model';
-import { TypeProduct } from 'src/app/Models/typeProduct.model';
 
 
 @Component({

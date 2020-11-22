@@ -32,6 +32,7 @@ export class ProductService {
       .pipe(tap(_ => this.handleErrorService.log('productos consultados')),
       catchError(this.handleErrorService.handleError<Product[]>('Error al consultar productos', null))
       ); }
+
       delete(idPeoduct: string): Observable<Product> {
         return this.http.delete<Product>(this.baseUrle + 'api/Product/' + idPeoduct)
         .pipe( tap (_ => this.handleErrorService.log('producto eliminado')),

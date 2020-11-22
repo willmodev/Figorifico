@@ -36,6 +36,37 @@ namespace DAL.Migrations
                     b.ToTable("Categorys");
                 });
 
+            modelBuilder.Entity("Entity.Client", b =>
+                {
+                    b.Property<string>("Indentification")
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Department")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(130)");
+
+                    b.Property<string>("Neighborhood")
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(11)");
+
+                    b.HasKey("Indentification");
+
+                    b.ToTable("Clients");
+                });
+
             modelBuilder.Entity("Entity.Product", b =>
                 {
                     b.Property<string>("IdProduct")

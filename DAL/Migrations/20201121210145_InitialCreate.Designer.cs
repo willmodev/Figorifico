@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(FigorificoContext))]
-    [Migration("20201111193201_InitialCreate")]
+    [Migration("20201121210145_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,6 +36,37 @@ namespace DAL.Migrations
                     b.HasIndex("TypeProductIdType");
 
                     b.ToTable("Categorys");
+                });
+
+            modelBuilder.Entity("Entity.Client", b =>
+                {
+                    b.Property<string>("Indentification")
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Department")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(130)");
+
+                    b.Property<string>("Neighborhood")
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(11)");
+
+                    b.HasKey("Indentification");
+
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("Entity.Product", b =>

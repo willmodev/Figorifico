@@ -38,6 +38,10 @@ import { BeefCutsModule } from './beef-cuts/beef-cuts.module';
 import { BeefCutsRoutingModule } from './beef-cuts/beef-cuts-routing.module';
 import { ChickenCutsModule } from './chicken-cuts/chicken-cuts.module';
 import { ChickenCutsRoutingModule } from './chicken-cuts/chicken-cuts-routing.module';
+import { ClientConsultModule } from './client-consult/client-consult.module';
+import { ClientConsultRoutingModule } from './client-consult/client-consult-routing.module';
+import { ClientModifyModule } from './client-modify/client-modify.module';
+import { ClientModifyComponent } from './client-modify/components/client-modify/client-modify.component';
 
 
 
@@ -83,8 +87,11 @@ import { ChickenCutsRoutingModule } from './chicken-cuts/chicken-cuts-routing.mo
     BeefCutsRoutingModule,
     ChickenCutsModule,
     ChickenCutsRoutingModule,
+    ClientConsultModule,
+    ClientConsultRoutingModule,
+    ClientModifyModule
   ],
-  entryComponents: [AlertDialogComponent, ProductModifyComponent],
+  entryComponents: [AlertDialogComponent, ProductModifyComponent, ClientModifyComponent],
   providers: [
     { provide: BUCKET, useValue: 'gs://frigorifico-web.appspot.com' }
   ],

@@ -1,106 +1,90 @@
 <div class="card  mt-5 mb-5 backColor">
   <h5 class="card-header colorTop">Registro de clientes</h5>
-  <form class="m-5">
+  <form class="m-5"  [formGroup] = "formGroup">
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label for="inputIdentification">Identificacion</label>
-        <input type="text" class="form-control" name="identification" [(ngModel)]="client.indentification"
-          placeholder="First name">
+        <label>Identificacion</label>
+        <input type="text" class="form-control" formControlName = "indentification" placeholder="Identificacion"
+        [ngClass]="{'is-invalid': (control.indentification.errors && control.indentification.touched)}">
+
+        <div *ngIf="control.indentification.errors" class="invalid-feedback">
+          <div *ngIf="control.indentification.errors.required">se requiere la identificacion</div>
+        </div>
       </div>
 
       <div class="form-group col-md-6">
-        <label for="inputName">Nombre</label>
-        <input type="text" class="form-control" name="name" [(ngModel)]="client.name" placeholder="Nombre">
+        <label>Nombre</label>
+        <input type="text" class="form-control"  formControlName = "name" placeholder="Nombre"
+        [ngClass]="{'is-invalid': (control.name.errors && control.name.touched)}">
+
+        <div *ngIf="control.name.errors" class="invalid-feedback">
+          <div *ngIf="control.name.errors.required">se requiere el nombre</div>
+        </div>
       </div>
       <div class="form-group col-md-6">
-        <label for="inputSurname">Apeldido</label>
-        <input type="text" class="form-control" name="lastName" [(ngModel)]="client.lastName" placeholder="First name">
+        <label>Apeldido</label>
+        <input type="text" class="form-control" formControlName = "lastName" placeholder="Apellidos"
+        [ngClass]="{'is-invalid': (control.lastName.errors && control.lastName.touched)}">
+
+        <div *ngIf="control.lastName.errors" class="invalid-feedback">
+          <div *ngIf="control.lastName.errors.required">se requiere almenos un appelido</div>
+        </div>
       </div>
 
       <div class="form-group col-md-6">
-        <label for="inputTelephone">Telefono</label>
-        <input type="text" class="form-control" name="phone" [(ngModel)]="client.phone" placeholder="First name">
+        <label>Telefono</label>
+        <input type="text" class="form-control" formControlName = "phone" placeholder="Telefono"
+        [ngClass]="{'is-invalid': (control.phone.errors && control.phone.touched)}">
+        
+        <div *ngIf="control.phone.errors" class="invalid-feedback">
+          <div *ngIf="control.phone.errors.required">se requiere telefono</div>
+        </div>
       </div>
     </div>
     <div class="form-group">
-      <label for="inputAddress">Direccion</label>
-      <input type="text" class="form-control" name="address" [(ngModel)]="client.address"
-        placeholder="Calle 71 #28 - 84">
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <label for="inputNeighborhood">Barrio</label>
-        <input type="text" class="form-control" name="neighborhood" [(ngModel)]="client.neighborhood"
-          placeholder="7 de Agosto">
+      <label>Direccion</label>
+      <input type="text" class="form-control" formControlName = "address" placeholder="Direccion"
+      [ngClass]="{'is-invalid': (control.address.errors && control.address.touched)}">
+
+      <div *ngIf="control.address.errors" class="invalid-feedback">
+        <div *ngIf="control.address.errors.required">se requiere direccion</div>
       </div>
+    </div>
+
+    <div class="form-row">
+
+      <div class="form-group col-md-4">
+        <label>Barrio</label>
+        <input type="text" class="form-control" formControlName = "neighborhood" placeholder="Barrio"
+        [ngClass]="{'is-invalid': (control.neighborhood.errors && control.neighborhood.touched)}">
+        
+        <div *ngIf="control.neighborhood.errors" class="invalid-feedback">
+          <div *ngIf="control.neighborhood.errors.required">se requiere barrio</div>
+        </div>
+      </div>
+
       <div class="form-group col-md-4">
         <label for="inputCity">Ciudad</label>
-        <input type="text" class="form-control" name="city" [(ngModel)]="client.city" placeholder="Ciudad">
+        <input type="text" class="form-control" formControlName = "city" placeholder="Ciudad"
+        [ngClass]="{'is-invalid': (control.city.errors && control.city.touched)}">
+
+        <div *ngIf="control.city.errors" class="invalid-feedback">
+          <div *ngIf="control.city.errors.required">se requiere la ciudad</div>
+        </div>
       </div>
 
       <div class="form-group col-md-4">
         <label for="inputDepartment">Departamento</label>
-        <input type="text" class="form-control" name="department" [(ngModel)]="client.department"
-          placeholder="Departamento">
+        <input type="text" class="form-control" formControlName = "department" placeholder="Departamento"
+        [ngClass]="{'is-invalid': (control.department.errors && control.department.touched)}">
+        
+        <div *ngIf="control.department.errors" class="invalid-feedback">
+          <div *ngIf="control.department.errors.required">se requiere el departamento</div>
+        </div>
       </div>
     </div>
-    <button (click)="addClient()" type="button" id="btn-style" class="btn colorTop mt-3">Registrar</button>
+    <button (click)="add()" type="button" id="btn-style" class="btn colorTop mt-3"
+    [disabled]="formGroup.invalid">Registrar</button>
   </form>
 </div>
 
-<div class="card mt-5 mb-5 backColor">
-  <h5 class="card-header colorTop">Lista de clientes</h5>
-  <nav class="navbar navbar-light mt-2">
-    <a class="navbar-brand">
-      <input class="form-control mx-5" type="search" placeholder="Buscar usuario" aria-label="Search">
-    </a>
-  </nav>
-
-  <div class="m-5 colorTable">
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Identificacion</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Telefono</th>
-            <th scope="col">Direccion</th>
-            <th scope="col">Barrio</th>
-            <th scope="col">Ciudad</th>
-            <th scope="col">Departamento</th>
-            <th scope="col">Editar</th>
-            <th scope="col">Eliminar</th>
-          </tr>
-        </thead>
-        <tbody *ngFor="let client of clients">
-          <tr>
-            <th scope="row">{{ client.indentification }}</th>
-            <td>{{ client.name }}</td>
-            <td>{{ client.lastName }}</td>
-            <td>{{ client.phone }}</td>
-            <td>{{ client.address }}</td>
-            <td>{{ client.neighborhood }}</td>
-            <td>{{ client.city }}</td>
-            <td>{{ client.department }}</td>
-            <td><button class="btn btn-primary"><svg width="1em" height="1em" viewBox="0 0 16 16"
-                  class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                  <path fill-rule="evenodd"
-                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                </svg></button>
-            </td>
-            <td><button class="btn btn-danger"><svg width="1em" height="1em" viewBox="0 0 16 16"
-                  class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
-                </svg></button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-</div>

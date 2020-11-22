@@ -11,7 +11,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const routes: Routes = [
   { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
-  { path: 'clients', loadChildren: () => import('./clients/clients.module').then(m => m.ClientsModule)},
+  { path: 'clients/register', loadChildren: () => import('./clients/clients.module').then(m => m.ClientsModule)},
+  { path: 'clients/consult', loadChildren: () => import('./client-consult/client-consult.module').then(m => m.ClientConsultModule)},
   { path: 'invoice', loadChildren: () => import('./invoice/invoice.module').then(m => m.InvoiceModule)},
   {
     path: 'products/register', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)

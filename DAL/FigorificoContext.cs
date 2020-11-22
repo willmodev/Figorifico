@@ -8,6 +8,7 @@ namespace DAL
 
         public DbSet<Product> Products { get; set; }
         public DbSet<CategoryProduct> Categorys { get;  set; }
+        public DbSet<Client> Clients { get; set; }
         
     }
 }

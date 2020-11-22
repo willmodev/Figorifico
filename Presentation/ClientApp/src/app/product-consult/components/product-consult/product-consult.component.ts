@@ -37,7 +37,7 @@ export class ProductConsultComponent implements OnInit {
   }
 
   get() {
-    this.productService.get().subscribe(p => { this.products = p; });
+    this.productService.get().subscribe(p => { console.log(p); this.products = p; });
   }
 
   delete(idProduct: string) {

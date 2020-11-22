@@ -7,6 +7,24 @@ namespace DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Clients",
+                columns: table => new
+                {
+                    Indentification = table.Column<string>(type: "nvarchar(11)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(130)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(11)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    Neighborhood = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    Department = table.Column<string>(type: "nvarchar(20)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clients", x => x.Indentification);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -67,6 +85,9 @@ namespace DAL.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Categorys");
+
+            migrationBuilder.DropTable(
+                name: "Clients");
 
             migrationBuilder.DropTable(
                 name: "Products");

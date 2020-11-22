@@ -7,5 +7,4 @@ export class Client {
     neighborhood: string;
     city: string;
     department: string;
-
 }

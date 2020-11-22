@@ -28,7 +28,7 @@ namespace Presentation.Controllers
 
            if(response.Error)
            {
-               BadRequest(response.Message);
+              return  BadRequest(response.Message);
            }
            return  Ok(response.Product);
         }
@@ -58,7 +58,7 @@ namespace Presentation.Controllers
 
             if(response.Products == null)
             {
-                BadRequest(response.Message);
+                return BadRequest(response.Message);
             }
 
             var products = response.Products.Select(p => new ProductViewModel(p));

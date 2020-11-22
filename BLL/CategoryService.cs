@@ -15,6 +15,20 @@ namespace BLL
             context = figorificoContext;    
         }
 
+        public CategoryServiceResponse Save(CategoryProduct category)
+        {
+            try
+            {
+                context.Categorys.Add(category);
+                context.SaveChanges();
+                return new CategoryServiceResponse(category);
+
+            }catch(Exception e)
+            {
+                return new CategoryServiceResponse($"Error del aplicacion: {e.Message}");
+            }
+        }
+
         public ConsultResponseCategory GetConsult()
         {
             try
@@ -48,5 +62,24 @@ namespace BLL
         public bool Error { get; set; }
         public string Message { get; set; }
         public IList<CategoryProduct> Categorys { get; set; }
+    }
+
+    public class CategoryServiceResponse
+    {
+        public CategoryServiceResponse(CategoryProduct cetegory)
+        {
+            Error = false;
+            Category = cetegory;
+        }
+
+        public CategoryServiceResponse(string message)
+        {
+            Error = true;
+            Message = message;
+        }
+
+        public bool Error { get; set; }
+        public string Message { get; set; }
+        public CategoryProduct Category { get; set; }
     }
 }
