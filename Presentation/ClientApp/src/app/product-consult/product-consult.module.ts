@@ -5,19 +5,19 @@ import { ProductConsultComponent } from './components/product-consult/product-co
 import { ProductConsultRoutingModule } from './product-consult-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule , FormsModule } from '@angular/forms';
-import { FilterProductsPipe } from '../pipe/filter-products.pipe';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     ProductConsultComponent,
-    FilterProductsPipe,
   ],
   imports: [
     CommonModule,
     ProductConsultRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 export class ProductConsultModule { }

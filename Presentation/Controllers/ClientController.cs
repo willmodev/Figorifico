@@ -32,6 +32,15 @@ namespace Presentation.Controllers
             return Ok(response.Client);
 
         }
+        [HttpGet("{identification}")]
+        public ActionResult<ClientViewModel> SearchById(string identification)
+        {
+            var response =  clientService.SearchById(identification);
+
+            if(response.Client == null) return NotFound("Cliente no encontrado!");
+            var client = new ClientViewModel(response.Client);
+            return Ok(client);
+        }
 
         private Client Map(ClientInputModel clientInput)
         {

@@ -18,27 +18,34 @@ export class ClientService {
   post(client: Client): Observable<Client> {
     return this.http.post<Client>(this.baseUrl + 'api/Client', client)
            .pipe(tap(_ => this.handleErrorService.log('datos enviados')),
-            catchError(this.handleErrorService.handleError<Client>('Error Registra Cliente', null))
+            catchError(this.handleErrorService.handleError<Client>('Error al registra cliente' , null))
  );
  }
 
   get(): Observable<Client[]> {
     return this.http.get<Client[]>(this.baseUrl + 'api/Client')
     .pipe(tap(_ => this.handleErrorService.log('Clientes consultados')),
-    catchError(this.handleErrorService.handleError<Client[]>('Error al consultar los Clientes', null))
+    catchError(this.handleErrorService.handleError<Client[]>('Error al consultar los clientes', null))
     ); }
+
+  getClient(identification: string): Observable<Client> {
+      return this.http.get<Client>(this.baseUrl + 'api/Client/' + identification)
+      .pipe(tap(_ => this.handleErrorService.log('Cliente encontrado')),
+      catchError(this.handleErrorService.handleError<Client>('Error al consultar el cliente', new Client()))
+      );
+    }
 
     delete(identification: string): Observable<Client> {
       return this.http.delete<Client>(this.baseUrl + 'api/Client/' + identification)
       .pipe( tap (_ => this.handleErrorService.log('Cliente eliminado')),
-      catchError(this.handleErrorService.handleError<Client>('Error al eliminar el Cliente', null))
+      catchError(this.handleErrorService.handleError<Client>('Error al eliminar el cliente', null))
       );
     }
 
     put(client: Client): Observable<Client> {
       return this.http.put<Client>(this.baseUrl + 'api/Client', client)
       .pipe( tap(_ => this.handleErrorService.log('Cliente modificado')),
-      catchError(this.handleErrorService.handleError<Client>('Error al modificar el Cliente', null))
+      catchError(this.handleErrorService.handleError<Client>('Error al modificar el cliente', null))
       );
     }
 }

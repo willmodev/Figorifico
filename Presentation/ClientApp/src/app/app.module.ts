@@ -42,6 +42,9 @@ import { ClientConsultModule } from './client-consult/client-consult.module';
 import { ClientConsultRoutingModule } from './client-consult/client-consult-routing.module';
 import { ClientModifyModule } from './client-modify/client-modify.module';
 import { ClientModifyComponent } from './client-modify/components/client-modify/client-modify.component';
+import { DomiciliaryModule } from './domiciliary/domiciliary.module';
+import { DomiciliaryRoutingModule } from './domiciliary/domiciliary-routing.module';
+
 
 
 
@@ -89,7 +92,9 @@ import { ClientModifyComponent } from './client-modify/components/client-modify/
     ChickenCutsRoutingModule,
     ClientConsultModule,
     ClientConsultRoutingModule,
-    ClientModifyModule
+    ClientModifyModule,
+    DomiciliaryModule,
+    DomiciliaryRoutingModule
   ],
   entryComponents: [AlertDialogComponent, ProductModifyComponent, ClientModifyComponent],
   providers: [

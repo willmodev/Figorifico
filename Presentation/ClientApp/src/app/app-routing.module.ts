@@ -21,6 +21,9 @@ const routes: Routes = [
     path: 'products/consult', loadChildren: () => import('./product-consult/product-consult.module').then(m => m.ProductConsultModule)
   },
   {
+    path: 'domiciliary/register', loadChildren: () => import('./domiciliary/domiciliary.module').then(m => m.DomiciliaryModule)
+  },
+  {
     path: 'order', loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
   },
   { path: 'sales', component: SalesComponent},

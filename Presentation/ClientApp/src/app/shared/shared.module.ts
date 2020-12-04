@@ -6,17 +6,20 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { MaterialModule } from '../material/material.module';
 import { BoostrapModule } from '../boostrap/boostrap.module';
+import { FilterProductsPipe } from '../pipe/filter-products.pipe';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
-    NavMenuComponent
+    NavMenuComponent,
+    FilterProductsPipe
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    NavMenuComponent
+    NavMenuComponent,
+    FilterProductsPipe
   ],
   imports: [
     CommonModule,

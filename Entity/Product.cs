@@ -4,17 +4,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entity
 {
-    public class Product
+    public partial class Product
     {
         [Key]
         [Column(TypeName= "nvarchar(10)")]
         public string  IdProduct { get; set; }
         [Column(TypeName= "nvarchar(30)")]
         public string  Type { get; set; }
-        [Column(TypeName= "nvarchar(11)")]
-        public float SalePrice { get; set; }
-        public float SuggestedPrice { get; set; }
-        public float PurchasePrice { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal SalePrice { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal PurchasePrice { get; set; }
         public float Quantity { get; set; }
         public int Iva { get; set; }
         public string Image { get; set; }

@@ -26,6 +26,19 @@ namespace BLL
                 return new ClientServiceResponse($"Error del aplicacion: {e.Message}");
             }
         }
+        public ClientServiceResponse SearchById(string identification)
+        {
+            try 
+            {
+                Client client = context.Clients.Find(identification);
+                return new ClientServiceResponse(client);
+            }
+            catch (Exception e)
+            {
+                
+                return new ClientServiceResponse($"Error de la Aplicacion: {e.Message}");
+            }
+        }
 
         public ClientsConsultResponse GetConsult()
         {
@@ -104,7 +117,7 @@ namespace BLL
        
     }
 
-     public class ClientsConsultResponse
+    public class ClientsConsultResponse
     {
         public ClientsConsultResponse(IList<Client> clients)
         {

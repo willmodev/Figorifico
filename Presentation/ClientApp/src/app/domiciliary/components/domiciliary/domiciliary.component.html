@@ -1,0 +1,72 @@
+<div class="card  mt-5 mb-5 backColor">
+    <h5 class="card-header colorTop">Registro de Domiciliarios</h5>
+
+    <div class="example-container m-5">
+
+          <mat-horizontal-stepper linear #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+              <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Registro del domiciliario</ng-template>
+                <p>
+                    <mat-form-field>
+                        <mat-label>Identificacion</mat-label>
+                        <input matInput placeholder="Identificacion" formControlName="identification" required>
+                    </mat-form-field>
+                    <mat-form-field>
+                      <mat-label>Name</mat-label>
+                      <input matInput placeholder="Nombre" formControlName="name" required>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field>
+                        <mat-label>Apellido</mat-label>
+                        <input matInput placeholder="Apellido" formControlName="lastName" required>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Direccion</mat-label>
+                        <input matInput placeholder="Apellido" formControlName="address" required>
+                    </mat-form-field>
+                </p>
+
+                <div>
+                  <button mat-raised-button color="primary" (click)="next()" matStepperNext>Next</button>
+                </div>
+
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup"  [optional]="false">
+              <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Registro del Vehiculo"</ng-template>
+                  <p>
+                    <mat-form-field>
+                        <mat-label>ID Propietario</mat-label>
+                        <input matInput formControlName="IdPropietary" placeholder="Id del propietario">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Placa</mat-label>
+                        <input matInput formControlName="placa" placeholder="Placa" required>
+                    </mat-form-field>
+                  </p>
+
+                  <p>
+                    <mat-form-field>
+                        <mat-label>Marca</mat-label>
+                        <input matInput formControlName="make" placeholder="Marca" required>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Modelo</mat-label>
+                        <input matInput formControlName="model" placeholder="Modelo" required>
+                    </mat-form-field>
+                  </p>
+                <div>
+                  <button mat-raised-button color="warn"  matStepperPrevious>Back</button>
+                  <button mat-raised-button color="primary"class="space" [disabled]="secondFormGroup.invalid" (click)="add()">Guardar</button>
+                </div>
+            </form>
+            </mat-step>
+          </mat-horizontal-stepper>
+      </div>
+</div>
+
+  
+  

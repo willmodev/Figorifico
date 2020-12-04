@@ -68,7 +68,6 @@ namespace BLL
                     oldProduct.Type = newProduct.Type;
                     oldProduct.SalePrice = newProduct.SalePrice;
                     oldProduct.PurchasePrice = newProduct.PurchasePrice;
-                    oldProduct.SuggestedPrice = newProduct.SuggestedPrice;
                     oldProduct.Category = newProduct.Category;
                     oldProduct.Iva = newProduct.Iva;
                     oldProduct.Description = newProduct.Description;

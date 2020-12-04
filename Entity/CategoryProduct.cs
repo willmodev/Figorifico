@@ -6,11 +6,12 @@ namespace Entity
     public class CategoryProduct
     {
         [Key]
-         [Column(TypeName= "nvarchar(3)")]
-        public string IdCategory { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IdCategory { get; set; }
          [Column(TypeName= "nvarchar(30)")]
         public string Name { get; set; }
-         [Column("IdType",TypeName= "nvarchar(3)")]
+        [Column(TypeName= "nvarchar(3)")]
+        [ForeignKey("IdType")]
         public TypeProduct TypeProduct { get; set; }
     }
 }

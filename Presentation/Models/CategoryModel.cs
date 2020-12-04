@@ -4,13 +4,13 @@ namespace Presentation.Models
 {
     public class TypeModel
     {
-        public string IdType { get; set; }
+        public int IdType { get; set; }
         public string Name { get; set; } 
     }
 
     public class CategoryImputModel
     {
-        public string IdCategory { get; set; }
+        public int IdCategory { get; set; }
         public string Name { get; set; }
         public TypeModel TypeProduct { get; set; }     
     }

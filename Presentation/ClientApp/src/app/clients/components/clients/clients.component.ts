@@ -60,12 +60,14 @@ export class ClientsComponent implements OnInit {
     if (this.formGroup.invalid) { return; }
     this.client = this.formGroup.value;
     this.clientService.post(this.client).subscribe(c => {
-      this.client = c;
-      this.dialog.open(AlertDialogComponent, {
-        width: '250px',
-        data: { title: 'Resultado Operacion!', message: 'Cliente Creado..!',
-                  nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
-      });
+      if ( c != null ) {
+        this.dialog.open(AlertDialogComponent, {
+          width: '250px',
+          data: { title: 'Resultado Operacion!', message: 'Cliente Creado..!',
+                    nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+        });
+        this.client = c;
+      }
     });
   }
 

@@ -6,9 +6,8 @@ namespace Presentation.Models
     {
         public string  IdProduct { get; set; }
         public string  Type { get; set; }
-        public float SalePrice { get; set; }
-        public float SuggestedPrice { get; set; }
-        public float PurchasePrice { get; set; }
+        public decimal SalePrice { get; set; }
+        public decimal PurchasePrice { get; set; }
         public float Quantity { get; set; }
         public int Iva { get; set; }
         public string Image { get; set; }
@@ -29,7 +28,6 @@ namespace Presentation.Models
             IdProduct = product.IdProduct;
             Type = product.Type;
             SalePrice = product.SalePrice;
-            SuggestedPrice = product.SuggestedPrice;
             PurchasePrice = product.PurchasePrice;
             Quantity = product.Quantity;
             Iva = product.Iva;

@@ -7,7 +7,7 @@ h5 {
 }
 #size-quantity
 {
-    width: 50px;
+    width: 60px;
 }
 #size-price{
 
@@ -19,10 +19,20 @@ h5 {
 }    */
 
 body{
-    margin-left: -75px;
-    margin-right: -75px;
+    margin-left: -150px;
+    margin-right: -150px;
 }
 .material-icons {
     font-size: 22px;
     vertical-align: text-top;
+}
+
+.btn-add {
+  font-size: 27px;
+  margin-top: -7px;
+  margin-left: -3px;
+}
+
+.btn-size {
+    height: 30px;
 }

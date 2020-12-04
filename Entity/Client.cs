@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entity
 {
-    public class Client
+    public partial class Client
     {
         [Key]
         [Column(TypeName= "nvarchar(11)")]

@@ -40,7 +40,6 @@ namespace Presentation.Controllers
             product.IdProduct = productInput.IdProduct;
             product.Type = productInput.Type;
             product.SalePrice = productInput.SalePrice;
-            product.SuggestedPrice = productInput.SuggestedPrice;
             product.PurchasePrice = productInput.PurchasePrice;
             product.Quantity = productInput.Quantity;
             product.Iva = productInput.Iva;

@@ -6,8 +6,8 @@ namespace Entity
     public class TypeProduct
     {
         [Key]
-        [Column(TypeName= "nvarchar(3)")]
-        public string IdType { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int IdType { get; set; }
         [Column(TypeName= "nvarchar(30)")]
         public string  Name { get; set; }
     }

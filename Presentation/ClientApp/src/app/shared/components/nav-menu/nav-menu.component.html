@@ -28,7 +28,7 @@
               <a class="text-menu" mat-menu-item [routerLink]="['/pork-cuts']">Cortes de cerdo</a>
               <a class="text-menu" mat-menu-item [routerLink]="['/chicken-cuts']">Cortes de pollo</a>
             </mat-menu>
-            <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['/domicilios']" routerLinkActive="active">Domicliliario</a>
+            <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['/domiciliary/register']" routerLinkActive="active">Domicliliario</a>
             <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['/pedidos']" routerLinkActive="active">Pedidos</a>
         </nav>
 
