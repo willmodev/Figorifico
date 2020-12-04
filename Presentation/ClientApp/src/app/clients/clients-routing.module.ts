@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientsComponent } from './components/clients/clients.component';
+import { AuthAdminGuard } from '../services/auth-admin.guard';
 
 const routes: Routes = [
   {
-    path: '', component: ClientsComponent
+    path: '', component: ClientsComponent, canActivate: [AuthAdminGuard]
   }
 ];
 

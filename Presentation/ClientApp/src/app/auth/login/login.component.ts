@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../../core/services/login/login.service';
 import { Login } from '../../Models/login';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from 'src/app/core/services/auth/authentication.service';
+import { first } from 'rxjs/operators';
 
 
 @Component({
@@ -16,49 +18,59 @@ export class LoginComponent implements OnInit {
  isValid: boolean;
 
   constructor(
+    private authService: AuthenticationService,
     private loginService: LoginService,
     private router: Router,
     private formBuilder: FormBuilder
 
     ) { }
 
-  ngOnInit() {
-    this.buildForm();
-  }
-
-  buildForm() {
-    this.login =  new Login();
-    this.login.email = '';
-    this.login.password =  '';
-
-    this.formGroup = this.formBuilder.group({
-      email: [this.login.email],
-      password: [this.login.password]
-    });
-  }
-
-  async onLogin() {
-    const {email, password} = this.formGroup.value;
-    try {
-      const user = await this.loginService.login(email, password);
-      if (user) {
-        // Redireccionar hacia Home
-        this.router.navigate(['/home']);
-      }
-    } catch (error) {
-      console.log(error);
+    ngOnInit() {
+      this.buildForm();
     }
-  }
 
-  // validateLogin()
-  // {
-  //   this.loginService.isValid =  this.loginService.validateLogin(this.login.user, this.login.password);
-  //   if(this.loginService.isValid)
-  //   {
-  //     alert("Datos correctos, !Bienvenido¡");
-  //     this.router.navigate(['/']);
-  //   }else alert("User y/ó Password incorrectos..!");
+    buildForm() {
+      this.formGroup = this.formBuilder.group({
+        userName: ['', Validators.required],
+        password: ['', Validators.required]
+      });
+    }
+
+    get control() {
+      return this.formGroup.controls;
+    }
+
+    onLogin() {
+      if (this.formGroup.invalid) {
+        return;
+      }
+
+      this.authService.login(this.control.userName.value, this.control.password.value)
+        .pipe(first())
+        .subscribe(
+          data => {
+            console.log(data);
+            this.router.navigate(['/home']);
+          },
+          error => {
+           console.log(error);
+          });
+
+    }
+
+  // async onLogin() {
+  //   const {email, password} = this.formGroup.value;
+  //   try {
+  //     const user = await this.loginService.login(email, password);
+  //     if (user) {
+  //       // Redireccionar hacia Home
+  //       this.router.navigate(['/home']);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
   // }
+
 
 
 }

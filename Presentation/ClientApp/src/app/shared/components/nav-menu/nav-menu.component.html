@@ -5,36 +5,39 @@
   
       <div class="row between-xs middle-xs nav-row">
         <nav>
-            <a mat-button class="navbar-brand" [routerLink]="['/home']" routerLinkActive="active">
-              <mat-icon class="material-icons">home</mat-icon> 
-            </a>
-            <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['invoice']" routerLinkActive="active">Facturar</a>
-            <a *ngIf="(user$ | async ) as user" mat-button  class="act" [matMenuTriggerFor]="product">Productos </a>
-            <mat-menu #product="matMenu">
-              <a  class="text-menu" mat-menu-item [routerLink]="['/products/register']">Registrar</a>
-              <a class="text-menu" mat-menu-item [routerLink]="['/products/consult']">Consultar</a>
-            </mat-menu>
-
-            <a *ngIf="(user$ | async ) as user" mat-button class="act" [matMenuTriggerFor]="client">Clientes</a>
-            <mat-menu #client="matMenu">
-              <a  class="text-menu" mat-menu-item [routerLink]="['/clients/register']">Registrar</a>
-              <a class="text-menu" mat-menu-item [routerLink]="['/clients/consult']">Consultar</a>
-            </mat-menu>
-            <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['sales']" routerLinkActive="active">Ventas</a>
-            <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['users']" routerLinkActive="active">Usuarios</a>
-            <a *ngIf="(user$ | async ) as user" mat-button  class="act" [matMenuTriggerFor]="cuts">Cortes</a>
-            <mat-menu #cuts="matMenu">
-              <a class="text-menu" mat-menu-item [routerLink]="['/beef-cuts']">Cortes de res</a>
-              <a class="text-menu" mat-menu-item [routerLink]="['/pork-cuts']">Cortes de cerdo</a>
-              <a class="text-menu" mat-menu-item [routerLink]="['/chicken-cuts']">Cortes de pollo</a>
-            </mat-menu>
-            <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['/domiciliary/register']" routerLinkActive="active">Domicliliario</a>
-            <a *ngIf="(user$ | async ) as user" mat-button [routerLink]="['/pedidos']" routerLinkActive="active">Pedidos</a>
+          <a mat-button class="navbar-brand" [routerLink]="['/home']" routerLinkActive="active">
+            <mat-icon class="material-icons">home</mat-icon> 
+          </a>
+            <span *ngIf="(user$ | async ) as user">
+             
+              <a  *ngIf="user.role == 'Admin'" mat-button [routerLink]="['invoice']" routerLinkActive="active">Facturar</a>
+              <a  *ngIf="user.role == 'Admin'" mat-button  class="act" [matMenuTriggerFor]="product">Productos </a>
+              <mat-menu #product="matMenu">
+                <a  class="text-menu" mat-menu-item [routerLink]="['/products/register']">Registrar</a>
+                <a class="text-menu" mat-menu-item [routerLink]="['/products/consult']">Consultar</a>
+              </mat-menu>
+  
+              <a  *ngIf="user.role == 'Admin'" mat-button class="act" [matMenuTriggerFor]="client">Clientes</a>
+              <mat-menu #client="matMenu">
+                <a  class="text-menu" mat-menu-item [routerLink]="['/clients/register']">Registrar</a>
+                <a class="text-menu" mat-menu-item [routerLink]="['/clients/consult']">Consultar</a>
+              </mat-menu>
+              <a *ngIf="user.role == 'Admin'" mat-button [routerLink]="['sales']" routerLinkActive="active">Ventas</a>
+              <a *ngIf="user.role == 'Admin'" mat-button [routerLink]="['users']" routerLinkActive="active">Usuarios</a>
+              <a *ngIf="(user.role == 'Client')" mat-button  class="act" [matMenuTriggerFor]="cuts">Cortes</a>
+              <mat-menu #cuts="matMenu">
+                <a class="text-menu" mat-menu-item [routerLink]="['/beef-cuts']">Cortes de res</a>
+                <a class="text-menu" mat-menu-item [routerLink]="['/pork-cuts']">Cortes de cerdo</a>
+                <a class="text-menu" mat-menu-item [routerLink]="['/chicken-cuts']">Cortes de pollo</a>
+              </mat-menu>
+              <a *ngIf="user.role == 'Admin'"  mat-button [routerLink]="['/domiciliary/register']" routerLinkActive="active">Domicliliario</a>
+              <a *ngIf="(user.role == 'Domiciliary')" mat-button [routerLink]="['/pedidos']" routerLinkActive="active">Pedidos</a>
+            </span>
         </nav>
 
         <ul *ngIf="(user$ | async ) as user; else login">
           <a mat-button  (click) = "onLogout()">Logout</a>
-          <a mat-button>{{ user?.email }}</a>
+          <a mat-button>{{ user?.role }}</a>
 
           <a class="text-menu" routerLink= "/order" mat-raised-button [matBadge]  = "total$ | async" matBadgeColor="warn">
             <mat-icon>shopping_cart</mat-icon>

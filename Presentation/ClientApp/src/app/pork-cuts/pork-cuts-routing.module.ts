@@ -3,16 +3,19 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { PorkCutsComponent } from './components/pork-cuts/pork-cuts.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { AuthAdminGuard } from '../services/auth-admin.guard';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: PorkCutsComponent
+    component: PorkCutsComponent,
+    canActivate: [AuthAdminGuard]
   },
   {
     path: ':id',
-    component: ProductDetailComponent
+    component: ProductDetailComponent,
+    canActivate: [AuthAdminGuard]
   }
 ];
 

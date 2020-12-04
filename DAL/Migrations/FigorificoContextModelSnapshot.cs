@@ -184,6 +184,25 @@ namespace DAL.Migrations
                     b.ToTable("TypeProduct");
                 });
 
+            modelBuilder.Entity("Entity.User", b =>
+                {
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserName");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("Entity.CategoryProduct", b =>
                 {
                     b.HasOne("Entity.TypeProduct", "TypeProduct")

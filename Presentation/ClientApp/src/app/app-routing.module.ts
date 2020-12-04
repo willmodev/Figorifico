@@ -7,6 +7,7 @@ import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthAdminGuard } from './services/auth-admin.guard';
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
@@ -26,8 +27,8 @@ const routes: Routes = [
   {
     path: 'order', loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
   },
-  { path: 'sales', component: SalesComponent},
-  { path: 'users', component: UsersComponent},
+  { path: 'sales', component: SalesComponent, canActivate: [AuthAdminGuard]},
+  { path: 'users', component: UsersComponent, canActivate: [AuthAdminGuard]},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'pork-cuts', loadChildren: () => import('./pork-cuts/pork-cuts.module').then(m => m.PorkCutsModule)},
