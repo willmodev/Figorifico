@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using BLL;
 using DAL;
 using Entity;
@@ -60,6 +62,29 @@ namespace Presentation.Controllers
             }
 
             return invoice;
+        }
+
+        [HttpGet("{idInvoice}")]
+        public ActionResult<InvoiceViewModel> GetInvoice(string idInvoice)
+        {
+            var response =  invoiceService.GetInvoice(idInvoice);
+            if(response.Invoice == null) return NotFound("Persona no encontrada!");
+            var i =  new InvoiceViewModel(response.Invoice);
+
+            return Ok(i);
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<InvoiceViewModel>> Get()
+        {
+            var response = invoiceService.GetList();
+
+            if (response.Invoices == null) return BadRequest(response.Message);
+
+            var invoices = response.Invoices.Select(i => new InvoiceViewModel(i));
+
+            return Ok(invoices);
+
         }
 
         private Product MapProduct(ProductInputModel productInput)

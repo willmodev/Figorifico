@@ -23,7 +23,7 @@ export class BeefCutsComponent implements OnInit {
 
   getAllProducts() {
     this.productService.get().subscribe(result => {
-      this.products = result.filter(p => p.type === 'Carne de res');
+      this.products = result.filter(p => p.type === 'Carne de Res');
     });
   }
 

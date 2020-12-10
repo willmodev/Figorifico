@@ -100,7 +100,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("IdClient");
 
-                    b.ToTable("Invoice");
+                    b.ToTable("Invoices");
                 });
 
             modelBuilder.Entity("Entity.InvoiceDetail", b =>
@@ -134,7 +134,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("IdProduct");
 
-                    b.ToTable("InvoiceDetail");
+                    b.ToTable("InvoiceDetails");
                 });
 
             modelBuilder.Entity("Entity.Product", b =>
@@ -212,7 +212,7 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Entity.Invoice", b =>
                 {
-                    b.HasOne("Entity.Client", null)
+                    b.HasOne("Entity.Client", "Client")
                         .WithMany()
                         .HasForeignKey("IdClient");
                 });

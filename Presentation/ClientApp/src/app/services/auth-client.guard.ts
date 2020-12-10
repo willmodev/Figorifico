@@ -15,9 +15,10 @@ export class AuthClientGuard implements CanActivate  {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const currentUser = this.authenticationService.currentUserValue;
     if (currentUser) {
-      if( currentUser.role === 'Client' ) {
+      if ( currentUser.role === 'Client' ) {
         return true;
       } else {
+        this.router.navigate(['/home'], { queryParams: { returnUrl: state.url } });
         return false;
       }
       // authorised so return true

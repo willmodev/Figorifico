@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(FigorificoContext))]
-    [Migration("20201204152201_InitialCreate")]
+    [Migration("20201207181645_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -102,7 +102,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("IdClient");
 
-                    b.ToTable("Invoice");
+                    b.ToTable("Invoices");
                 });
 
             modelBuilder.Entity("Entity.InvoiceDetail", b =>
@@ -136,7 +136,7 @@ namespace DAL.Migrations
 
                     b.HasIndex("IdProduct");
 
-                    b.ToTable("InvoiceDetail");
+                    b.ToTable("InvoiceDetails");
                 });
 
             modelBuilder.Entity("Entity.Product", b =>
@@ -214,7 +214,7 @@ namespace DAL.Migrations
 
             modelBuilder.Entity("Entity.Invoice", b =>
                 {
-                    b.HasOne("Entity.Client", null)
+                    b.HasOne("Entity.Client", "Client")
                         .WithMany()
                         .HasForeignKey("IdClient");
                 });

@@ -70,7 +70,7 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Invoice",
+                name: "Invoices",
                 columns: table => new
                 {
                     IdInvoice = table.Column<string>(type: "nvarchar(4)", nullable: false),
@@ -80,13 +80,13 @@ namespace DAL.Migrations
                     PaymentMethod = table.Column<string>(type: "nvarchar(30)", nullable: true),
                     SaleDate = table.Column<string>(type: "nvarchar(30)", nullable: true),
                     DueDate = table.Column<string>(type: "nvarchar(30)", nullable: true),
-                    IdClient = table.Column<string>(type: "nvarchar(11)", nullable: true)
+                    IdClient = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Invoice", x => x.IdInvoice);
+                    table.PrimaryKey("PK_Invoices", x => x.IdInvoice);
                     table.ForeignKey(
-                        name: "FK_Invoice_Clients_IdClient",
+                        name: "FK_Invoices_Clients_IdClient",
                         column: x => x.IdClient,
                         principalTable: "Clients",
                         principalColumn: "Indentification",
@@ -114,7 +114,7 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "InvoiceDetail",
+                name: "InvoiceDetails",
                 columns: table => new
                 {
                     IdDetail = table.Column<int>(nullable: false)
@@ -128,15 +128,15 @@ namespace DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InvoiceDetail", x => x.IdDetail);
+                    table.PrimaryKey("PK_InvoiceDetails", x => x.IdDetail);
                     table.ForeignKey(
-                        name: "FK_InvoiceDetail_Invoice_IdInvoice",
+                        name: "FK_InvoiceDetails_Invoices_IdInvoice",
                         column: x => x.IdInvoice,
-                        principalTable: "Invoice",
+                        principalTable: "Invoices",
                         principalColumn: "IdInvoice",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_InvoiceDetail_Products_IdProduct",
+                        name: "FK_InvoiceDetails_Products_IdProduct",
                         column: x => x.IdProduct,
                         principalTable: "Products",
                         principalColumn: "IdProduct",
@@ -149,19 +149,19 @@ namespace DAL.Migrations
                 column: "IdType");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Invoice_IdClient",
-                table: "Invoice",
-                column: "IdClient");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_InvoiceDetail_IdInvoice",
-                table: "InvoiceDetail",
+                name: "IX_InvoiceDetails_IdInvoice",
+                table: "InvoiceDetails",
                 column: "IdInvoice");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InvoiceDetail_IdProduct",
-                table: "InvoiceDetail",
+                name: "IX_InvoiceDetails_IdProduct",
+                table: "InvoiceDetails",
                 column: "IdProduct");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Invoices_IdClient",
+                table: "Invoices",
+                column: "IdClient");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -170,7 +170,7 @@ namespace DAL.Migrations
                 name: "Categorys");
 
             migrationBuilder.DropTable(
-                name: "InvoiceDetail");
+                name: "InvoiceDetails");
 
             migrationBuilder.DropTable(
                 name: "Users");
@@ -179,7 +179,7 @@ namespace DAL.Migrations
                 name: "TypeProduct");
 
             migrationBuilder.DropTable(
-                name: "Invoice");
+                name: "Invoices");
 
             migrationBuilder.DropTable(
                 name: "Products");

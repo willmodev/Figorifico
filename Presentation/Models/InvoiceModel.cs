@@ -32,6 +32,7 @@ namespace Presentation.Models
         public string DueDate { get; set; }
         public string PaymentMethod { get; set; }
         public string  IdClient { get; set; }
+        public  ClientInputModel Client { get; set; }
         public  IList<InvoiceDetailModel> InvoiceDetails { get; set; } 
 
         public InvoiceImputModel()
@@ -57,6 +58,10 @@ namespace Presentation.Models
             SaleDate = invoice.SaleDate;
             DueDate = invoice.DueDate;
             IdClient = invoice.IdClient;
+            Client = new ClientInputModel();
+            Client = new ClientViewModel(invoice.Client);
+
+
 
             foreach (InvoiceDetail detail in invoice.InvoiceDetails) {
 
@@ -70,6 +75,7 @@ namespace Presentation.Models
                 detailModel.IdInvoice  = detail.IdInvoice;
                 detailModel.IdProduct  = detail.IdProduct;
 
+                detailModel.Product = new ProductInputModel();
                 detailModel.Product  = new ProductViewModel(detail.Product);
                 InvoiceDetails.Add(detailModel);
             }

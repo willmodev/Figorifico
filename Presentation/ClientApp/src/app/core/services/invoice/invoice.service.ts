@@ -24,4 +24,10 @@ export class InvoiceService {
     catchError(this.handleErrorService.handleError<Invoice>('Error al guardar la factura', null))
   ); }
 
+  get(): Observable<Invoice[]> {
+    return this.http.get<Invoice[]>(this.baseUrl + 'api/Invoice')
+    .pipe(tap(_ => this.handleErrorService.log('Facturas Consultadas..!')),
+    catchError(this.handleErrorService.handleError<Invoice[]>('Error al consultar las facturas', null))
+    ); }
+
 }

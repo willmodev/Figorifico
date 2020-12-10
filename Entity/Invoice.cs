@@ -20,8 +20,13 @@ namespace Entity
         public string SaleDate { get; set; }
         [Column(TypeName= "nvarchar(30)")]
         public string DueDate { get; set; }
-        [Column(TypeName= "nvarchar(11)")]
+        [NotMapped]
         public string IdClient { get; set; }
+        [Column(TypeName= "nvarchar(11)")]
+        [ForeignKey("IdClient")]
+        public virtual Client Client { get; set; }
+        
+        
         [Column(TypeName = "nvarchar(4)")]
         [ForeignKey("IdInvoice")]
         public virtual IList<InvoiceDetail> InvoiceDetails { get; set; } 

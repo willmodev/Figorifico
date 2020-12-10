@@ -13,9 +13,10 @@ export class AuthAdminGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const currentUser = this.authenticationService.currentUserValue;
     if ( currentUser) {
-      if( currentUser.role === 'Admin' ) {
+      if ( currentUser.role === 'Admin' ) {
         return true;
       } else {
+        this.router.navigate(['/home'], { queryParams: { returnUrl: state.url } });
         return false;
       }
       // authorised so return true

@@ -1,3 +1,4 @@
+import { Client } from './client.model';
 import { InvoiceDetail } from './InvoiceDetail';
 import { Product } from './product.model';
 
@@ -11,6 +12,7 @@ export class Invoice {
     dueDate: string;
     paymentMethod: string;
     idClient: string;
+    client: Client;
     invoiceDetails: InvoiceDetail[];
 
     constructor () {

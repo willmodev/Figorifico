@@ -39,7 +39,7 @@
           <a mat-button  (click) = "onLogout()">Logout</a>
           <a mat-button>{{ user?.role }}</a>
 
-          <a class="text-menu" routerLink= "/order" mat-raised-button [matBadge]  = "total$ | async" matBadgeColor="warn">
+          <a *ngIf="(user.role == 'Client')" class="text-menu" routerLink= "/order" mat-raised-button [matBadge]  = "total$ | async" matBadgeColor="warn">
             <mat-icon>shopping_cart</mat-icon>
             Carrito
           </a>

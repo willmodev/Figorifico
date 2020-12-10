@@ -100,6 +100,7 @@ export class InvoiceComponent implements OnInit {
                     nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
         });
         this.client = c;
+        this.invoice.client = this.client;
         this.fillFields (this.client);
 
 
