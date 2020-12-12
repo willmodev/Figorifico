@@ -62,14 +62,14 @@
                         <div class="row my-3">
                             <div class="from-group col-md-12">
                                 <a class="navbar-brand text-center">
-                                    <input *ngIf="products !== null" class="form-control mx-5" type="search"
+                                    <input  class="form-control mx-5" type="search"
                                         name="searchText" [(ngModel)]="searchText" placeholder="Buscar productos"
                                         aria-label="Search">
                                 </a>
                             </div>
                         </div>
 
-                        <div class="table-responsive">
+                        <div *ngIf="products !== undefined"  class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -98,7 +98,8 @@
                                         <td>
                                             <input type="number" #valPrice id="size-price" [value]="product.salePrice" >
                                         </td>
-                                        <td><button (click)="addDetail(product, valQuantity.value, valPrice.value, valDiscount.value)" 
+                                        <td><button (click)="addDetail(product, valQuantity.value, valPrice.value, valDiscount.value);
+                                            valQuantity.value = ''; valDiscount.value =''" 
                                             class="btn btn-success btn-size"> <mat-icon class="btn-add">add_circle_outline</mat-icon>  </button>
                                         </td>
                                     </tr>

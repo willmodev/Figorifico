@@ -2,11 +2,11 @@
   <h5 class="card-header colorTop">Lista de productos</h5>
   <nav class="navbar navbar-light mt-2">
     <a class="navbar-brand">
-      <input *ngIf="products !== null" class="form-control mx-5" type="search"name="searchText" [(ngModel)] = "searchText" placeholder="Buscar producto" aria-label="Search">
+      <input class="form-control mx-5" type="search"name="searchText" [(ngModel)] = "searchText" placeholder="Buscar producto" aria-label="Search">
     </a>
   </nav>
   
-  <div class="m-5 colorTable">
+  <div *ngIf="products !== undefined"  class="m-5 colorTable">
     <div class="table-responsive">
       <table class="table">
         <thead>
@@ -16,7 +16,6 @@
             <th scope="col">Categoria</th>
             <th scope="col">Precio Compra</th>
             <th scope="col">Precio Venta</th>
-            <th scope="col">Precio Sugerido</th>
             <th scope="col">Cantidad</th>
             <th scope="col">IVA</th>
             <th scope="col">Editar</th>
@@ -30,7 +29,6 @@
             <td>{{ product.category }}</td>
             <td>{{ product.purchasePrice | currency }}</td>
             <td>{{ product.salePrice | currency }}</td>
-            <td>{{ product.suggestedPrice | currency}}</td>
             <td>{{ product.quantity }}</td>
             <td>{{ product.iva }}</td>
             <td><button class="btn btn-primary" type="submit" data-toggle="modal" data-target="#modifyPerson"

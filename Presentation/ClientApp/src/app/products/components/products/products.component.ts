@@ -1,4 +1,3 @@
-import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
@@ -9,6 +8,7 @@ import {MatDialog} from '@angular/material';
 import { AlertDialogComponent } from '../../../@base/alert-dialog/alert-dialog.component';
 import { CategoryService } from 'src/app/core/services/category/category.service';
 import { Category } from 'src/app/Models/category.model';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -16,6 +16,7 @@ import { Category } from 'src/app/Models/category.model';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
+
 export class ProductsComponent implements OnInit {
 
   constructor(
@@ -98,7 +99,14 @@ export class ProductsComponent implements OnInit {
         data: { title: 'Resultado Operacion!', message: 'Producto Creado..!',
                   nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
       });
+      this.cleanForm();
     });
+  }
+
+  cleanForm() {
+    this.formGroup.reset();
+    this.uploadPercent = null;
+    this.downloadURL$ = null;
   }
 
   uploadFile(event) {

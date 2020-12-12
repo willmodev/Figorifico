@@ -30,4 +30,10 @@ export class InvoiceService {
     catchError(this.handleErrorService.handleError<Invoice[]>('Error al consultar las facturas', null))
     ); }
 
+     getCount(): Observable<number> {
+    return this.http.get<number>(this.baseUrl + 'api/WInvoice')
+    .pipe(tap(_ => this.handleErrorService.log('Facturas Contadas..!')),
+    catchError(this.handleErrorService.handleError<number>('Error al contar las facturas', 0))
+    ); }
+
 }

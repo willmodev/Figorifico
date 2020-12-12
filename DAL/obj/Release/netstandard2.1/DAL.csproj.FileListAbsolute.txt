@@ -6,7 +6,6 @@ D:\Programacion Web\Figorifico\DAL\bin\Release\netstandard2.1\Entity.pdb
 D:\Programacion Web\Figorifico\DAL\obj\Release\netstandard2.1\DAL.csprojAssemblyReference.cache
 D:\Programacion Web\Figorifico\DAL\obj\Release\netstandard2.1\DAL.AssemblyInfoInputs.cache
 D:\Programacion Web\Figorifico\DAL\obj\Release\netstandard2.1\DAL.AssemblyInfo.cs
-D:\Programacion Web\Figorifico\DAL\obj\Release\netstandard2.1\DAL.csproj.CoreCompileInputs.cache
 D:\Programacion Web\Figorifico\DAL\obj\Release\netstandard2.1\DAL.csproj.CopyComplete
 D:\Programacion Web\Figorifico\DAL\obj\Release\netstandard2.1\DAL.dll
 D:\Programacion Web\Figorifico\DAL\obj\Release\netstandard2.1\DAL.pdb

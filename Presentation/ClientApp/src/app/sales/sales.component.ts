@@ -12,7 +12,7 @@ import { Invoice } from '../Models/Invoice';
 export class SalesComponent implements OnInit {
 
   invoices: Invoice[];
-  totalSales: number;
+  totalSales = 0;
 
   constructor(
     private invoiceService: InvoiceService,
@@ -27,14 +27,14 @@ export class SalesComponent implements OnInit {
   get (): void {
     this.invoiceService.get().subscribe(result => {
       if (result != null ) {
-        this.dialog.open(AlertDialogComponent, {
-          width: '250px',
-          data: { title: 'Resultado Operacion!', message: 'Producto Creado..!',
-                    nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
-        });
-
         this.invoices = result;
         this.totalSale(this.invoices);
+      } else {
+        this.dialog.open(AlertDialogComponent, {
+          width: '350px',
+          data: { title: 'Resultado Operacion', message: 'No se encontraron ventas..!',
+                    nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+        });
       }
     });
   }

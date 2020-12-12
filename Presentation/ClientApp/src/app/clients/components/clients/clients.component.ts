@@ -55,6 +55,9 @@ export class ClientsComponent implements OnInit {
   get control() {
     return this.formGroup.controls;
   }
+  cleanForm() {
+    this.formGroup.reset();
+  }
 
   add() {
     if (this.formGroup.invalid) { return; }
@@ -67,6 +70,7 @@ export class ClientsComponent implements OnInit {
                     nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
         });
         this.client = c;
+        this.cleanForm();
       }
     });
   }

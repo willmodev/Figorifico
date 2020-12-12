@@ -68,7 +68,7 @@ namespace Presentation.Controllers
         public ActionResult<InvoiceViewModel> GetInvoice(string idInvoice)
         {
             var response =  invoiceService.GetInvoice(idInvoice);
-            if(response.Invoice == null) return NotFound("Persona no encontrada!");
+            if(response.Invoice == null) return NotFound("Factura no encontrada!");
             var i =  new InvoiceViewModel(response.Invoice);
 
             return Ok(i);

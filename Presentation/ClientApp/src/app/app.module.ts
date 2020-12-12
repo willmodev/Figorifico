@@ -44,6 +44,7 @@ import { ClientModifyModule } from './client-modify/client-modify.module';
 import { ClientModifyComponent } from './client-modify/components/client-modify/client-modify.component';
 import { DomiciliaryModule } from './domiciliary/domiciliary.module';
 import { DomiciliaryRoutingModule } from './domiciliary/domiciliary-routing.module';
+import { FilterInvoicePipe } from './pipe/filter-invoice.pipe';
 
 
 
@@ -57,6 +58,7 @@ import { DomiciliaryRoutingModule } from './domiciliary/domiciliary-routing.modu
     LoginComponent,
     RegisterComponent,
     PageNotFoundComponent,
+    FilterInvoicePipe,
     ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

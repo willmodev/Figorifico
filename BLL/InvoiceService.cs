@@ -70,6 +70,16 @@ namespace BLL
             }
         }
 
+        public ResponseCount Count()
+        {
+            try {
+                decimal count =  context.Invoices.Count();
+                return new ResponseCount(count);
+            } catch (Exception e) {
+                return new ResponseCount($"Error del aplicacion: {e.Message}");
+            }
+        }
+
    
     }
 
@@ -94,6 +104,32 @@ namespace BLL
        public Invoice Invoice { get; set; }
     }  
 
+    public class ResponseCount
+    {
+        public ResponseCount(decimal count)
+        {
+            Error = false;
+            Count = count;
+        }
+
+        public ResponseCount(string message)
+        {
+            Error = true;
+            Message = message;
+        }
+
+        public bool Error { get; set; }
+        public string Message { get; set; }
+        public decimal Count { get; set; }
+        
+        
+        
+        
+        
+        
+
+    }
+
     public class ListInvioceResponse
     {
 
@@ -112,11 +148,7 @@ namespace BLL
         public bool Error { get; set; }
         public string Message { get; set; }
         public IList<Invoice> Invoices { get; set; }
-        
-        
-        
-        
-        
+
         
     }
 

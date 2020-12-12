@@ -5,6 +5,8 @@ import { Login } from '../../Models/login';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/services/auth/authentication.service';
 import { first } from 'rxjs/operators';
+import { MatDialog } from '@angular/material';
+import { AlertDialogComponent } from 'src/app/@base/alert-dialog/alert-dialog.component';
 
 
 @Component({
@@ -21,7 +23,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthenticationService,
     private loginService: LoginService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog
 
     ) { }
 
@@ -49,10 +52,20 @@ export class LoginComponent implements OnInit {
         .pipe(first())
         .subscribe(
           data => {
-            console.log(data);
+
+            this.dialog.open(AlertDialogComponent, {
+              width: '320px',
+              data: { title: 'Resultado Operacion!', message: 'Datos Correctos, Bienvenido...!',
+                        nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+            });
             this.router.navigate(['/home']);
           },
           error => {
+            this.dialog.open(AlertDialogComponent, {
+              width: '320px',
+              data: { title: 'Resultado Operacion!', message: 'Datos incorrectos, por favor intente nuevamente...!',
+                        nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+            });
            console.log(error);
           });
 

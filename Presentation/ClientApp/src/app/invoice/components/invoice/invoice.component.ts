@@ -60,9 +60,25 @@ export class InvoiceComponent implements OnInit {
 
      this.formGroupInvoice = this.formBuilder.group({
       paymentMethod: [this.invoice.paymentMethod, this.valPaymentMethod],
-      idInvoice: [this.invoice.idInvoice, Validators.required]
+      idInvoice: [{value: this.invoice.idInvoice, disabled: true}]
 
     });
+    this.addNumber();
+  }
+
+  addNumber() {
+    this.invoiceService.getCount().subscribe(count => {
+      console.log(count);
+      this.formGroupInvoice.get('idInvoice').setValue(this.PadLeft(count, 4));
+    });
+  }
+  PadLeft(value, length) {
+    return (value.toString().length < length) ? this.PadLeft('0' + value, length) : value;
+}
+
+  cleanForm() {
+    this.formGroupClient.reset();
+    this.formGroupInvoice.reset();
   }
 
   private valPaymentMethod(control: AbstractControl) {
@@ -124,22 +140,30 @@ export class InvoiceComponent implements OnInit {
   }
 
   addDetail (product: Product, q: string, p: string, d: string): void {
+    console.log(this.client);
 
-    // tslint:disable-next-line: radix
-    const quantity = parseInt(q);
-    // tslint:disable-next-line: radix
-    const price = parseInt(p);
-    // tslint:disable-next-line: radix
-    const discount = parseInt(d);
+    if (this.client.indentification !== '' ) {
+      // tslint:disable-next-line: radix
+      const quantity = parseInt(q);
+      // tslint:disable-next-line: radix
+      const price = parseInt(p);
+      // tslint:disable-next-line: radix
+      const discount = parseInt(d);
 
-    this.invoice.idClient = this.formGroupClient.value.indentification;
+      this.invoice.idClient = this.formGroupClient.value.indentification;
 
 
-    this.invoice.addInvoiceDetails(product, quantity, discount, price);
-    this.invoice.calculateTotal();
+      this.invoice.addInvoiceDetails(product, quantity, discount, price);
+      this.invoice.calculateTotal();
 
-    console.log(this.invoiceDetail);
-
+      console.log(this.invoiceDetail);
+    } else {
+      this.dialog.open(AlertDialogComponent, {
+        width: '350px',
+        data: { title: 'Menssage Informativo', message: 'Debe agragar un CLIENTE a la factura...!',
+                  nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+      });
+    }
   }
 
   delete (index): void {
@@ -152,15 +176,27 @@ export class InvoiceComponent implements OnInit {
     // this.invoiceAux.invoiceDetails[0].product = new Product();
 
     console.log(this.invoice);
-    this.invoiceService.post(this.invoice).subscribe(i => {
-      if ( i != null ) {
-        this.dialog.open(AlertDialogComponent, {
-          width: '250px',
-          data: { title: 'Resultado Operacion!', message: 'Factura Guardada...!',
-                    nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
-        });
-        console.log(i);
-      }
-    });
+    console.log(this.invoice.invoiceDetails.length !== 0);
+    if (this.invoice.invoiceDetails.length !== 0) {
+
+      this.invoiceService.post(this.invoice).subscribe(i => {
+        if ( i != null ) {
+          this.dialog.open(AlertDialogComponent, {
+            width: '250px',
+            data: { title: 'Resultado Operacion!', message: 'Factura Guardada...!',
+                      nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+          });
+          this.invoice = new Invoice();
+          this.cleanForm();
+        }
+      });
+
+    } else {
+      this.dialog.open(AlertDialogComponent, {
+        width: '350px',
+        data: { title: 'Menssage Informativo', message: 'Debe agragar productos a la factura...!',
+                  nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+      });
+    }
   }
 }
