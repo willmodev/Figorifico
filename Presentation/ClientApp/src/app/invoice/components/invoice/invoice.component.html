@@ -83,7 +83,7 @@
                                         <th scope="col">Add</th>
                                     </tr>
                                 </thead>
-                                <tbody *ngFor="let product of products | filterProducts: searchText">
+                                <tbody *ngFor="let product of products | filterInvoice: searchText">
                                     <tr>
                                         <td>{{ product.idProduct }}</td>
                                         <td>{{ product.type }}</td>

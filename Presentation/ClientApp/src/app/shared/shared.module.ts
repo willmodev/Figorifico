@@ -7,19 +7,22 @@ import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { MaterialModule } from '../material/material.module';
 import { BoostrapModule } from '../boostrap/boostrap.module';
 import { FilterProductsPipe } from '../pipe/filter-products.pipe';
+import { FilterInvoicePipe } from '../pipe/filter-invoice.pipe';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
     NavMenuComponent,
-    FilterProductsPipe
+    FilterProductsPipe,
+    FilterInvoicePipe
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
     NavMenuComponent,
-    FilterProductsPipe
+    FilterProductsPipe,
+    FilterInvoicePipe
   ],
   imports: [
     CommonModule,

@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Presentation.Config;
 using System.Text;
+using Presentation.Hubs;
 
 namespace Presentation
 {
@@ -31,6 +32,9 @@ namespace Presentation
             // Configurar cadena de Conexion con EF
             var connectionString=Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<FigorificoContext>(p=>p.UseSqlServer(connectionString));
+
+            // SignalR
+            services.AddSignalR();
 
             services.AddControllersWithViews(); 
             // Config for JWT
@@ -122,6 +126,7 @@ namespace Presentation
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+                    endpoints.MapHub<SignalHub>("/signalHub");
             });
 
             app.UseSpa(spa =>

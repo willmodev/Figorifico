@@ -2,9 +2,12 @@ using BLL;
 using DAL;
 using Entity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using Presentation.Hubs;
 using Presentation.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Presentation.Controllers
 {
@@ -13,15 +16,17 @@ namespace Presentation.Controllers
     
     public class ProductController: ControllerBase
     {
+        private readonly IHubContext<SignalHub> _hubContext;
         private readonly ProductService productService;
 
-        public ProductController(FigorificoContext figorificoContext)
+        public ProductController(FigorificoContext figorificoContext, IHubContext<SignalHub> hubContext)
         {
             this.productService = new ProductService(figorificoContext);
+            _hubContext = hubContext;
         }
 
         [HttpPost]
-        public ActionResult<ProductViewModel> Post(ProductInputModel productInput)
+        public async Task<ActionResult<ProductViewModel>> Post(ProductInputModel productInput)
         {
            Product product  = Map(productInput);
            var response = productService.Save(product);
@@ -30,7 +35,9 @@ namespace Presentation.Controllers
            {
               return  BadRequest(response.Message);
            }
-           return  Ok(response.Product);
+           var productViewModel = new ProductViewModel(response.Product);
+           await _hubContext.Clients.All.SendAsync("ProductoRegistrado", productViewModel);
+           return  Ok(productViewModel);
         }
 
         private Product Map(ProductInputModel productInput)

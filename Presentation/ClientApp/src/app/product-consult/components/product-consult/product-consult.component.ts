@@ -7,6 +7,7 @@ import { finalize } from 'rxjs/operators';
 import {MatDialog} from '@angular/material';
 import { AlertDialogComponent } from '../../../@base/alert-dialog/alert-dialog.component';
 import { ProductModifyComponent } from 'src/app/product-modify/product-modify.component';
+import { SignalRService } from 'src/app/core/services/signal/signal-r.service';
 
 
 
@@ -28,17 +29,37 @@ export class ProductConsultComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private storage: AngularFireStorage,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private signalService: SignalRService
     ) {  }
 
   ngOnInit() {
     this.product =  new Product();
     this.get();
+    this.signalR();
   }
 
   get() {
-    this.productService.get().subscribe(p => { console.log(p); this.products = p; });
+    this.productService.get().subscribe(p => {
+      if (p.length === 0) {
+        this.dialog.open(AlertDialogComponent, {
+          width: '350px',
+          data: { title: 'Resultado Operacion!', message: 'No hay productos registrados!',
+                  nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
+        });
+      } else {
+        console.log(p);
+      }
+      this.products = p;
+     });
   }
+
+  signalR() {
+    this.signalService.signalReceived.subscribe((product: Product) => {
+      this.products.push(product);
+    });
+  }
+
 
   delete(idProduct: string) {
 
