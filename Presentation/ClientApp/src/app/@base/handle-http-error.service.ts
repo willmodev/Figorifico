@@ -12,28 +12,56 @@ export class HandleHttpErrorService {
     public dialog: MatDialog
   ) { }
 
-  public handleError<T>(operation: string, result?: T) {
+  public handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      const titleError = error.statusText + ' ' + error.status;
-      let message = operation;
+      console.log('Entro aqui- handleError');
+      console.log(error.status);
 
-      if (error.status === 400) {
-        message = message + ', El servidor no pudo interpretar la solicitud dada una sintaxis inválida.';
 
-        this.dialog.open(AlertDialogComponent, {
-          width: '400px',
-          data: { title: titleError, message: message,
-                    nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
-        });
+      if (error.status === '500') {
+        this.mostrarError500(error);
       }
-      console.log(error);
-
-
+     if (error.status === 400) {
+       this.mostrarError400(error);
+     }
+     if (error.status === '401') {
+       this.mostrarError500(error);
+     }
 
       return of(result as T);
     };
   }
   public log(message: string) {
     console.log(message);
+
+  }
+  private mostrarError500(error: any) {
+    console.error(error);
+  }
+
+  private mostrarError400(error: any): void {
+    console.log('Entré aqui');
+    // console.error(error.errros);
+    let contadorValidaciones = 0;
+    // tslint:disable-next-line:max-line-length
+    let mensajeValidaciones = `Señor(a) usuario(a), se han presentado algunos errores de validación, por favor revíselos y vuelva a realizar la operación.<br/><br/>`;
+
+      // tslint:disable-next-line:forin
+      for (const prop in error.error.errors) {
+      contadorValidaciones++;
+      mensajeValidaciones += `<strong>${contadorValidaciones}. ${prop}:</strong>`;
+
+      error.error.errors[prop].forEach(element => {
+        mensajeValidaciones += `<br/> - ${element}`;
+      });
+
+      mensajeValidaciones += `<br/>`;
+    }
+    this.dialog.open(AlertDialogComponent, {
+      width: '400px',
+      data: { title: 'Mensaje de Error', message: mensajeValidaciones,
+              nameBtnOne: 'Cancelar', nameBtnTwo: 'Aceptar', btnEnable: true}
+    });
+
   }
 }

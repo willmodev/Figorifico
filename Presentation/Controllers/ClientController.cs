@@ -5,6 +5,7 @@ using DAL;
 using Entity;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Presentation.Controllers
 {
@@ -26,7 +27,12 @@ namespace Presentation.Controllers
             var response = clientService.Save(client);
 
             if (response.Error) {
-                BadRequest(response.Message);
+               ModelState.AddModelError("Guardar Cliente", response.Message);
+                var problemDetails = new ValidationProblemDetails(ModelState)
+                {
+                    Status = StatusCodes.Status400BadRequest,
+                };
+                return BadRequest(problemDetails);
             }
 
             return Ok(response.Client);
