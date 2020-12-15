@@ -1,6 +1,7 @@
 using BLL;
 using DAL;
 using Entity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Presentation.Hubs;
@@ -33,7 +34,12 @@ namespace Presentation.Controllers
 
            if(response.Error)
            {
-              return  BadRequest(response.Message);
+                ModelState.AddModelError("Guardar Producto", response.Message);
+                var problemDetails = new ValidationProblemDetails(ModelState)
+                {
+                    Status = StatusCodes.Status400BadRequest,
+                };
+                return BadRequest(problemDetails);
            }
            var productViewModel = new ProductViewModel(response.Product);
            await _hubContext.Clients.All.SendAsync("ProductoRegistrado", productViewModel);

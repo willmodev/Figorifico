@@ -44,7 +44,7 @@ import { ClientModifyModule } from './client-modify/client-modify.module';
 import { ClientModifyComponent } from './client-modify/components/client-modify/client-modify.component';
 import { DomiciliaryModule } from './domiciliary/domiciliary.module';
 import { DomiciliaryRoutingModule } from './domiciliary/domiciliary-routing.module';
-import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
+import { FilterSalesPipe } from './pipe/filter-sales.pipe';
 
 
 
@@ -58,7 +58,7 @@ import { AlertModalComponent } from './@base/alert-modal/alert-modal.component';
     LoginComponent,
     RegisterComponent,
     PageNotFoundComponent,
-    AlertModalComponent,
+    FilterSalesPipe,
     ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

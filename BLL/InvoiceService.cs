@@ -35,6 +35,9 @@ namespace BLL
                                                 .Include(c => c.Client)
                                                 .Include(d => d.InvoiceDetails)
                                                 .FirstOrDefault();
+                Client client = context.Clients.Include(u => u.User)
+                            .Where(c => c.Indentification == invoice.Client.Indentification).FirstOrDefault();
+                invoice.Client = client;
 
                IList<InvoiceDetail> details = context.InvoiceDetails.Include(p => p.Product)
                                                 .Where(de => de.IdInvoice == idInvoice).ToList();
@@ -52,7 +55,17 @@ namespace BLL
         {
             try {
                 IList<Invoice> invoices = context.Invoices.Include(c => c.Client).ToList();
+                IList<Client> clients = context.Clients.Include(u => u.User).ToList();
                 IList<InvoiceDetail> details = context.InvoiceDetails.Include(p => p.Product).ToList();
+
+                foreach (Invoice invoice1 in invoices) {
+                    foreach (Client client in clients) {
+                        if (invoice1.Client.Indentification == client.Indentification) {
+                            invoice1.Client = client;
+                            break;
+                        }
+                    }
+                }
 
                 foreach (Invoice invoice in invoices) {
                     foreach(InvoiceDetail detail in details) {

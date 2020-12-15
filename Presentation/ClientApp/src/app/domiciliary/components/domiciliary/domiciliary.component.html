@@ -18,21 +18,44 @@
                     </mat-form-field>
                 </p>
                 <p>
-                    <mat-form-field>
-                        <mat-label>Apellido</mat-label>
-                        <input matInput placeholder="Apellido" formControlName="lastName" required>
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Direccion</mat-label>
-                        <input matInput placeholder="Apellido" formControlName="address" required>
-                    </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Apellido</mat-label>
+                    <input matInput placeholder="Apellido" formControlName="lastName" required>
+                  </mat-form-field>
+                  <mat-form-field>
+                  <mat-label>Direccion</mat-label>
+                  <input matInput placeholder="Apellido" formControlName="address" required>
+                  </mat-form-field>
                 </p>
-
                 <div>
                   <button mat-raised-button color="primary" (click)="next()" matStepperNext>Next</button>
                 </div>
 
               </form>
+            </mat-step>
+            <mat-step [stepControl]="threeFormGoup" [optional]="false">
+             <form [formGroup]="threeFormGoup">
+              <ng-template matStepLabel>Registro de Credenciales"</ng-template>
+              <p>
+                <mat-form-field>
+                  <mat-label>Usuario</mat-label>
+                  <input matInput placeholder="Usuario" formControlName="userName" required>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Password</mat-label>
+                  <input matInput placeholder="Constraseña" formControlName="password" required>
+                </mat-form-field>
+              </p>
+              <p>
+                <mat-form-field>
+                  <mat-label>Rol</mat-label>
+                  <input matInput  formControlName="role" required>
+                </mat-form-field>
+              </p>
+              <div>
+                <button mat-raised-button color="primary" (click)="nextTwo()" matStepperNext>Next</button>
+              </div>
+             </form>
             </mat-step>
             <mat-step [stepControl]="secondFormGroup"  [optional]="false">
               <form [formGroup]="secondFormGroup">
@@ -60,7 +83,7 @@
                   </p>
                 <div>
                   <button mat-raised-button color="warn"  matStepperPrevious>Back</button>
-                  <button mat-raised-button color="primary"class="space" [disabled]="secondFormGroup.invalid" (click)="add()">Guardar</button>
+                  <button mat-raised-button color="primary"class="space" [disabled]="secondFormGroup.invalid" (click)="add(); stepper.reset()">Guardar</button>
                 </div>
             </form>
             </mat-step>

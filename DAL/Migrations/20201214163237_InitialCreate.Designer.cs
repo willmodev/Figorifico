@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(FigorificoContext))]
-    [Migration("20201207181645_InitialCreate")]
+    [Migration("20201214163237_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,9 +67,38 @@ namespace DAL.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(11)");
 
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(30)");
+
                     b.HasKey("Indentification");
 
+                    b.HasIndex("UserName");
+
                     b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("Entity.Domiciliary", b =>
+                {
+                    b.Property<string>("Identification")
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Identification");
+
+                    b.HasIndex("UserName");
+
+                    b.ToTable("Domiciliaries");
                 });
 
             modelBuilder.Entity("Entity.Invoice", b =>
@@ -189,20 +218,41 @@ namespace DAL.Migrations
             modelBuilder.Entity("Entity.User", b =>
                 {
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(15)");
 
                     b.HasKey("UserName");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Entity.Vehicle", b =>
+                {
+                    b.Property<string>("Placa")
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<string>("Identification")
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<string>("Make")
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Model")
+                        .HasColumnType("nvarchar(5)");
+
+                    b.HasKey("Placa");
+
+                    b.HasIndex("Identification");
+
+                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("Entity.CategoryProduct", b =>
@@ -210,6 +260,20 @@ namespace DAL.Migrations
                     b.HasOne("Entity.TypeProduct", "TypeProduct")
                         .WithMany()
                         .HasForeignKey("IdType");
+                });
+
+            modelBuilder.Entity("Entity.Client", b =>
+                {
+                    b.HasOne("Entity.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserName");
+                });
+
+            modelBuilder.Entity("Entity.Domiciliary", b =>
+                {
+                    b.HasOne("Entity.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserName");
                 });
 
             modelBuilder.Entity("Entity.Invoice", b =>
@@ -228,6 +292,13 @@ namespace DAL.Migrations
                     b.HasOne("Entity.Product", "Product")
                         .WithMany()
                         .HasForeignKey("IdProduct");
+                });
+
+            modelBuilder.Entity("Entity.Vehicle", b =>
+                {
+                    b.HasOne("Entity.Domiciliary", "Domiciliary")
+                        .WithMany()
+                        .HasForeignKey("Identification");
                 });
 #pragma warning restore 612, 618
         }

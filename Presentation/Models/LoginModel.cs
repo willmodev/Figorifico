@@ -1,10 +1,13 @@
+using System.ComponentModel.DataAnnotations;
 using System.Security.Principal;
 using Entity;
 namespace Presentation.Models
 {
     public class LoginInputModel
     {
+        [Required]
         public string UserName { get; set; }
+        [Required]
         public string Password { get; set; }
     }
     public class LoginViewModel

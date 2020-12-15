@@ -1,3 +1,5 @@
+import { User } from './User';
+
 export class Client {
     indentification: string;
     name: string;
@@ -7,4 +9,5 @@ export class Client {
     neighborhood: string;
     city: string;
     department: string;
+    user: User;
 }

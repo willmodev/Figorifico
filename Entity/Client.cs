@@ -23,6 +23,10 @@ namespace Entity
         public string City { get; set; }
         [Column(TypeName= "nvarchar(20)")]
         public string Department { get; set; }
+        [Column(TypeName= "nvarchar(30)")]
+        public virtual User User { get; set; }
+        
+        
         
         
     }

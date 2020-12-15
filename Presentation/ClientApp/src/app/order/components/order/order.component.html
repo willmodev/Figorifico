@@ -1,23 +1,83 @@
-<form class="my-4">
-    <h1>Carrito de Compras</h1><br>
-    <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-                <th>Codigo</th>
-                <th>Categoria</th>
-                <th>Nombre</th>
-                <th>Precio</th>
-            </tr>
-          </thead>
-          <tbody *ngFor="let product of (products$ | async)"> 
-              <tr>
-                  <td>{{ product.idProduct }}</td>
-                  <td>{{ product.type }}</td>
-                  <td>{{ product.category }}</td>
-                  <td>{{ product.salePrice }}</td>
-              </tr>
-          </tbody>
-        </table>
+<div class="container m-5">
+    <div class="my-3 text-center">
+        <h3>Datos del cliente</h3>
     </div>
-</form>
+    <div class="row">
+        <div class="col-sm-4">
+            <div><label><strong>Identificacion: </strong>{{ client.indentification }}</label></div>
+            <div><label><strong>Nombre: </strong>{{ client.name }}</label></div>
+            <div><label><strong>Apellido: </strong>{{ client.lastName }}</label></div>
+        </div>
+        <div class="col-sm-4">
+            <div><label><strong>Telefono: </strong>{{ client.phone }}</label></div>
+            <div><label><strong>Direccion: </strong>{{ client.address }}</label></div>
+            <div><label><strong>Barrio: </strong>{{ client.neighborhood }}</label></div>
+        </div>
+        <div class="col-sm-4">
+            <div><label><strong>Ciudad: </strong>{{ client.city }}</label></div>
+            <div><label><strong>Departamento: </strong>{{ client.department }}</label></div>
+        </div>
+    </div>
+</div>
+<div class="container m-5">
+    <div class="my-3 text-center">
+        <h3>Realizar Compra</h3>
+    </div>
+    <div class="row">
+
+        <div class="table-responsive">
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Precio Kg</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let detail of invoice.invoiceDetails">
+                    <tr>
+                        <td>{{ detail.product.type }}</td>
+                        <td>{{ detail.product.category }}</td>
+                        <td>
+                            <button class="btn" (click)="remove(invoice.invoiceDetails.indexOf(detail), btn);"><mat-icon class="btn-add">remove</mat-icon></button>
+                            <input #btn id="size-quantity"  type="text" [ngModel]="detail.quantity" readonly>
+                            <button class="btn" (click)="add(invoice.invoiceDetails.indexOf(detail), btn)"><mat-icon class="btn-add">add</mat-icon></button>
+                        </td>
+                        <td>{{ detail.unitValue | currency }}</td>
+                        <td>{{ detail.tolalDetail | currency }}</td>
+                        <td>
+                            <button (click)="delete(invoice.invoiceDetails.indexOf(detail))" class="btn btn-danger btn-size">
+                                <mat-icon class="btn-add">highlight_off</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td>SUBTOTAL $</td>
+                        <td>{{invoice.subtotal | currency}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td>IVA $</td>
+                        <td>{{ invoice.totalIva | currency}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td><strong>TOTAL $</strong></td>
+                        <td><strong>{{ invoice.total | currency }}</strong></td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <div class="form-group col-md-4 mt-3 mr-auto">
+                <button class="btn btn-primary" (click)="addInvoice()">Confirmar Compra</button>
+            </div> 
+        </div>
+        </div>
+</div>
+    

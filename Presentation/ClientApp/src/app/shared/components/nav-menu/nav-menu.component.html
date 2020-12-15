@@ -23,13 +23,11 @@
                 <a class="text-menu" mat-menu-item [routerLink]="['/clients/consult']">Consultar</a>
               </mat-menu>
               <a *ngIf="user.role == 'Admin'" mat-button [routerLink]="['sales']" routerLinkActive="active">Ventas</a>
-              <a *ngIf="user.role == 'Admin'" mat-button [routerLink]="['users']" routerLinkActive="active">Usuarios</a>
-              <a *ngIf="(user.role == 'Client')" mat-button  class="act" [matMenuTriggerFor]="cuts">Cortes</a>
-              <mat-menu #cuts="matMenu">
-                <a class="text-menu" mat-menu-item [routerLink]="['/beef-cuts']">Cortes de res</a>
-                <a class="text-menu" mat-menu-item [routerLink]="['/pork-cuts']">Cortes de cerdo</a>
-                <a class="text-menu" mat-menu-item [routerLink]="['/chicken-cuts']">Cortes de pollo</a>
-              </mat-menu>
+              
+              <a *ngIf="(user.role == 'Client')" mat-button  [routerLink]="['/beef-cuts']"  routerLinkActive="active">Cortes Res</a>
+              <a *ngIf="(user.role == 'Client')" mat-button  [routerLink]="['/pork-cuts']"  routerLinkActive="active">Cortes Cerdo</a>
+              <a *ngIf="(user.role == 'Client')" mat-button  [routerLink]="['/chicken-cuts']" routerLinkActive="active">Cortes Pollo</a>
+
               <a *ngIf="user.role == 'Admin'"  mat-button [routerLink]="['/domiciliary/register']" routerLinkActive="active">Domicliliario</a>
               <a *ngIf="(user.role == 'Domiciliary')" mat-button [routerLink]="['/pedidos']" routerLinkActive="active">Pedidos</a>
             </span>

@@ -12,6 +12,8 @@ namespace DAL
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<InvoiceDetail> InvoiceDetails { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Domiciliary> Domiciliaries { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
 
         // protected override void OnModelCreating(ModelBuilder modelBuilder)
         // {

@@ -87,6 +87,7 @@ export class ProductConsultComponent implements OnInit {
 
   modify(p: Product): void {
     this.dialogRef = this.dialog.open(ProductModifyComponent, {
+      width: '800px',
       data: {product: p}
     });
   }

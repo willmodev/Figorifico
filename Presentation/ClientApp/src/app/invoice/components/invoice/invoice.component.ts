@@ -69,7 +69,10 @@ export class InvoiceComponent implements OnInit {
   addNumber() {
     this.invoiceService.getCount().subscribe(count => {
       console.log(count);
-      this.formGroupInvoice.get('idInvoice').setValue(this.PadLeft(count, 4));
+      const numero = this.PadLeft(count, 4);
+      this.formGroupInvoice.get('idInvoice').setValue(numero);
+      this.invoice.idInvoice = numero;
+      console.log(this.invoice);
     });
   }
   PadLeft(value, length) {
@@ -106,6 +109,7 @@ export class InvoiceComponent implements OnInit {
 
   search(): void {
     const identification = this.formGroupClient.value.indentification;
+    console.log(this.invoice);
 
     this.clientService.getClient(identification).subscribe( c => {
       if (c.indentification !== undefined ) {
@@ -134,9 +138,7 @@ export class InvoiceComponent implements OnInit {
   fillFields (client: Client) {
     this.formGroupClient.get('name').setValue(this.client.name);
     this.formGroupClient.get('lastName').setValue(this.client.lastName);
-    this.invoice.idInvoice = this.formGroupInvoice.value.idInvoice;
     this.invoice.paymentMethod = this.formGroupInvoice.value.paymentMethod;
-
   }
 
   addDetail (product: Product, q: string, p: string, d: string): void {
@@ -156,7 +158,6 @@ export class InvoiceComponent implements OnInit {
       this.invoice.addInvoiceDetails(product, quantity, discount, price);
       this.invoice.calculateTotal();
 
-      console.log(this.invoiceDetail);
     } else {
       this.dialog.open(AlertDialogComponent, {
         width: '350px',
@@ -164,6 +165,7 @@ export class InvoiceComponent implements OnInit {
                   nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
       });
     }
+
   }
 
   delete (index): void {

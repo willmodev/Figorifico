@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DAL;
 using Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace BLL
 {
@@ -30,7 +31,21 @@ namespace BLL
         {
             try 
             {
-                Client client = context.Clients.Find(identification);
+                Client client = context.Clients.Include(u => u.User)
+                                                .Where(c => c.Indentification == identification).FirstOrDefault();
+                return new ClientServiceResponse(client);
+            }
+            catch (Exception e)
+            {
+                
+                return new ClientServiceResponse($"Error de la Aplicacion: {e.Message}");
+            }
+        }
+        public ClientServiceResponse SearchByUser(string userName)
+        {
+            try 
+            {
+                Client client = context.Clients.Include(u => u.User).Where(u => u.User.UserName == userName).FirstOrDefault();
                 return new ClientServiceResponse(client);
             }
             catch (Exception e)
@@ -43,7 +58,7 @@ namespace BLL
         public ClientsConsultResponse GetConsult()
         {
             try {
-                IList<Client> clients = context.Clients.ToList();
+                IList<Client> clients = context.Clients.Include(u => u.User).ToList();
                 return new ClientsConsultResponse(clients);
             } catch (Exception e) {
                 return new ClientsConsultResponse($"Error del aplicacion: {e.Message}");

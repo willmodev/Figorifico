@@ -13,6 +13,7 @@ export class SalesComponent implements OnInit {
 
   invoices: Invoice[];
   totalSales = 0;
+  searchText: string;
 
   constructor(
     private invoiceService: InvoiceService,

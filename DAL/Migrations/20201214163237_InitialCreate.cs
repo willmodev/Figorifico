@@ -7,24 +7,6 @@ namespace DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Clients",
-                columns: table => new
-                {
-                    Indentification = table.Column<string>(type: "nvarchar(11)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(130)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(30)", nullable: true),
-                    Phone = table.Column<string>(type: "nvarchar(11)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(50)", nullable: true),
-                    Neighborhood = table.Column<string>(type: "nvarchar(30)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(20)", nullable: true),
-                    Department = table.Column<string>(type: "nvarchar(20)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Clients", x => x.Indentification);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -59,14 +41,80 @@ namespace DAL.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserName = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(nullable: true),
-                    Status = table.Column<string>(nullable: true),
-                    Role = table.Column<string>(nullable: true)
+                    UserName = table.Column<string>(type: "nvarchar(30)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(15)", nullable: true),
+                    Role = table.Column<string>(type: "nvarchar(15)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.UserName);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Categorys",
+                columns: table => new
+                {
+                    IdCategory = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    IdType = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categorys", x => x.IdCategory);
+                    table.ForeignKey(
+                        name: "FK_Categorys_TypeProduct_IdType",
+                        column: x => x.IdType,
+                        principalTable: "TypeProduct",
+                        principalColumn: "IdType",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Clients",
+                columns: table => new
+                {
+                    Indentification = table.Column<string>(type: "nvarchar(11)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(130)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(11)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    Neighborhood = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    Department = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    UserName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clients", x => x.Indentification);
+                    table.ForeignKey(
+                        name: "FK_Clients_Users_UserName",
+                        column: x => x.UserName,
+                        principalTable: "Users",
+                        principalColumn: "UserName",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Domiciliaries",
+                columns: table => new
+                {
+                    Identification = table.Column<string>(type: "nvarchar(11)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(40)", nullable: true),
+                    UserName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Domiciliaries", x => x.Identification);
+                    table.ForeignKey(
+                        name: "FK_Domiciliaries_Users_UserName",
+                        column: x => x.UserName,
+                        principalTable: "Users",
+                        principalColumn: "UserName",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -94,22 +142,22 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Categorys",
+                name: "Vehicles",
                 columns: table => new
                 {
-                    IdCategory = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(30)", nullable: true),
-                    IdType = table.Column<int>(nullable: true)
+                    Placa = table.Column<string>(type: "nvarchar(11)", nullable: false),
+                    Make = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    Model = table.Column<string>(type: "nvarchar(5)", nullable: true),
+                    Identification = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categorys", x => x.IdCategory);
+                    table.PrimaryKey("PK_Vehicles", x => x.Placa);
                     table.ForeignKey(
-                        name: "FK_Categorys_TypeProduct_IdType",
-                        column: x => x.IdType,
-                        principalTable: "TypeProduct",
-                        principalColumn: "IdType",
+                        name: "FK_Vehicles_Domiciliaries_Identification",
+                        column: x => x.Identification,
+                        principalTable: "Domiciliaries",
+                        principalColumn: "Identification",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -149,6 +197,16 @@ namespace DAL.Migrations
                 column: "IdType");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Clients_UserName",
+                table: "Clients",
+                column: "UserName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Domiciliaries_UserName",
+                table: "Domiciliaries",
+                column: "UserName");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_InvoiceDetails_IdInvoice",
                 table: "InvoiceDetails",
                 column: "IdInvoice");
@@ -162,6 +220,11 @@ namespace DAL.Migrations
                 name: "IX_Invoices_IdClient",
                 table: "Invoices",
                 column: "IdClient");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vehicles_Identification",
+                table: "Vehicles",
+                column: "Identification");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -173,7 +236,7 @@ namespace DAL.Migrations
                 name: "InvoiceDetails");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Vehicles");
 
             migrationBuilder.DropTable(
                 name: "TypeProduct");
@@ -185,7 +248,13 @@ namespace DAL.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
+                name: "Domiciliaries");
+
+            migrationBuilder.DropTable(
                 name: "Clients");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

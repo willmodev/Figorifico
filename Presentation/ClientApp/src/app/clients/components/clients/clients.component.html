@@ -1,53 +1,53 @@
 <div class="card  mt-5 mb-5 backColor">
   <h5 class="card-header colorTop">Registro de clientes</h5>
-  <form class="m-5"  [formGroup] = "formGroup">
+  <form class="mx-5 mt-5"  [formGroup] = "formGroupClient">
     <div class="form-row">
       <div class="form-group col-md-6">
         <label>Identificacion</label>
         <input type="text" class="form-control" formControlName = "indentification" placeholder="Identificacion"
-        [ngClass]="{'is-invalid': (control.indentification.errors && control.indentification.touched)}">
+        [ngClass]="{'is-invalid': (controlClient.indentification.errors && controlClient.indentification.touched)}">
 
-        <div *ngIf="control.indentification.errors" class="invalid-feedback">
-          <div *ngIf="control.indentification.errors.required">se requiere la identificacion</div>
+        <div *ngIf="controlClient.indentification.errors" class="invalid-feedback">
+          <div *ngIf="controlClient.indentification.errors.required">se requiere la identificacion</div>
         </div>
       </div>
 
       <div class="form-group col-md-6">
         <label>Nombre</label>
         <input type="text" class="form-control"  formControlName = "name" placeholder="Nombre"
-        [ngClass]="{'is-invalid': (control.name.errors && control.name.touched)}">
+        [ngClass]="{'is-invalid': (controlClient.name.errors && controlClient.name.touched)}">
 
-        <div *ngIf="control.name.errors" class="invalid-feedback">
-          <div *ngIf="control.name.errors.required">se requiere el nombre</div>
+        <div *ngIf="controlClient.name.errors" class="invalid-feedback">
+          <div *ngIf="controlClient.name.errors.required">se requiere el nombre</div>
         </div>
       </div>
       <div class="form-group col-md-6">
         <label>Apeldido</label>
         <input type="text" class="form-control" formControlName = "lastName" placeholder="Apellidos"
-        [ngClass]="{'is-invalid': (control.lastName.errors && control.lastName.touched)}">
+        [ngClass]="{'is-invalid': (controlClient.lastName.errors && controlClient.lastName.touched)}">
 
-        <div *ngIf="control.lastName.errors" class="invalid-feedback">
-          <div *ngIf="control.lastName.errors.required">se requiere almenos un appelido</div>
+        <div *ngIf="controlClient.lastName.errors" class="invalid-feedback">
+          <div *ngIf="controlClient.lastName.errors.required">se requiere almenos un appelido</div>
         </div>
       </div>
 
       <div class="form-group col-md-6">
         <label>Telefono</label>
         <input type="text" class="form-control" formControlName = "phone" placeholder="Telefono"
-        [ngClass]="{'is-invalid': (control.phone.errors && control.phone.touched)}">
+        [ngClass]="{'is-invalid': (controlClient.phone.errors && controlClient.phone.touched)}">
         
-        <div *ngIf="control.phone.errors" class="invalid-feedback">
-          <div *ngIf="control.phone.errors.required">se requiere telefono</div>
+        <div *ngIf="controlClient.phone.errors" class="invalid-feedback">
+          <div *ngIf="controlClient.phone.errors.required">se requiere telefono</div>
         </div>
       </div>
     </div>
     <div class="form-group">
       <label>Direccion</label>
       <input type="text" class="form-control" formControlName = "address" placeholder="Direccion"
-      [ngClass]="{'is-invalid': (control.address.errors && control.address.touched)}">
+      [ngClass]="{'is-invalid': (controlClient.address.errors && controlClient.address.touched)}">
 
-      <div *ngIf="control.address.errors" class="invalid-feedback">
-        <div *ngIf="control.address.errors.required">se requiere direccion</div>
+      <div *ngIf="controlClient.address.errors" class="invalid-feedback">
+        <div *ngIf="controlClient.address.errors.required">se requiere direccion</div>
       </div>
     </div>
 
@@ -56,35 +56,60 @@
       <div class="form-group col-md-4">
         <label>Barrio</label>
         <input type="text" class="form-control" formControlName = "neighborhood" placeholder="Barrio"
-        [ngClass]="{'is-invalid': (control.neighborhood.errors && control.neighborhood.touched)}">
+        [ngClass]="{'is-invalid': (controlClient.neighborhood.errors && controlClient.neighborhood.touched)}">
         
-        <div *ngIf="control.neighborhood.errors" class="invalid-feedback">
-          <div *ngIf="control.neighborhood.errors.required">se requiere barrio</div>
+        <div *ngIf="controlClient.neighborhood.errors" class="invalid-feedback">
+          <div *ngIf="controlClient.neighborhood.errors.required">se requiere barrio</div>
         </div>
       </div>
 
       <div class="form-group col-md-4">
         <label for="inputCity">Ciudad</label>
         <input type="text" class="form-control" formControlName = "city" placeholder="Ciudad"
-        [ngClass]="{'is-invalid': (control.city.errors && control.city.touched)}">
+        [ngClass]="{'is-invalid': (controlClient.city.errors && controlClient.city.touched)}">
 
-        <div *ngIf="control.city.errors" class="invalid-feedback">
-          <div *ngIf="control.city.errors.required">se requiere la ciudad</div>
+        <div *ngIf="controlClient.city.errors" class="invalid-feedback">
+          <div *ngIf="controlClient.city.errors.required">se requiere la ciudad</div>
         </div>
       </div>
 
       <div class="form-group col-md-4">
         <label for="inputDepartment">Departamento</label>
         <input type="text" class="form-control" formControlName = "department" placeholder="Departamento"
-        [ngClass]="{'is-invalid': (control.department.errors && control.department.touched)}">
+        [ngClass]="{'is-invalid': (controlClient.department.errors && controlClient.department.touched)}">
         
-        <div *ngIf="control.department.errors" class="invalid-feedback">
-          <div *ngIf="control.department.errors.required">se requiere el departamento</div>
+        <div *ngIf="controlClient.department.errors" class="invalid-feedback">
+          <div *ngIf="controlClient.department.errors.required">se requiere el departamento</div>
         </div>
       </div>
     </div>
+  </form>
+  <form class="mx-5 mb-5"   [formGroup]="formGroupUser">
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Usuario</label>
+        <input type="text" class="form-control" formControlName = "userName" placeholder="Usuario"
+        [ngClass]="{'is-invalid': (controlUser.userName.errors && controlUser.userName.touched)}">
+
+        <div *ngIf="controlUser.userName.errors" class="invalid-feedback">
+          <div *ngIf="controlUser.userName.errors.required">se requiere un usuario</div>
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label>Password</label>
+        <input type="text" class="form-control" formControlName = "password" placeholder="Contraseña"
+        [ngClass]="{'is-invalid': (controlUser.password.errors && controlUser.password.touched)}">
+
+        <div *ngIf="controlUser.password.errors" class="invalid-feedback">
+          <div *ngIf="controlUser.password.errors.required">se requiere una contraseña</div>
+        </div>
+      </div>
+    </div>
+
     <button (click)="add()" type="button" id="btn-style" class="btn colorTop mt-3"
-    [disabled]="formGroup.invalid">Registrar</button>
+    [disabled]="(formGroupClient.invalid || formGroupUser.invalid)">Registrar</button>
   </form>
 </div>
 

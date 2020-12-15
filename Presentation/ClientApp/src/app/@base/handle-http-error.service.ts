@@ -14,17 +14,16 @@ export class HandleHttpErrorService {
 
   public handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.log('Entro aqui- handleError');
       console.log(error.status);
 
 
-      if (error.status === '500') {
+      if (error.status === 500) {
         this.mostrarError500(error);
       }
      if (error.status === 400) {
        this.mostrarError400(error);
      }
-     if (error.status === '401') {
+     if (error.status === 401) {
        this.mostrarError500(error);
      }
 
@@ -58,9 +57,9 @@ export class HandleHttpErrorService {
       mensajeValidaciones += `<br/>`;
     }
     this.dialog.open(AlertDialogComponent, {
-      width: '400px',
+      width: '450px',
       data: { title: 'Mensaje de Error', message: mensajeValidaciones,
-              nameBtnOne: 'Cancelar', nameBtnTwo: 'Aceptar', btnEnable: true}
+              nameBtnOne: 'Cerrar', nameBtnTwo: 'Aceptar', btnEnable: false}
     });
 
   }

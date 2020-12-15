@@ -1,6 +1,5 @@
 <h1 mat-dialog-title>Modificar Cliente {{ client.indentification }}</h1>
 <div mat-dialog-content>
-  <mat-form-field>
     <form class="m-5"  [formGroup] = "formGroup">
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -75,8 +74,7 @@
         </div>
       </div>
     </form>
-  </mat-form-field>
-
+  
   <mat-dialog-actions class="row end-xs">
     <div class="col-xs-6">
       <button mat-raised-button color="warn" (click)="onNoClick()">Cancelar</button>

@@ -23,7 +23,7 @@ namespace Presentation.Controllers
         [HttpPost]
         public ActionResult<ClientViewModel> Post(ClientInputModel clientInput)
         {
-            Client client = Map(clientInput);
+            Client client = MapClient(clientInput);
             var response = clientService.Save(client);
 
             if (response.Error) {
@@ -48,7 +48,7 @@ namespace Presentation.Controllers
             return Ok(client);
         }
 
-        private Client Map(ClientInputModel clientInput)
+        private Client MapClient(ClientInputModel clientInput)
         {
             Client client = new Client();
 
@@ -60,8 +60,19 @@ namespace Presentation.Controllers
             client.Neighborhood = clientInput.Neighborhood;
             client.City = clientInput.City;
             client.Department = clientInput.Department;
+            client.User =  MapUser(clientInput.User);
 
             return client;
+        }
+        private User MapUser(UserInputModel userInput)
+        {
+            User user = new User();
+            user.UserName = userInput.UserName;
+            user.Password = userInput.Password;
+            user.Status = userInput.Status;
+            user.Role = userInput.Role;
+
+            return user;
         }
 
         [HttpGet]
@@ -90,7 +101,8 @@ namespace Presentation.Controllers
         [HttpPut] 
         public ActionResult<ClientViewModel> Modify(ClientInputModel clientInput)
         {
-            Client client = Map(clientInput);
+            Client client = MapClient(clientInput);
+            client.User = null;
             var response =  clientService.Modify(client);
 
             if (response.Error) return BadRequest(response.Message);

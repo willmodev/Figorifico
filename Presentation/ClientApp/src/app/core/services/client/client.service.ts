@@ -35,6 +35,13 @@ export class ClientService {
       );
     }
 
+    getClientUser(userName: string): Observable<Client> {
+      return this.http.get<Client>(this.baseUrl + 'api/User/' + userName)
+      .pipe(tap(_ => this.handleErrorService.log('Cliente encontrado')),
+      catchError(this.handleErrorService.handleError<Client>('Error al consultar el cliente', new Client()))
+      );
+    }
+
     delete(identification: string): Observable<Client> {
       return this.http.delete<Client>(this.baseUrl + 'api/Client/' + identification)
       .pipe( tap (_ => this.handleErrorService.log('Cliente eliminado')),

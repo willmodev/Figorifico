@@ -92,14 +92,17 @@ export class ProductsComponent implements OnInit {
     this.product = this.formGroup.value;
     console.log(this.product);
     this.productService.post(this.product).subscribe(p => {
-      console.log(p);
-      this.product = p;
+     if (p != null) {
       this.dialog.open(AlertDialogComponent, {
         width: '250px',
         data: { title: 'Resultado Operacion!', message: 'Producto Creado..!',
                   nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
       });
       this.cleanForm();
+     }
+     this.product = p;
+     console.log(p);
+
     });
   }
 

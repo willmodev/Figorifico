@@ -4,6 +4,7 @@ import { Client } from 'src/app/Models/client.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { AlertDialogComponent } from 'src/app/@base/alert-dialog/alert-dialog.component';
+import { User } from 'src/app/Models/User';
 
 
 @Component({
@@ -14,7 +15,9 @@ import { AlertDialogComponent } from 'src/app/@base/alert-dialog/alert-dialog.co
 export class ClientsComponent implements OnInit {
 
   client: Client;
-  formGroup: FormGroup;
+  user: User;
+  formGroupClient: FormGroup;
+  formGroupUser: FormGroup;
 
   constructor(
     private clientService: ClientService,
@@ -40,7 +43,7 @@ export class ClientsComponent implements OnInit {
     this.client.city = '';
     this.client.department = '';
 
-    this.formGroup = this.formBuilder.group({
+    this.formGroupClient = this.formBuilder.group({
       indentification: [this.client.indentification, Validators.required],
       name: [this.client.name, Validators.required],
       lastName: [this.client.lastName, Validators.required],
@@ -50,18 +53,38 @@ export class ClientsComponent implements OnInit {
       city: [this.client.city, Validators.required],
       department: [this.client.department, Validators.required]
     });
+
+    this.user = new User();
+    this.user.userName = '';
+    this.user.password = '';
+    this.user.role = 'Client';
+
+    this.formGroupUser =  this.formBuilder.group({
+      userName: [this.user.userName, Validators.required],
+      password: [this.user.password, Validators.required],
+      role: [this.user.role],
+      status: [this.user.status]
+
+    });
   }
 
-  get control() {
-    return this.formGroup.controls;
+  get controlClient() {
+    return this.formGroupClient.controls;
+  }
+
+  get controlUser() {
+    return this.formGroupUser.controls;
   }
   cleanForm() {
-    this.formGroup.reset();
+    this.formGroupClient.reset();
+    this.formGroupUser.reset();
   }
 
   add() {
-    if (this.formGroup.invalid) { return; }
-    this.client = this.formGroup.value;
+    if (this.formGroupClient.invalid && this.formGroupUser.invalid) { return; }
+    this.client = this.formGroupClient.value;
+    this.client.user = this.formGroupUser.value;
+    console.log(this.client);
     this.clientService.post(this.client).subscribe(c => {
       if ( c != null ) {
         this.dialog.open(AlertDialogComponent, {
