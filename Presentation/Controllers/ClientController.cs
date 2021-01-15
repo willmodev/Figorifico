@@ -6,9 +6,11 @@ using Entity;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Presentation.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ClientController: ControllerBase

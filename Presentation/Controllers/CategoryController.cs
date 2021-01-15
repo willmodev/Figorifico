@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using Presentation.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Presentation.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
 
@@ -19,7 +21,8 @@ namespace Presentation.Controllers
         {
             this.categoryService = new CategoryService(figorificoContext);
         }
-
+        
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult<CategoryViewModel> Post(CategoryImputModel categoryInput)
         {
