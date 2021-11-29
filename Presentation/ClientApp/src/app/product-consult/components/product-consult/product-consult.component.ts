@@ -88,7 +88,10 @@ export class ProductConsultComponent implements OnInit {
   modify(p: Product): void {
     this.dialogRef = this.dialog.open(ProductModifyComponent, {
       width: '800px',
-      data: {product: p}
+      data: { product: p }
+    }).afterClosed().subscribe(p => {
+      console.log('Despues de actualizar');
+      this.get();
     });
   }
 

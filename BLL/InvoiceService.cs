@@ -40,7 +40,7 @@ namespace BLL
                 invoice.Client = client;
 
                IList<InvoiceDetail> details = context.InvoiceDetails.Include(p => p.Product)
-                                                .Where(de => de.IdInvoice == idInvoice).ToList();
+                                                .Where(de => de.InvoiceIdInvoice == idInvoice).ToList();
                                 
                 invoice.InvoiceDetails = details;                                                    
                 return new InvoiceServiceResponse(invoice);
@@ -54,29 +54,48 @@ namespace BLL
         public ListInvioceResponse GetList()
         {
             try {
-                IList<Invoice> invoices = context.Invoices.Include(c => c.Client).ToList();
-                IList<Client> clients = context.Clients.Include(u => u.User).ToList();
-                IList<InvoiceDetail> details = context.InvoiceDetails.Include(p => p.Product).ToList();
+                    var invoices = context.Invoices.ToList();
+                    var clients = context.Clients.ToList();
+                    var details = context.InvoiceDetails.ToList();
+                    var products = context.Products.ToList();
 
-                foreach (Invoice invoice1 in invoices) {
-                    foreach (Client client in clients) {
-                        if (invoice1.Client.Indentification == client.Indentification) {
-                            invoice1.Client = client;
-                            break;
-                        }
-                    }
-                }
-
-                foreach (Invoice invoice in invoices) {
-                    foreach(InvoiceDetail detail in details) {
-                        if (invoice.IdInvoice == detail.IdInvoice) {
-                            invoice.InvoiceDetails.Add(detail);
+                    foreach (Invoice invoice1 in invoices)
+                    {
+                        foreach (Client client in clients)
+                        {
+                            if (invoice1.IdClient == client.Indentification)
+                            {
+                                invoice1.Client = client;
+                                break;
+                            }
                         }
                     }
 
-                }
+                    foreach (InvoiceDetail detail in details)
+                    {
+                        foreach (Product product in products)
+                        {
+                            if (detail.IdProduct == product.IdProduct)
+                            {
+                                detail.Product = product;
+                                break;
+                            }
+                        }
+                    }
 
-                return new ListInvioceResponse(invoices);
+                    foreach (Invoice invoice in invoices)
+                    {
+                        foreach (InvoiceDetail detail in details)
+                        {
+                            if (invoice.IdInvoice == detail.InvoiceIdInvoice)
+                            {
+                                invoice.InvoiceDetails.Add(detail);
+                            }
+                        }
+
+                    }
+
+                    return new ListInvioceResponse(invoices);
 
             } catch (Exception e ) {
                 return new ListInvioceResponse($"Error del aplicacion: {e.Message}");

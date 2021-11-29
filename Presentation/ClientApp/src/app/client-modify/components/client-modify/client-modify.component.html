@@ -8,7 +8,7 @@
           [ngClass]="{'is-invalid': (control.name.errors && control.name.touched)}">
   
           <div *ngIf="control.name.errors" class="invalid-feedback">
-            <div *ngIf="control.name.errors.required">se requiere el nombre</div>
+            <div>{{getErrorName()}}</div>
           </div>
         </div>
         <div class="form-group col-md-6">
@@ -17,7 +17,7 @@
           [ngClass]="{'is-invalid': (control.lastName.errors && control.lastName.touched)}">
   
           <div *ngIf="control.lastName.errors" class="invalid-feedback">
-            <div *ngIf="control.lastName.errors.required">se requiere almenos un appelido</div>
+            <div>{{getErrorLastName}}</div>
           </div>
         </div>
   
@@ -27,7 +27,7 @@
           [ngClass]="{'is-invalid': (control.phone.errors && control.phone.touched)}">
           
           <div *ngIf="control.phone.errors" class="invalid-feedback">
-            <div *ngIf="control.phone.errors.required">se requiere telefono</div>
+            <div>{{getErrorPhone()}}</div>
           </div>
         </div>
       </div>
@@ -37,7 +37,7 @@
         [ngClass]="{'is-invalid': (control.address.errors && control.address.touched)}">
   
         <div *ngIf="control.address.errors" class="invalid-feedback">
-          <div *ngIf="control.address.errors.required">se requiere direccion</div>
+          <div>{{getErrorAddress()}}</div>
         </div>
       </div>
   
@@ -49,7 +49,7 @@
           [ngClass]="{'is-invalid': (control.neighborhood.errors && control.neighborhood.touched)}">
           
           <div *ngIf="control.neighborhood.errors" class="invalid-feedback">
-            <div *ngIf="control.neighborhood.errors.required">se requiere barrio</div>
+            <div>{{getErrorNeighborhood()}}</div>
           </div>
         </div>
   
@@ -59,7 +59,7 @@
           [ngClass]="{'is-invalid': (control.city.errors && control.city.touched)}">
   
           <div *ngIf="control.city.errors" class="invalid-feedback">
-            <div *ngIf="control.city.errors.required">se requiere la ciudad</div>
+            <div>{{getErrorCity()}}</div>
           </div>
         </div>
   
@@ -69,7 +69,7 @@
           [ngClass]="{'is-invalid': (control.department.errors && control.department.touched)}">
           
           <div *ngIf="control.department.errors" class="invalid-feedback">
-            <div *ngIf="control.department.errors.required">se requiere el departamento</div>
+            <div>{{getErrorDepartment()}}</div>
           </div>
         </div>
       </div>
@@ -84,5 +84,4 @@
     </div>
  </mat-dialog-actions>
 </div>
-  
   

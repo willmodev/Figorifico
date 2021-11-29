@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Presentation.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
 

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -99,6 +99,7 @@ import { FilterSalesPipe } from './pipe/filter-sales.pipe';
     DomiciliaryRoutingModule
   ],
   entryComponents: [AlertDialogComponent, ProductModifyComponent, ClientModifyComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     { provide: BUCKET, useValue: 'gs://frigorifico-web.appspot.com' }
   ],

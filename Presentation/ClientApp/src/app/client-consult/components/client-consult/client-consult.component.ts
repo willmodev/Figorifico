@@ -62,10 +62,9 @@ export class ClientConsultComponent implements OnInit {
     console.log(c);
     const dialogRef = this.dialog.open(ClientModifyComponent, {
       data: {client: c}
-    }).afterClosed().subscribe(res => {
-      if (!res) {
-        this.getClient();
-      }
+    }).afterClosed().subscribe(p => {
+      console.log('Despues de actualizar');
+      this.getClient();
     });
   }
 }

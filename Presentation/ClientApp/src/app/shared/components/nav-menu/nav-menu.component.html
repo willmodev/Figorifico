@@ -1,57 +1,55 @@
+<mat-toolbar class="color">
 
-  <mat-toolbar class="color">
-  
-    <mat-toolbar-row>
-  
-      <div class="row between-xs middle-xs nav-row">
-        <nav>
-          <a mat-button class="navbar-brand" [routerLink]="['/home']" routerLinkActive="active">
-            <mat-icon class="material-icons">home</mat-icon> 
-          </a>
-            <span *ngIf="(user$ | async ) as user">
-             
-              <a  *ngIf="user.role == 'Admin'" mat-button [routerLink]="['invoice']" routerLinkActive="active">Facturar</a>
-              <a  *ngIf="user.role == 'Admin'" mat-button  class="act" [matMenuTriggerFor]="product">Productos </a>
-              <mat-menu #product="matMenu">
-                <a  class="text-menu" mat-menu-item [routerLink]="['/products/register']">Registrar</a>
-                <a class="text-menu" mat-menu-item [routerLink]="['/products/consult']">Consultar</a>
-              </mat-menu>
-  
-              <a  *ngIf="user.role == 'Admin'" mat-button class="act" [matMenuTriggerFor]="client">Clientes</a>
-              <mat-menu #client="matMenu">
-                <a  class="text-menu" mat-menu-item [routerLink]="['/clients/register']">Registrar</a>
-                <a class="text-menu" mat-menu-item [routerLink]="['/clients/consult']">Consultar</a>
-              </mat-menu>
-              <a *ngIf="user.role == 'Admin'" mat-button [routerLink]="['sales']" routerLinkActive="active">Ventas</a>
-              
-              <a *ngIf="(user.role == 'Client')" mat-button  [routerLink]="['/beef-cuts']"  routerLinkActive="active">Cortes Res</a>
-              <a *ngIf="(user.role == 'Client')" mat-button  [routerLink]="['/pork-cuts']"  routerLinkActive="active">Cortes Cerdo</a>
-              <a *ngIf="(user.role == 'Client')" mat-button  [routerLink]="['/chicken-cuts']" routerLinkActive="active">Cortes Pollo</a>
+  <mat-toolbar-row>
 
-              <a *ngIf="user.role == 'Admin'"  mat-button [routerLink]="['/domiciliary/register']" routerLinkActive="active">Domicliliario</a>
-              <a *ngIf="(user.role == 'Domiciliary')" mat-button [routerLink]="['/pedidos']" routerLinkActive="active">Pedidos</a>
-            </span>
-        </nav>
+    <div class="row between-xs middle-xs nav-row">
+      <nav>
+        <a mat-button class="navbar-brand" [routerLink]="['/home']" routerLinkActive="active">
+          <mat-icon class="material-icons">home</mat-icon>
+        </a>
+        <span *ngIf="(user$ | async ) as user">
 
-        <ul *ngIf="(user$ | async ) as user; else login">
-          <a mat-button  (click) = "onLogout()">Logout</a>
-          <a mat-button>{{ user?.role }}</a>
+          <a *ngIf="user.role == 'Admin'" mat-button [routerLink]="['invoice']" routerLinkActive="active">Facturar</a>
+          <a *ngIf="user.role == 'Admin'" mat-button class="act" [matMenuTriggerFor]="product">Productos </a>
+          <mat-menu #product="matMenu">
+            <a class="text-menu" mat-menu-item [routerLink]="['/products/register']">Registrar</a>
+            <a class="text-menu" mat-menu-item [routerLink]="['/products/consult']">Consultar</a>
+          </mat-menu>
 
-          <a *ngIf="(user.role == 'Client')" class="text-menu" routerLink= "/order" mat-raised-button [matBadge]  = "total$ | async" matBadgeColor="warn">
-            <mat-icon>shopping_cart</mat-icon>
-            Carrito
-          </a>
+          <a *ngIf="user.role == 'Admin'" mat-button class="act" [matMenuTriggerFor]="client">Clientes</a>
+          <mat-menu #client="matMenu">
+            <a class="text-menu" mat-menu-item [routerLink]="['/clients/register']">Registrar</a>
+            <a class="text-menu" mat-menu-item [routerLink]="['/clients/consult']">Consultar</a>
+          </mat-menu>
+          <a *ngIf="user.role == 'Admin'" mat-button [routerLink]="['sales']" routerLinkActive="active">Ventas</a>
+
+          <a *ngIf="(user.role == 'Client')" mat-button [routerLink]="['/beef-cuts']" routerLinkActive="active">Cortes Res</a>
+          <a *ngIf="(user.role == 'Client')" mat-button [routerLink]="['/pork-cuts']" routerLinkActive="active">Cortes Cerdo</a>
+          <a *ngIf="(user.role == 'Client')" mat-button [routerLink]="['/chicken-cuts']" routerLinkActive="active">Cortes Pollo</a>
+
+          <a *ngIf="user.role == 'Admin'" mat-button [routerLink]="['/domiciliary/register']" routerLinkActive="active">Domicliliario</a>
+          <a *ngIf="(user.role == 'Domiciliary')" mat-button [routerLink]="['/pedidos']" routerLinkActive="active">Pedidos</a>
+        </span>
+      </nav>
+
+      <ul *ngIf="(user$ | async ) as user; else login">
+        <a mat-button (click)="onLogout()">Logout</a>
+        <a mat-button>{{ user?.role }}</a>
+
+        <a *ngIf="(user.role == 'Client')" class="text-menu" routerLink="/order" mat-raised-button [matBadge]="total$ | async" matBadgeColor="warn">
+          <mat-icon>shopping_cart</mat-icon>
+          Carrito
+        </a>
+      </ul>
+
+      <ng-template #login>
+        <ul>
+          <a mat-button [routerLink]="['/login']">Login</a>
+          <a mat-button [routerLink]="['/register']">Register</a>
         </ul>
-       
-        <ng-template #login>
-          <ul>
-            <a mat-button  [routerLink]="['/login']">Login</a>
-            <a mat-button  [routerLink]="['/register']">Register</a>
-          </ul>
-        </ng-template>
-  
-      </div>
-  
-    </mat-toolbar-row>
-  </mat-toolbar>
+      </ng-template>
 
+    </div>
+
+  </mat-toolbar-row>
+</mat-toolbar>

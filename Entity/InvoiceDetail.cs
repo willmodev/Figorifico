@@ -15,14 +15,14 @@ namespace Entity
         public float Discount { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal TolalDetail { get; set; }
-        [NotMapped]
-        public string IdInvoice { get; set; }
-        [NotMapped]
-        public string IdProduct { get; set; }
         [Column(TypeName = "nvarchar(10)")]
-        [ForeignKey("IdProduct")]
-        public virtual Product Product { get; set; }
-        
+        public string IdProduct { get; set; }
+
+        [NotMapped]
+        public string InvoiceIdInvoice { get; set; }
+        [NotMapped]
+        public Product Product { get; set; }
+
         public InvoiceDetail()
         {
             

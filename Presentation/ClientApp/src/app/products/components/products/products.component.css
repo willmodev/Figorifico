@@ -20,11 +20,28 @@
     margin: auto;
 }
 
+input#miArchivo {
+  color: transparent;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  margin-left: 36%;
+}
 img {
-    object-fit: contain;
-    height: 100%;
-    width: 100%;
-    object-position: center;
+    max-width: 250px;
+    max-height: 300px;
+    border: 1px solid;
+    margin-bottom: 15px;
+}
+
+
+
+
+img {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+  object-position: center;
 }
 h5 {
     color: #FFFFFF;

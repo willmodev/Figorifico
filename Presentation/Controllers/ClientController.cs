@@ -69,6 +69,8 @@ namespace Presentation.Controllers
         private User MapUser(UserInputModel userInput)
         {
             User user = new User();
+            if (userInput == null) return null;
+            
             user.UserName = userInput.UserName;
             user.Password = userInput.Password;
             user.Status = userInput.Status;

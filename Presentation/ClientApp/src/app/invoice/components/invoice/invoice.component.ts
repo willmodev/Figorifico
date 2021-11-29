@@ -9,6 +9,7 @@ import { ProductService } from 'src/app/core/services/product/product.service';
 import { AlertDialogComponent } from 'src/app/@base/alert-dialog/alert-dialog.component';
 import { InvoiceDetail } from 'src/app/Models/InvoiceDetail';
 import { InvoiceService } from 'src/app/core/services/invoice/invoice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-invoice',
@@ -33,6 +34,7 @@ export class InvoiceComponent implements OnInit {
     private productService: ProductService,
     private clientService: ClientService,
     private formBuilder: FormBuilder,
+    private router: Router,
     public dialog: MatDialog
   ) { this.buildForm(); }
 
@@ -188,8 +190,9 @@ export class InvoiceComponent implements OnInit {
             data: { title: 'Resultado Operacion!', message: 'Factura Guardada...!',
                       nameBtnOne: 'Close', nameBtnTwo: 'Aceptar', btnEnable: false}
           });
-          this.invoice = new Invoice();
-          this.cleanForm();
+          //this.invoice = new Invoice();
+          //this.cleanForm();
+          this.router.navigate(['/sales'])
         }
       });
 

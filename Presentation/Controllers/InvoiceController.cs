@@ -53,7 +53,7 @@ namespace Presentation.Controllers
                 detail.Quantity = detailModel.Quantity;
                 detail.Discount = detailModel.Discount;
                 detail.TolalDetail =detailModel.TolalDetail;
-                detail.IdInvoice = detailModel.IdInvoice;
+                detail.InvoiceIdInvoice = detailModel.IdInvoice;
                 detail.IdProduct = detailModel.IdProduct;
 
                 // detail.Product  = new  Product();

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductModifyComponent } from './product-modify.component';
 import { MaterialModule } from '../material/material.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     MaterialModule,
-    FormsModule
+    ReactiveFormsModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

@@ -72,7 +72,7 @@ namespace Presentation.Models
                 detailModel.Quantity = detail.Quantity;
                 detailModel.Discount = detail.Discount;
                 detailModel.TolalDetail = detail.TolalDetail;
-                detailModel.IdInvoice  = detail.IdInvoice;
+                detailModel.IdInvoice  = detail.InvoiceIdInvoice;
                 detailModel.IdProduct  = detail.IdProduct;
 
                 detailModel.Product = new ProductInputModel();

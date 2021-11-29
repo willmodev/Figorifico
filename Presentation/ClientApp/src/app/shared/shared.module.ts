@@ -8,6 +8,7 @@ import { MaterialModule } from '../material/material.module';
 import { BoostrapModule } from '../boostrap/boostrap.module';
 import { FilterProductsPipe } from '../pipe/filter-products.pipe';
 import { FilterInvoicePipe } from '../pipe/filter-invoice.pipe';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { FilterInvoicePipe } from '../pipe/filter-invoice.pipe';
     RouterModule,
     MaterialModule,
     BoostrapModule
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SharedModule { }

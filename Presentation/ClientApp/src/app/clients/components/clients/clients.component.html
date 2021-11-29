@@ -8,7 +8,7 @@
         [ngClass]="{'is-invalid': (controlClient.indentification.errors && controlClient.indentification.touched)}">
 
         <div *ngIf="controlClient.indentification.errors" class="invalid-feedback">
-          <div *ngIf="controlClient.indentification.errors.required">se requiere la identificacion</div>
+          <div>{{getErrorIdentification()}}</div>
         </div>
       </div>
 
@@ -18,7 +18,7 @@
         [ngClass]="{'is-invalid': (controlClient.name.errors && controlClient.name.touched)}">
 
         <div *ngIf="controlClient.name.errors" class="invalid-feedback">
-          <div *ngIf="controlClient.name.errors.required">se requiere el nombre</div>
+          <div>{{getErrorName()}}</div>
         </div>
       </div>
       <div class="form-group col-md-6">
@@ -27,7 +27,7 @@
         [ngClass]="{'is-invalid': (controlClient.lastName.errors && controlClient.lastName.touched)}">
 
         <div *ngIf="controlClient.lastName.errors" class="invalid-feedback">
-          <div *ngIf="controlClient.lastName.errors.required">se requiere almenos un appelido</div>
+          <div>{{getErrorLastName()}}</div>
         </div>
       </div>
 
@@ -37,7 +37,7 @@
         [ngClass]="{'is-invalid': (controlClient.phone.errors && controlClient.phone.touched)}">
         
         <div *ngIf="controlClient.phone.errors" class="invalid-feedback">
-          <div *ngIf="controlClient.phone.errors.required">se requiere telefono</div>
+          <div>{{getErrorPhone()}}</div>
         </div>
       </div>
     </div>
@@ -47,7 +47,7 @@
       [ngClass]="{'is-invalid': (controlClient.address.errors && controlClient.address.touched)}">
 
       <div *ngIf="controlClient.address.errors" class="invalid-feedback">
-        <div *ngIf="controlClient.address.errors.required">se requiere direccion</div>
+        <div>{{getErrorAddress()}}</div>
       </div>
     </div>
 
@@ -59,7 +59,7 @@
         [ngClass]="{'is-invalid': (controlClient.neighborhood.errors && controlClient.neighborhood.touched)}">
         
         <div *ngIf="controlClient.neighborhood.errors" class="invalid-feedback">
-          <div *ngIf="controlClient.neighborhood.errors.required">se requiere barrio</div>
+          <div>{{getErrorNeighborhood()}}</div>
         </div>
       </div>
 
@@ -69,7 +69,7 @@
         [ngClass]="{'is-invalid': (controlClient.city.errors && controlClient.city.touched)}">
 
         <div *ngIf="controlClient.city.errors" class="invalid-feedback">
-          <div *ngIf="controlClient.city.errors.required">se requiere la ciudad</div>
+          <div>{{getErrorCity()}}</div>
         </div>
       </div>
 
@@ -79,7 +79,7 @@
         [ngClass]="{'is-invalid': (controlClient.department.errors && controlClient.department.touched)}">
         
         <div *ngIf="controlClient.department.errors" class="invalid-feedback">
-          <div *ngIf="controlClient.department.errors.required">se requiere el departamento</div>
+          <div>{{getErrorDepartment()}}</div>
         </div>
       </div>
     </div>
@@ -93,7 +93,7 @@
         [ngClass]="{'is-invalid': (controlUser.userName.errors && controlUser.userName.touched)}">
 
         <div *ngIf="controlUser.userName.errors" class="invalid-feedback">
-          <div *ngIf="controlUser.userName.errors.required">se requiere un usuario</div>
+          <div>{{getErrorUserName()}}</div>
         </div>
       </div>
 
@@ -103,7 +103,7 @@
         [ngClass]="{'is-invalid': (controlUser.password.errors && controlUser.password.touched)}">
 
         <div *ngIf="controlUser.password.errors" class="invalid-feedback">
-          <div *ngIf="controlUser.password.errors.required">se requiere una contraseña</div>
+          <div>{{getErrorPassword()}}</div>
         </div>
       </div>
     </div>

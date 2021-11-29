@@ -6,12 +6,13 @@ namespace Presentation.Models
     public class UserInputModel
     {
         [Required]
-        [StringLength(10,ErrorMessage="El campo debe tener MAXIMO 10 caracteres")]
-        [MinLength(3,ErrorMessage="El campo debe tener MINIMO 3 caracteres")]
+        [MinLength(3, ErrorMessage = "El campo debe tener MINIMO 3 caracteres")]
+        [StringLength(15, ErrorMessage = "El campo debe tener MAXIMO 15 caracteres")]
+        [RegularExpression(@"^[a-zA-Z0-9]+$", ErrorMessage = "El campo NO permite espacios entre caracteres y/o caracteres especiales")]
         public string UserName { get; set; }
         [Required]
-        [StringLength(10,ErrorMessage="El campo debe tener MAXIMO 10 caracteres")]
-        [MinLength(3,ErrorMessage="El campo debe tener MINIMO 6 caracteres")]
+        [MinLength(8,ErrorMessage="El campo debe tener MINIMO 8 caracteres")]
+        [StringLength(30,ErrorMessage="El campo debe tener MAXIMO 30 caracteres")]
         public string Password { get; set; }
         [Required]
         public string Status { get; set; }

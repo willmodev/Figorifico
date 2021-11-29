@@ -5,6 +5,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { AlertDialogComponent } from 'src/app/@base/alert-dialog/alert-dialog.component';
 import { User } from 'src/app/Models/User';
+import { sizeCharacters } from 'src/app/utilities/validators/sizeCharacters';
+import { rangeCharacters } from 'src/app/utilities/validators/rangeCharacters';
 
 
 @Component({
@@ -34,38 +36,232 @@ export class ClientsComponent implements OnInit {
 
     this.client =  new Client();
 
-    this.client.indentification = '';
-    this.client.name = '';
-    this.client.lastName = '';
-    this.client.phone = '';
-    this.client.address = '';
-    this.client.neighborhood = '';
-    this.client.city = '';
-    this.client.department = '';
-
     this.formGroupClient = this.formBuilder.group({
-      indentification: [this.client.indentification, Validators.required],
-      name: [this.client.name, Validators.required],
-      lastName: [this.client.lastName, Validators.required],
-      phone: [this.client.phone, Validators.required],
-      address: [this.client.address, Validators.required],
-      neighborhood: [this.client.neighborhood, Validators.required],
-      city: [this.client.city, Validators.required],
-      department: [this.client.department, Validators.required]
+      indentification: [
+        '',
+        {
+          validators: [Validators.required, Validators.pattern('[0-9]*'), sizeCharacters(10,"number")]
+        }
+      ],
+      name: [
+        '',
+        {
+          validators: [Validators.required, rangeCharacters(1, 30), Validators.pattern('[a-zA-Z ]*')]
+        }
+      ],
+      lastName: [
+        '',
+        {
+          validators: [Validators.required, rangeCharacters(1, 30), Validators.pattern('[a-zA-Z ]*')]
+        }
+      ],
+      phone: [
+        '',
+        {
+          validators: [Validators.required, Validators.pattern('[0-9]*'), sizeCharacters(10, "number")]
+        }
+      ],
+      address: [
+        '',
+        {
+          validators: [Validators.required, rangeCharacters(1, 30)]
+        }
+      ],
+      neighborhood: [
+        '',
+        {
+          validators: [Validators.required, rangeCharacters(1, 30), Validators.pattern('[a-zA-Z0-9 ]*')]
+        }
+      ],
+      city: [
+        '',
+        {
+          validators: [Validators.required, rangeCharacters(1, 50), Validators.pattern('[a-zA-Z ]*')]
+        }
+      ],
+      department: [
+        '',
+        {
+          validators: [Validators.required, rangeCharacters(1, 50), Validators.pattern('[a-zA-Z ]*')]
+        }
+      ]
     });
 
     this.user = new User();
-    this.user.userName = '';
-    this.user.password = '';
     this.user.role = 'Client';
 
     this.formGroupUser =  this.formBuilder.group({
-      userName: [this.user.userName, Validators.required],
-      password: [this.user.password, Validators.required],
+      userName: [
+        '',
+        {
+          validators: [Validators.required, rangeCharacters(3, 15), Validators.pattern('[a-zA-Z0-9]*')]
+        }
+      ],
+      password: [
+        '',
+        {
+          validators: [Validators.required, rangeCharacters(8, 30)]
+        }
+      ],
       role: [this.user.role],
       status: [this.user.status]
 
     });
+  }
+
+  getErrorIdentification() {
+    var field = this.formGroupClient.get('indentification');
+
+    if (field.hasError('required')) {
+      return 'El campo identificación es requerido';
+    }
+    if (field.hasError('pattern')) {
+      return 'El campo identificación permite solamente numeros';
+    }
+    if (field.hasError('sizeCharacters')) {
+      return field.getError('sizeCharacters').mensaje;
+    }
+
+    return '';
+  }
+
+  getErrorName() {
+    var field = this.formGroupClient.get('name');
+
+    if (field.hasError('required')) {
+      return 'El campo nombres es requerido';
+    }
+    if (field.hasError('pattern')) {
+      return 'El campo nombres NO permite numeros y/o caracteres especiales';
+    }
+    if (field.hasError('rangeCharacters')) {
+      return field.getError('rangeCharacters').mensaje;
+    }
+
+    return '';
+  }
+
+  getErrorLastName() {
+    var field = this.formGroupClient.get('lastName');
+
+    if (field.hasError('required')) {
+      return 'El campo apellidos es requerido';
+    }
+    if (field.hasError('pattern')) {
+      return 'El campo apellidos NO permite numeros y/o caracteres especiales';
+    }
+    if (field.hasError('rangeCharacters')) {
+      return field.getError('rangeCharacters').mensaje;
+    }
+
+    return '';
+  }
+
+  getErrorPhone() {
+    var field = this.formGroupClient.get('phone');
+
+    if (field.hasError('required')) {
+      return 'El campo telefono es requerido';
+    }
+    if (field.hasError('pattern')) {
+      return 'El campo telefono permite solamente numeros';
+    }
+    if (field.hasError('sizeCharacters')) {
+      return field.getError('sizeCharacters').mensaje;
+    }
+
+    return '';
+  }
+
+  getErrorAddress() {
+    var field = this.formGroupClient.get('address');
+
+    if (field.hasError('required')) {
+      return 'El campo dirección es requerido';
+    }
+    if (field.hasError('rangeCharacters')) {
+      return field.getError('rangeCharacters').mensaje;
+    }
+
+    return '';
+  }
+
+  getErrorNeighborhood() {
+    var field = this.formGroupClient.get('neighborhood');
+
+    if (field.hasError('required')) {
+      return 'El campo barrio es requerido';
+    }
+    if (field.hasError('pattern')) {
+      return 'El campo barrio NO permite caracteres especiales';
+    }
+    if (field.hasError('rangeCharacters')) {
+      return field.getError('rangeCharacters').mensaje;
+    }
+
+    return '';
+  }
+
+  getErrorCity() {
+    var field = this.formGroupClient.get('city');
+
+    if (field.hasError('required')) {
+      return 'El campo ciudad es requerido';
+    }
+    if (field.hasError('pattern')) {
+      return 'El campo ciudad NO permite numeros y/o caracteres especiales';
+    }
+    if (field.hasError('rangeCharacters')) {
+      return field.getError('rangeCharacters').mensaje;
+    }
+
+    return '';
+  }
+
+  getErrorDepartment() {
+    var field = this.formGroupClient.get('department');
+
+    if (field.hasError('required')) {
+      return 'El campo departamento es requerido';
+    }
+    if (field.hasError('pattern')) {
+      return 'El campo departamento NO permite numeros y/o caracteres especiales';
+    }
+    if (field.hasError('rangeCharacters')) {
+      return field.getError('rangeCharacters').mensaje;
+    }
+
+    return '';
+  }
+
+  getErrorUserName() {
+    var field = this.formGroupUser.get('userName');
+
+    if (field.hasError('required')) {
+      return 'El campo usuario es requerido';
+    }
+    if (field.hasError('pattern')) {
+      return 'El campo usuario NO permite espacios entre caracteres y/o caracteres especiales';
+    }
+    if (field.hasError('rangeCharacters')) {
+      return field.getError('rangeCharacters').mensaje;
+    }
+
+    return '';
+  }
+
+  getErrorPassword() {
+    var field = this.formGroupUser.get('password');
+
+    if (field.hasError('required')) {
+      return 'El campo contraseña es requerido';
+    }
+
+    if (field.hasError('rangeCharacters')) {
+      return field.getError('rangeCharacters').mensaje;
+    }
+
+    return '';
   }
 
   get controlClient() {

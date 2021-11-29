@@ -10,15 +10,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(FigorificoContext))]
-    [Migration("20201214163237_InitialCreate")]
+    [Migration("20211019181015_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Entity.CategoryProduct", b =>
@@ -129,8 +129,6 @@ namespace DAL.Migrations
 
                     b.HasKey("IdInvoice");
 
-                    b.HasIndex("IdClient");
-
                     b.ToTable("Invoices");
                 });
 
@@ -162,8 +160,6 @@ namespace DAL.Migrations
                     b.HasKey("IdDetail");
 
                     b.HasIndex("IdInvoice");
-
-                    b.HasIndex("IdProduct");
 
                     b.ToTable("InvoiceDetails");
                 });
@@ -260,6 +256,8 @@ namespace DAL.Migrations
                     b.HasOne("Entity.TypeProduct", "TypeProduct")
                         .WithMany()
                         .HasForeignKey("IdType");
+
+                    b.Navigation("TypeProduct");
                 });
 
             modelBuilder.Entity("Entity.Client", b =>
@@ -267,6 +265,8 @@ namespace DAL.Migrations
                     b.HasOne("Entity.User", "User")
                         .WithMany()
                         .HasForeignKey("UserName");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entity.Domiciliary", b =>
@@ -274,13 +274,8 @@ namespace DAL.Migrations
                     b.HasOne("Entity.User", "User")
                         .WithMany()
                         .HasForeignKey("UserName");
-                });
 
-            modelBuilder.Entity("Entity.Invoice", b =>
-                {
-                    b.HasOne("Entity.Client", "Client")
-                        .WithMany()
-                        .HasForeignKey("IdClient");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Entity.InvoiceDetail", b =>
@@ -288,10 +283,6 @@ namespace DAL.Migrations
                     b.HasOne("Entity.Invoice", null)
                         .WithMany("InvoiceDetails")
                         .HasForeignKey("IdInvoice");
-
-                    b.HasOne("Entity.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("IdProduct");
                 });
 
             modelBuilder.Entity("Entity.Vehicle", b =>
@@ -299,6 +290,13 @@ namespace DAL.Migrations
                     b.HasOne("Entity.Domiciliary", "Domiciliary")
                         .WithMany()
                         .HasForeignKey("Identification");
+
+                    b.Navigation("Domiciliary");
+                });
+
+            modelBuilder.Entity("Entity.Invoice", b =>
+                {
+                    b.Navigation("InvoiceDetails");
                 });
 #pragma warning restore 612, 618
         }

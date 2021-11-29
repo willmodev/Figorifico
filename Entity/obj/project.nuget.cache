@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Nmz4N31KHscDrEUmSgC6PA1SgoPNgM+JhrxzpiW7IEBbrqmG0CkqBNpsqRg8ugzhUrHGGVLzzzlqtvWOU1U+wA==",
+  "dgSpecHash": "rpRePuVP4tHG8u6ZUumcl9zjx8zoLjYa7Brjz9aykwObr5z8/vDR9f8I/0oxTU9O5tsStr0Lf+WySGDO1Yo00w==",
   "success": true,
-  "projectFilePath": "D:\\Programacion Web\\Figorifico\\Entity\\Entity.csproj",
+  "projectFilePath": "C:\\Users\\USUARIO\\AndroidStudioProjects\\APIS\\Actual-movil\\Figorifico\\Entity\\Entity.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\LENOVO-PC\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512"
+    "C:\\Users\\USUARIO\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }

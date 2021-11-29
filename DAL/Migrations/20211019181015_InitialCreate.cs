@@ -7,6 +7,24 @@ namespace DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Invoices",
+                columns: table => new
+                {
+                    IdInvoice = table.Column<string>(type: "nvarchar(4)", nullable: false),
+                    Subtotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TotalIva = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    SaleDate = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    DueDate = table.Column<string>(type: "nvarchar(30)", nullable: true),
+                    IdClient = table.Column<string>(type: "nvarchar(11)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Invoices", x => x.IdInvoice);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -14,10 +32,10 @@ namespace DAL.Migrations
                     Type = table.Column<string>(type: "nvarchar(30)", nullable: true),
                     SalePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PurchasePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Quantity = table.Column<float>(nullable: false),
-                    Iva = table.Column<int>(nullable: false),
-                    Image = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
+                    Quantity = table.Column<float>(type: "real", nullable: false),
+                    Iva = table.Column<int>(type: "int", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Category = table.Column<string>(type: "nvarchar(15)", nullable: true)
                 },
                 constraints: table =>
@@ -29,7 +47,7 @@ namespace DAL.Migrations
                 name: "TypeProduct",
                 columns: table => new
                 {
-                    IdType = table.Column<int>(nullable: false),
+                    IdType = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(30)", nullable: true)
                 },
                 constraints: table =>
@@ -52,13 +70,37 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "InvoiceDetails",
+                columns: table => new
+                {
+                    IdDetail = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UnitValue = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Quantity = table.Column<float>(type: "real", nullable: false),
+                    Discount = table.Column<float>(type: "real", nullable: false),
+                    TolalDetail = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    IdProduct = table.Column<string>(type: "nvarchar(10)", nullable: true),
+                    IdInvoice = table.Column<string>(type: "nvarchar(4)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InvoiceDetails", x => x.IdDetail);
+                    table.ForeignKey(
+                        name: "FK_InvoiceDetails_Invoices_IdInvoice",
+                        column: x => x.IdInvoice,
+                        principalTable: "Invoices",
+                        principalColumn: "IdInvoice",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Categorys",
                 columns: table => new
                 {
-                    IdCategory = table.Column<int>(nullable: false)
+                    IdCategory = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(30)", nullable: true),
-                    IdType = table.Column<int>(nullable: true)
+                    IdType = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -83,7 +125,7 @@ namespace DAL.Migrations
                     Neighborhood = table.Column<string>(type: "nvarchar(30)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(20)", nullable: true),
                     Department = table.Column<string>(type: "nvarchar(20)", nullable: true),
-                    UserName = table.Column<string>(nullable: true)
+                    UserName = table.Column<string>(type: "nvarchar(30)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -104,7 +146,7 @@ namespace DAL.Migrations
                     Name = table.Column<string>(type: "nvarchar(30)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(30)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(40)", nullable: true),
-                    UserName = table.Column<string>(nullable: true)
+                    UserName = table.Column<string>(type: "nvarchar(30)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -118,37 +160,13 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Invoices",
-                columns: table => new
-                {
-                    IdInvoice = table.Column<string>(type: "nvarchar(4)", nullable: false),
-                    Subtotal = table.Column<decimal>(nullable: false),
-                    TotalIva = table.Column<decimal>(nullable: false),
-                    Total = table.Column<decimal>(nullable: false),
-                    PaymentMethod = table.Column<string>(type: "nvarchar(30)", nullable: true),
-                    SaleDate = table.Column<string>(type: "nvarchar(30)", nullable: true),
-                    DueDate = table.Column<string>(type: "nvarchar(30)", nullable: true),
-                    IdClient = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Invoices", x => x.IdInvoice);
-                    table.ForeignKey(
-                        name: "FK_Invoices_Clients_IdClient",
-                        column: x => x.IdClient,
-                        principalTable: "Clients",
-                        principalColumn: "Indentification",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Vehicles",
                 columns: table => new
                 {
                     Placa = table.Column<string>(type: "nvarchar(11)", nullable: false),
                     Make = table.Column<string>(type: "nvarchar(20)", nullable: true),
                     Model = table.Column<string>(type: "nvarchar(5)", nullable: true),
-                    Identification = table.Column<string>(nullable: true)
+                    Identification = table.Column<string>(type: "nvarchar(11)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -158,36 +176,6 @@ namespace DAL.Migrations
                         column: x => x.Identification,
                         principalTable: "Domiciliaries",
                         principalColumn: "Identification",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "InvoiceDetails",
-                columns: table => new
-                {
-                    IdDetail = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UnitValue = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Quantity = table.Column<float>(nullable: false),
-                    Discount = table.Column<float>(nullable: false),
-                    TolalDetail = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    IdInvoice = table.Column<string>(nullable: true),
-                    IdProduct = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_InvoiceDetails", x => x.IdDetail);
-                    table.ForeignKey(
-                        name: "FK_InvoiceDetails_Invoices_IdInvoice",
-                        column: x => x.IdInvoice,
-                        principalTable: "Invoices",
-                        principalColumn: "IdInvoice",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_InvoiceDetails_Products_IdProduct",
-                        column: x => x.IdProduct,
-                        principalTable: "Products",
-                        principalColumn: "IdProduct",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -212,16 +200,6 @@ namespace DAL.Migrations
                 column: "IdInvoice");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InvoiceDetails_IdProduct",
-                table: "InvoiceDetails",
-                column: "IdProduct");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Invoices_IdClient",
-                table: "Invoices",
-                column: "IdClient");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Vehicles_Identification",
                 table: "Vehicles",
                 column: "Identification");
@@ -233,7 +211,13 @@ namespace DAL.Migrations
                 name: "Categorys");
 
             migrationBuilder.DropTable(
+                name: "Clients");
+
+            migrationBuilder.DropTable(
                 name: "InvoiceDetails");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Vehicles");
@@ -245,13 +229,7 @@ namespace DAL.Migrations
                 name: "Invoices");
 
             migrationBuilder.DropTable(
-                name: "Products");
-
-            migrationBuilder.DropTable(
                 name: "Domiciliaries");
-
-            migrationBuilder.DropTable(
-                name: "Clients");
 
             migrationBuilder.DropTable(
                 name: "Users");
