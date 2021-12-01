@@ -90,10 +90,12 @@
                                         <td>{{ product.category }}</td>
                                         <td>{{ product.quantity }}</td>
                                         <td>
-                                            <input type="number" #valQuantity id="size-quantity" min="1" [max]="product.quantity" >
+                                            <input type="number" #valQuantity id="size-quantity" value="1" min="1" [max]="product.quantity"
+                                                   onkeydown="return false">
                                         </td>
                                         <td>
-                                            <input type="number" #valDiscount id="size-quantity" min="0" max="100" >
+                                            <input type="number" #valDiscount id="size-quantity" value="0" min="0" max="100"
+                                                   onkeydown="return false">
                                         </td>
                                         <td>
                                             <input type="number" #valPrice id="size-price" [value]="product.salePrice" >
